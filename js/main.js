@@ -1,20 +1,23 @@
 // COIN SYSTEM
-let start = localStorage.getItem("startTime");
-
-if (!start) {
-  start = Date.now();
-  localStorage.setItem("startTime", start);
-}
+const display = document.getElementById("time");
 
 setInterval(() => {
+  let start = localStorage.getItem("startTime");
+
+  if (!start) {
+    start = Date.now();
+    localStorage.setItem("startTime", start);
+  }
+
   let now = Date.now();
   let seconds = (now - start) / 1000;
   let coins = (seconds * 0.02).toFixed(2);
 
   localStorage.setItem("coins", coins);
 
-  let display = document.getElementById("time");
-  if (display) display.innerText = coins;
+  if (display) {
+    display.innerText = coins;
+  }
 }, 1000);
 
 // BADGE SYSTEM
