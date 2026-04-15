@@ -1,3 +1,7 @@
+/* =====================================================
+   1. ROOT VARIABLES (Design System)
+===================================================== */
+
 :root {
   /* Base */
   --bg-main: #000000;
@@ -20,7 +24,10 @@
   --glow-pink: 0 0 8px #CE3072;
 }
 
-/*Global Style*/
+/* =====================================================
+   2. GLOBAL BASE
+===================================================== */
+
 body {
   margin: 0;
   padding: 0;
@@ -30,7 +37,18 @@ body {
   letter-spacing: 0.03em;
 }
 
-/*Typography*/
+main {
+  margin-top: 40px;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+/* =====================================================
+   3. TYPOGRAPHY
+===================================================== */
+
 h1, h2, h3 {
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -41,131 +59,10 @@ p {
   line-height: 1.6;
 }
 
-/*Buttons*/
-.button {
-  background: transparent;
-  border: 1px solid var(--purple-main);
-  color: var(--text-main);
-  padding: 10px 18px;
-  border-radius: 20px;
-  cursor: pointer;
+/* =====================================================
+   4. NAVIGATION
+===================================================== */
 
-  transition: all 0.25s ease;
-}
-
-.button:hover {
-  background: var(--purple-main);
-  box-shadow: var(--glow-purple);
-  transform: translateY(-2px);
-}
-
-/*“Collect Badge” button (special state)*/
-.button-badge {
-  border-color: var(--pink-accent);
-}
-
-.button-badge:hover {
-  background: var(--pink-accent);
-  box-shadow: var(--glow-pink);
-}
-
-/*Coin Counter UI*/
-.coin-ui {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--purple-main);
-  padding: 8px 14px;
-  border-radius: 20px;
-
-  font-size: 14px;
-  backdrop-filter: blur(6px);
-  box-shadow: var(--glow-purple);
-}
-
-/*Card System*/
-.card {
-  background: var(--bg-soft);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
-  padding: 20px;
-
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  border-color: var(--purple-main);
-  box-shadow: var(--glow-purple);
-  transform: translateY(-4px) scale(1.01);
-}
-
-/*I want it to be cute*/
-.cute-glow {
-  position: relative;
-}
-
-.cute-glow::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 12px var(--pink-accent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cute-glow:hover::after {
-  opacity: 0.6;
-}
-
-/*Café elements*/
-.cafe-box {
-  background: linear-gradient(135deg, #1a0f1f, #0a0a0f);
-  border: 1px solid var(--pink-accent);
-  border-radius: 20px;
-  padding: 20px;
-
-  box-shadow: 0 0 15px rgba(206, 48, 114, 0.3);
-}
-
-/*Badge collected state*/
-.badge-collected {
-  border: 1px solid var(--green-accent);
-  box-shadow: 0 0 12px var(--green-accent);
-}
-
-/*Accessibility*/
-button:focus,
-a:focus {
-  outline: 2px solid var(--blue-accent);
-  outline-offset: 3px;
-}
-
-::selection {
-  background: var(--purple-main);
-  color: white;
-}
-
-/*animated background*/
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-
-  background: radial-gradient(circle, rgba(90,9,229,0.08) 0%, transparent 70%);
-  animation: floatGlow 12s linear infinite;
-}
-
-@keyframes floatGlow {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(5%, 5%); }
-  100% { transform: translate(0,0); }
-}
 .nav {
   position: sticky;
   top: 0;
@@ -173,7 +70,6 @@ body::before {
 
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -194,6 +90,7 @@ body::before {
   position: relative;
 }
 
+/* Hover underline animation */
 .nav a::after {
   content: "";
   position: absolute;
@@ -201,7 +98,7 @@ body::before {
   bottom: -4px;
   width: 0%;
   height: 2px;
-  background: #5A09E5;
+  background: var(--purple-main);
   transition: 0.3s;
 }
 
@@ -209,10 +106,160 @@ body::before {
   width: 100%;
 }
 
-a {
-  cursor: pointer;
+/* Glow effect */
+.nav a:hover {
+  color: var(--purple-main);
+  text-shadow: 0 0 8px var(--purple-main);
 }
 
-button {
-  cursor: pointer;
+/* =====================================================
+   5. LAYOUT SYSTEM
+===================================================== */
+
+.container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* =====================================================
+   6. COMPONENTS
+===================================================== */
+
+/* ---- Cards ---- */
+.card {
+  background: var(--bg-soft);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--purple-main);
+  box-shadow: var(--glow-purple);
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* ---- Buttons ---- */
+.button {
+  background: transparent;
+  border: 1px solid var(--purple-main);
+  color: var(--text-main);
+  padding: 10px 18px;
+  border-radius: 20px;
+  transition: all 0.25s ease;
+}
+
+.button:hover {
+  background: var(--purple-main);
+  box-shadow: var(--glow-purple);
+  transform: translateY(-2px);
+}
+
+/* Badge button variant */
+.button-badge {
+  border-color: var(--pink-accent);
+}
+
+.button-badge:hover {
+  background: var(--pink-accent);
+  box-shadow: var(--glow-pink);
+}
+
+/* ---- Coin UI ---- */
+.coin-ui {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--purple-main);
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--glow-purple);
+}
+
+/* ---- Café ---- */
+.cafe-box {
+  background: linear-gradient(135deg, #1a0f1f, #0a0a0f);
+  border: 1px solid var(--pink-accent);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(206, 48, 114, 0.3);
+}
+
+/* =====================================================
+   7. STATES & EFFECTS
+===================================================== */
+
+/* Badge collected */
+.badge-collected {
+  border: 1px solid var(--green-accent);
+  box-shadow: 0 0 12px var(--green-accent);
+}
+
+/* Cute glow interaction */
+.cute-glow {
+  position: relative;
+}
+
+.cute-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 12px var(--pink-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cute-glow:hover::after {
+  opacity: 0.6;
+}
+
+/* =====================================================
+   8. ACCESSIBILITY
+===================================================== */
+
+button:focus,
+a:focus {
+  outline: 2px solid var(--blue-accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--purple-main);
+  color: white;
+}
+
+/* =====================================================
+   9. BACKGROUND ANIMATION
+===================================================== */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+
+  background: radial-gradient(circle, rgba(90,9,229,0.08) 0%, transparent 70%);
+  animation: floatGlow 12s linear infinite;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(5%, 5%); }
+  100% { transform: translate(0,0); }
 }
