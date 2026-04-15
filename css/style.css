@@ -166,3 +166,53 @@ body::before {
   50% { transform: translate(5%, 5%); }
   100% { transform: translate(0,0); }
 }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+
+  display: flex;
+  gap: 24px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  position: relative;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #5A09E5;
+  transition: 0.3s;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+a {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
