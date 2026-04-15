@@ -287,3 +287,6 @@ coffee GIF container
   0% { transform: scale(0.6); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
+#coffee-result {
+  transition: all 0.3s ease;
+}
