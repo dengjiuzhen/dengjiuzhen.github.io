@@ -269,3 +269,21 @@ body::before {
   50% { transform: translate(5%, 5%); }
   100% { transform: translate(0,0); }
 }
+
+/* =====================================================
+coffee GIF container
+===================================================== */
+.coffee-animation {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.coffee-animation img {
+  width: 120px;
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
