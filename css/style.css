@@ -3,25 +3,23 @@
 ===================================================== */
 
 :root {
-  /* Base */
   --bg-main: #000000;
   --bg-soft: #0a0a0f;
 
-  /* Primary */
   --purple-main: #5A09E5;
 
-  /* Accent */
   --pink-accent: #CE3072;
   --blue-accent: #92A5EE;
   --green-accent: #A6F1AC;
 
-  /* Text */
   --text-main: #FFFFFF;
   --text-dim: #BFBFBF;
 
-  /* Effects */
   --glow-purple: 0 0 10px #5A09E5, 0 0 20px #5A09E5;
   --glow-pink: 0 0 8px #CE3072;
+
+  /* NEW: layout variables */
+  --nav-height: 64px;
 }
 
 /* =====================================================
@@ -38,7 +36,7 @@ body {
 }
 
 main {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 a, button {
@@ -68,7 +66,12 @@ p {
   top: 0;
   z-index: 1000;
 
-  background: rgba(0, 0, 0, 0.6);
+  height: var(--nav-height);
+
+  display: flex;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
@@ -76,10 +79,11 @@ p {
 .nav-inner {
   max-width: 900px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 0 16px;
 
   display: flex;
   gap: 24px;
+  align-items: center;
 }
 
 .nav a {
@@ -90,7 +94,7 @@ p {
   position: relative;
 }
 
-/* Hover underline animation */
+/* Hover underline */
 .nav a::after {
   content: "";
   position: absolute;
@@ -106,7 +110,7 @@ p {
   width: 100%;
 }
 
-/* Glow effect */
+/* Glow */
 .nav a:hover {
   color: var(--purple-main);
   text-shadow: 0 0 8px var(--purple-main);
@@ -163,7 +167,7 @@ p {
   transform: translateY(-2px);
 }
 
-/* Badge button variant */
+/* Badge button */
 .button-badge {
   border-color: var(--pink-accent);
 }
@@ -173,13 +177,15 @@ p {
   box-shadow: var(--glow-pink);
 }
 
-/* ---- Coin UI ---- */
+/* ---- Coin UI (FIXED POSITION) ---- */
 .coin-ui {
   position: fixed;
-  top: 20px;
+
+  /* 👇 FIX: move below nav */
+  top: calc(var(--nav-height) + 10px);
   right: 20px;
 
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   border: 1px solid var(--purple-main);
   padding: 8px 14px;
   border-radius: 20px;
@@ -187,6 +193,8 @@ p {
   font-size: 14px;
   backdrop-filter: blur(6px);
   box-shadow: var(--glow-purple);
+
+  z-index: 999; /* below nav but above content */
 }
 
 /* ---- Café ---- */
@@ -202,13 +210,11 @@ p {
    7. STATES & EFFECTS
 ===================================================== */
 
-/* Badge collected */
 .badge-collected {
   border: 1px solid var(--green-accent);
   box-shadow: 0 0 12px var(--green-accent);
 }
 
-/* Cute glow interaction */
 .cute-glow {
   position: relative;
 }
