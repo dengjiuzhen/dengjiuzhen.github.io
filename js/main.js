@@ -86,9 +86,39 @@ function buyCoffee() {
     if (display) display.innerText = coins;
 
     const messages = [
-      "You’re doing amazing 💜",
+      "You’re doing amazing 🌹",
       "Take it slow ☁️",
-      "Thanks for being here 🌙"
+      "Thanks for being here ♥️"
+      "You’ve come this far already 🫶"
+      "It’s okay to rest here for a bit 🌙"
+      "You’re doing better than you think 💪"
+      "This moment counts too ✨"
+      "Take your time, I’m not going anywhere 🫧"
+      "You’re allowed to move slowly 🌿"
+      "A small pause is still progress 🌸"
+      "+1 emotional support drink 🍵"
+      "This coffee believes in you 😉"
+      "You unlocked: tiny comfort 😌"
+      "Productivity paused...Vibes resumed ✌️"
+      "Careful, this coffee is 100% encouragement 💯"
+      "Achievement unlocked: taking a break 🏆"
+      "This coffee has no bugs, only hugs 🤗"
+      "Neon night, soft thoughts 💜"
+      "Somewhere, something is gently glowing 🤫"
+      "The café hums quietly for you 🎤"
+      "The world slows down just a little here 🌊"
+      "A quiet corner, just for you 🐚"
+      "Time drips like warm coffee ☕️"
+      "You linger, and that’s enough 🥺"
+      "Soft light, softer thoughts 💌"
+      "Thanks for spending time with my work 🌸"
+      "I’m really glad you’re here 🥰"
+      "You noticed something—I appreciate that 🥳"
+      "I hope something here stayed with you ☺️"
+      "This space is better with you in it 🤝"
+      "You’ve been exploring a lot 👀"
+      "I can tell you’re curious 🤩"
+      "Something is unfolding… keep going 🌿"
     ];
 
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
