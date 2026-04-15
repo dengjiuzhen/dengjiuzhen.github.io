@@ -47,20 +47,43 @@ if (container) {
 // CAFÉ
 function buyCoffee() {
   let coins = parseFloat(localStorage.getItem("coins")) || 0;
+  const price = 2;
 
-  if (coins >= 3) {
-    coins -= 3;
-    localStorage.setItem("coins", coins);
+  const result = document.getElementById("coffee-result");
 
-    const messages = [
-      "You’re doing great 🌸",
-      "Take it slow ☕",
-      "Thanks for being here ✨"
-    ];
+  if (!result) return;
 
-    document.getElementById("coffee-message").innerText =
-      messages[Math.floor(Math.random() * messages.length)];
-  } else {
-    alert("Not enough coins!");
+  if (coins < price) {
+    result.innerHTML = "<p>☹️ Not enough coins... stay a little longer?</p>";
+    return;
   }
+
+  // Deduct coins
+  coins -= price;
+  coins = coins.toFixed(2);
+  localStorage.setItem("coins", coins);
+
+  // Update UI immediately
+  const display = document.getElementById("time");
+  if (display) display.innerText = coins;
+
+  // Random messages
+  const messages = [
+    "You’re doing amazing 💜",
+    "Take it slow, you’re right on time ☁️",
+    "Thanks for spending time here 🌙",
+    "A small break suits you ☕",
+    "You’ve got a good eye for things ✨",
+    "Stay a little longer, I like your presence 🌸"
+  ];
+
+  const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+
+  // Show result with GIF
+  result.innerHTML = `
+    <div class="coffee-animation">
+      <img src="assets/coffee.gif" alt="coffee">
+      <p>${randomMsg}</p>
+    </div>
+  `;
 }
