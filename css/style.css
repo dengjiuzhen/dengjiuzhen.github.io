@@ -290,3 +290,6 @@ coffee GIF container
 #coffee-result {
   transition: all 0.3s ease;
 }
+body::before {
+  pointer-events: none;
+}
