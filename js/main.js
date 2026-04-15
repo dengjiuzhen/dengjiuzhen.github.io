@@ -35,7 +35,13 @@ function collectBadge(id) {
 let container = document.getElementById("collection-container");
 
 if (container) {
-  let badges = JSON.parse(localStorage.getItem("badges")) || [];
+  let badges = [];
+
+  try {
+    badges = JSON.parse(localStorage.getItem("badges")) || [];
+  } catch (e) {
+    badges = [];
+  }
 
   badges.forEach(b => {
     let div = document.createElement("div");
