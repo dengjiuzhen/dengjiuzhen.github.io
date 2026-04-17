@@ -1,28 +1,44 @@
 console.log("JS loaded");
 
-// COIN SYSTEM (SESSION-BASED)
-let startTime = Date.now();
+// ===== COIN SYSTEM (SESSION + EXIT DETECTION) =====
 
-// Reset timer when page loads
-sessionStorage.setItem("startTime", startTime);
+// If tab's new
+if (!sessionStorage.getItem("startTime")) {
+  sessionStorage.setItem("startTime", Date.now());
+}
 
-// Update coins every second
+// last active
+function updateLastActive() {
+  localStorage.setItem("lastActive", Date.now());
+}
+setInterval(updateLastActive, 1000);
+
+// detect if left
+(function checkIfReturnedAfterLongLeave() {
+  let lastActive = parseInt(localStorage.getItem("lastActive"));
+
+  if (lastActive) {
+    let now = Date.now();
+    let gap = now - lastActive;
+
+    // if left (refresh typically less than 5 sec)
+    if (gap > 5000) {
+      console.log("Detected real leave → resetting timer");
+      sessionStorage.setItem("startTime", Date.now());
+    }
+  }
+})();
+
+// timer
 setInterval(() => {
   try {
     let start = parseInt(sessionStorage.getItem("startTime"));
-
-    if (!start) {
-      start = Date.now();
-      sessionStorage.setItem("startTime", start);
-    }
-
     let now = Date.now();
     let seconds = (now - start) / 1000;
 
     let coins = (seconds * 0.02).toFixed(2);
 
-    // Store coins in localStorage (persistent)
-    sessionStorage.setItem("coins", coins);
+    localStorage.setItem("coins", coins);
 
     const display = document.getElementById("time");
     if (display) display.innerText = coins;
@@ -32,11 +48,6 @@ setInterval(() => {
   }
 }, 1000);
 
-
-// RESET TIMER WHEN USER LEAVES
-window.addEventListener("beforeunload", () => {
-  sessionStorage.removeItem("startTime");
-});
 
 // BADGE SYSTEM
 function collectBadge(id) {
