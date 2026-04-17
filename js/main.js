@@ -1,44 +1,34 @@
 console.log("JS loaded");
 
-// ===== COIN SYSTEM (SESSION + EXIT DETECTION) =====
-
-// If tab's new
-if (!sessionStorage.getItem("startTime")) {
-  sessionStorage.setItem("startTime", Date.now());
+// ===== COIN SYSTEM (NO OFFLINE FARMING + SPENDABLE) =====
+if (!sessionStorage.getItem("lastTick")) {
+  sessionStorage.setItem("lastTick", Date.now());
 }
 
-// last active
-function updateLastActive() {
-  localStorage.setItem("lastActive", Date.now());
+if (!localStorage.getItem("coins")) {
+  localStorage.setItem("coins", "0");
 }
-setInterval(updateLastActive, 1000);
 
-// detect if left
-(function checkIfReturnedAfterLongLeave() {
-  let lastActive = parseInt(localStorage.getItem("lastActive"));
-
-  if (lastActive) {
-    let now = Date.now();
-    let gap = now - lastActive;
-
-    // if left (refresh typically less than 5 sec)
-    if (gap > 5000) {
-      console.log("Detected real leave → resetting timer");
-      sessionStorage.setItem("startTime", Date.now());
-    }
-  }
-})();
-
-// timer
 setInterval(() => {
   try {
-    let start = parseInt(sessionStorage.getItem("startTime"));
+    let last = parseInt(sessionStorage.getItem("lastTick"));
     let now = Date.now();
-    let seconds = (now - start) / 1000;
 
-    let coins = (seconds * 0.02).toFixed(2);
+    let deltaSeconds = (now - last) / 1000;
+
+    // if offline
+    if (deltaSeconds > 5) {
+      console.log("Detected long leave → ignoring offline time");
+      deltaSeconds = 0;
+    }
+
+    let coins = parseFloat(localStorage.getItem("coins")) || 0;
+
+    coins += deltaSeconds * 0.02;
+    coins = coins.toFixed(2);
 
     localStorage.setItem("coins", coins);
+    sessionStorage.setItem("lastTick", now);
 
     const display = document.getElementById("time");
     if (display) display.innerText = coins;
@@ -47,7 +37,6 @@ setInterval(() => {
     console.error("Coin system error:", e);
   }
 }, 1000);
-
 
 // BADGE SYSTEM
 function collectBadge(id) {
