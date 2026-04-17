@@ -22,7 +22,9 @@
   ⏱ <span id="time">0.00</span> ⬤
 </div>
 
-<!-- HERO / INTRO -->
+<main class="container">
+
+<!-- HERO -->
 <section class="card">
   <h1>Welcome</h1>
   <p>
@@ -31,62 +33,69 @@
   </p>
 </section>
 
-<!-- CORE LOOP (VERY LIGHTWEIGHT) -->
+<!-- LOOP -->
 <section class="card">
   <h2>How it works</h2>
-  <p>
-    Explore → View → Collect → Earn → Return
-  </p>
-  <p>
-    The longer you stay, the more you gather.<br>
-    Take your time.
-  </p>
+  <p>Explore → View → Collect → Earn → Return</p>
+  <p>The longer you stay, the more you gather.</p>
 </section>
 
-<!-- SPACES (MOST IMPORTANT PART) -->
-<section class="card">
-  <h2>Spaces</h2>
+<!-- INTERACTIVE SPACES -->
+<section>
+  <h2 style="margin-bottom: 20px;">Choose a space</h2>
 
-  <p>
-    <strong>Studio</strong> — practice-based work<br>
-    Design projects, experiments, and making.
-  </p>
+  <div class="grid">
 
-  <p>
-    <strong>Archive</strong> — theory & writing<br>
-    Papers, research, and conceptual thinking.
-  </p>
+    <!-- STUDIO -->
+    <div class="card space-card">
+      <h3>Studio</h3>
+      <p>Practice-based work, experiments, and making.</p>
+      <a href="studio.html" class="button">Enter</a>
+    </div>
 
-  <p>
-    <strong>Collection</strong> — what you chose to keep<br>
-    Badges from works you found meaningful.
-  </p>
+    <!-- ARCHIVE -->
+    <div class="card space-card">
+      <h3>Archive</h3>
+      <p>Theory, writing, and conceptual thinking.</p>
+      <a href="archive.html" class="button">Enter</a>
+    </div>
 
-  <p>
-    <strong>Café</strong> — a small pause<br>
-    Spend time-earned coins for something soft.
-  </p>
+    <!-- COLLECTION -->
+    <div class="card space-card">
+      <h3>Collection</h3>
+      <p>Things you chose to keep.</p>
+      <a href="collection.html" class="button button-badge">View</a>
+    </div>
 
-  <p>
-    <strong>About</strong> — who is behind this<br>
-    Background, CV, and contact.
-  </p>
+    <!-- CAFE -->
+    <div class="card space-card cafe-card">
+      <h3>Café</h3>
+      <p>A small pause. Spend time-earned coins.</p>
+      <a href="cafe.html" class="button">Rest</a>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="card space-card">
+      <h3>About</h3>
+      <p>Background, CV, and contact.</p>
+      <a href="about.html" class="button">Open</a>
+    </div>
+
+  </div>
 </section>
 
-<!-- SYSTEM HINTS (SUBTLE, NOT LOUD) -->
+<!-- HINTS -->
 <section class="card">
   <h2>Things you might notice</h2>
-
   <p>
     ⬤ Time slowly turns into coins<br>
-    ⬤ Some works can be collected<br>
+    ⬤ Some things can be collected<br>
     ⬤ Not everything reveals itself immediately
   </p>
-
-  <p>
-    Nothing here is in a hurry.
-  </p>
+  <p>Nothing here is in a hurry.</p>
 </section>
+
+</main>
 
 <script src="js/main.js"></script>
 </body>
