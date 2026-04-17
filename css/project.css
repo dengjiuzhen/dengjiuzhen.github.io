@@ -1,0 +1,155 @@
+/* =====================================================
+   1. VARIABLES
+===================================================== */
+
+:root {
+  --bg: #000;
+  --text: #fff;
+  --text-dim: #bfbfbf;
+
+  --accent: #5A09E5;
+  --accent-soft: rgba(90,9,229,0.2);
+
+  --gap: 32px;
+  --radius: 16px;
+
+  --max-width: 1100px;
+
+  --print-margin: 20mm;
+}
+
+/* =====================================================
+   2. PAGE STRUCTURE
+===================================================== */
+
+.project {
+  max-width: var(--max-width);
+  margin: 80px auto;
+  padding: 20px;
+}
+
+/* =====================================================
+   3. PROJECT BLOCK (核心模块)
+===================================================== */
+
+.project-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+
+  margin-bottom: 60px;
+
+  /* ⭐️ 防止分页断裂 */
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ✨ 左右交错布局 */
+.project-block:nth-child(even) {
+  direction: rtl;
+}
+
+.project-block:nth-child(even) .project-text {
+  direction: ltr;
+}
+
+/* =====================================================
+   4. TEXT
+===================================================== */
+
+.project-text h2 {
+  margin-bottom: 12px;
+  letter-spacing: 0.08em;
+}
+
+.project-text ul {
+  padding-left: 18px;
+}
+
+.project-text li {
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* =====================================================
+   5. MEDIA
+===================================================== */
+
+.project-media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-media img {
+  width: 100%;
+  border-radius: var(--radius);
+  object-fit: cover;
+
+  /* ✨ 轻微视觉增强 */
+  transform: scale(1.01);
+}
+
+/* =====================================================
+   6. RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+  .project-block {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   7. PRINT (关键)
+===================================================== */
+
+@media print {
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .project {
+    margin: 0;
+    padding: var(--print-margin);
+  }
+
+  .project-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* ⭐️ 关键增强：防止 block 被强拆 */
+  section {
+    break-inside: avoid;
+  }
+}
+
+/* =====================================================
+   8. PAGE SIZE (11x17 landscape)
+===================================================== */
+
+@page {
+  size: 11in 17in landscape;
+  margin: 20mm;
+}
+
+/* =====================================================
+Rules to avoid high block:
+each page 1-2 image
+3-6 bullet points
+no more than 1 page (max-height: 950px)
+===================================================== */
