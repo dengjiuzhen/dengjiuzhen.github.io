@@ -1,20 +1,28 @@
 console.log("JS loaded");
 
-// COIN SYSTEM
+// COIN SYSTEM (SESSION-BASED)
+let startTime = Date.now();
+
+// Reset timer when page loads
+sessionStorage.setItem("startTime", startTime);
+
+// Update coins every second
 setInterval(() => {
   try {
-    let start = localStorage.getItem("startTime");
+    let start = parseInt(sessionStorage.getItem("startTime"));
 
     if (!start) {
       start = Date.now();
-      localStorage.setItem("startTime", start);
+      sessionStorage.setItem("startTime", start);
     }
 
     let now = Date.now();
     let seconds = (now - start) / 1000;
+
     let coins = (seconds * 0.02).toFixed(2);
 
-    localStorage.setItem("coins", coins);
+    // Store coins in localStorage (persistent)
+    sessionStorage.setItem("coins", coins);
 
     const display = document.getElementById("time");
     if (display) display.innerText = coins;
@@ -24,6 +32,11 @@ setInterval(() => {
   }
 }, 1000);
 
+
+// RESET TIMER WHEN USER LEAVES
+window.addEventListener("beforeunload", () => {
+  sessionStorage.removeItem("startTime");
+});
 
 // BADGE SYSTEM
 function collectBadge(id) {
