@@ -1,5 +1,5 @@
 /* =====================================================
-   1. ROOT VARIABLES (Design System)
+   1. ROOT VARIABLES
 ===================================================== */
 
 :root {
@@ -7,7 +7,6 @@
   --bg-soft: #0a0a0f;
 
   --purple-main: #5A09E5;
-
   --pink-accent: #CE3072;
   --blue-accent: #92A5EE;
   --green-accent: #A6F1AC;
@@ -18,12 +17,11 @@
   --glow-purple: 0 0 10px #5A09E5, 0 0 20px #5A09E5;
   --glow-pink: 0 0 8px #CE3072;
 
-  /* NEW: layout variables */
   --nav-height: 64px;
 }
 
 /* =====================================================
-   2. GLOBAL BASE
+   2. GLOBAL
 ===================================================== */
 
 body {
@@ -58,7 +56,7 @@ p {
 }
 
 /* =====================================================
-   4. NAVIGATION
+   4. NAV
 ===================================================== */
 
 .nav {
@@ -67,7 +65,6 @@ p {
   z-index: 1000;
 
   height: var(--nav-height);
-
   display: flex;
   align-items: center;
 
@@ -83,7 +80,6 @@ p {
 
   display: flex;
   gap: 24px;
-  align-items: center;
 }
 
 .nav a {
@@ -94,7 +90,6 @@ p {
   position: relative;
 }
 
-/* Hover underline */
 .nav a::after {
   content: "";
   position: absolute;
@@ -110,20 +105,22 @@ p {
   width: 100%;
 }
 
-/* Glow */
 .nav a:hover {
   color: var(--purple-main);
   text-shadow: 0 0 8px var(--purple-main);
 }
 
 /* =====================================================
-   5. LAYOUT SYSTEM
+   5. LAYOUT
 ===================================================== */
 
 .container {
   max-width: 900px;
   margin: 80px auto;
   padding: 20px;
+
+  position: relative; 
+  z-index: 1;
 }
 
 .grid {
@@ -133,10 +130,9 @@ p {
 }
 
 /* =====================================================
-   6. COMPONENTS
+   6. CARDS
 ===================================================== */
 
-/* ---- Cards ---- */
 .card {
   background: var(--bg-soft);
   border: 1px solid rgba(255,255,255,0.1);
@@ -151,13 +147,20 @@ p {
   transform: translateY(-4px) scale(1.01);
 }
 
-/* ---- Buttons ---- */
+/* =====================================================
+   7. BUTTONS
+===================================================== */
+
 .button {
   background: transparent;
   border: 1px solid var(--purple-main);
   color: var(--text-main);
   padding: 10px 18px;
   border-radius: 20px;
+
+  text-decoration: none; /* ⭐ fix underline */
+  display: inline-block;
+
   transition: all 0.25s ease;
 }
 
@@ -167,7 +170,10 @@ p {
   transform: translateY(-2px);
 }
 
-/* Badge button */
+.button:visited {
+  color: var(--text-main); /* ⭐ fix visited color */
+}
+
 .button-badge {
   border-color: var(--pink-accent);
 }
@@ -177,11 +183,12 @@ p {
   box-shadow: var(--glow-pink);
 }
 
-/* ---- Coin UI (FIXED POSITION) ---- */
+/* =====================================================
+   8. COIN UI
+===================================================== */
+
 .coin-ui {
   position: fixed;
-
-  /* 👇 FIX: move below nav */
   top: calc(var(--nav-height) + 10px);
   right: 20px;
 
@@ -194,121 +201,23 @@ p {
   backdrop-filter: blur(6px);
   box-shadow: var(--glow-purple);
 
-  z-index: 999; /* below nav but above content */
-}
-
-/* ---- Café ---- */
-.cafe-box {
-  background: linear-gradient(135deg, #1a0f1f, #0a0a0f);
-  border: 1px solid var(--pink-accent);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 0 15px rgba(206, 48, 114, 0.3);
+  z-index: 999;
 }
 
 /* =====================================================
-   7. STATES & EFFECTS
+   9. SPACE CARDS
 ===================================================== */
-
-.badge-collected {
-  border: 1px solid var(--green-accent);
-  box-shadow: 0 0 12px var(--green-accent);
-}
-
-.cute-glow {
-  position: relative;
-}
-
-.cute-glow::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 12px var(--pink-accent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cute-glow:hover::after {
-  opacity: 0.6;
-}
-
-/* =====================================================
-   8. ACCESSIBILITY
-===================================================== */
-
-button:focus,
-a:focus {
-  outline: 2px solid var(--blue-accent);
-  outline-offset: 3px;
-}
-
-::selection {
-  background: var(--purple-main);
-  color: white;
-}
-
-/* =====================================================
-   9. BACKGROUND ANIMATION
-===================================================== */
-
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-
-  background: radial-gradient(circle, rgba(90,9,229,0.08) 0%, transparent 70%);
-  animation: floatGlow 12s linear infinite;
-}
-
-@keyframes floatGlow {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(5%, 5%); }
-  100% { transform: translate(0,0); }
-}
-
-/* =====================================================
-coffee GIF container
-===================================================== */
-.coffee-animation {
-  margin-top: 16px;
-  text-align: center;
-}
-
-.coffee-animation img {
-  width: 120px;
-  animation: popIn 0.4s ease;
-}
-
-@keyframes popIn {
-  0% { transform: scale(0.6); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-#coffee-result {
-  transition: all 0.3s ease;
-}
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle, rgba(90,9,229,0.08), transparent);
-  pointer-events: none;
-}
-
-/* ===== LOBBY INTERACTION ===== */
 
 .space-card {
   position: relative;
   overflow: hidden;
+
+  text-decoration: none; 
+  color: inherit;
+  display: block;
 }
 
-/* subtle hover aura */
+/* hover aura */
 .space-card::before {
   content: "";
   position: absolute;
@@ -322,18 +231,64 @@ body::before {
   opacity: 1;
 }
 
-/* card lift a bit more than normal cards */
+/* stronger hover lift */
 .space-card:hover {
   transform: translateY(-6px) scale(1.02);
 }
 
-/* café gets pink glow instead */
+/* café special glow */
 .cafe-card:hover {
   box-shadow: 0 0 20px rgba(206, 48, 114, 0.5);
 }
 
-/* button spacing */
-.space-card .button {
-  margin-top: 12px;
-  display: inline-block;
+/* =====================================================
+   10. BACKGROUND 
+===================================================== */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+
+  background: radial-gradient(circle, rgba(90,9,229,0.08), transparent);
+  animation: floatGlow 12s linear infinite;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(5%, 5%); }
+  100% { transform: translate(0,0); }
+}
+
+/* =====================================================
+   11. CAFÉ
+===================================================== */
+
+.cafe-box {
+  background: linear-gradient(135deg, #1a0f1f, #0a0a0f);
+  border: 1px solid var(--pink-accent);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(206, 48, 114, 0.3);
+}
+
+.coffee-animation {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.coffee-animation img {
+  width: 120px;
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
