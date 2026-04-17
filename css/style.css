@@ -158,7 +158,7 @@ p {
   padding: 10px 18px;
   border-radius: 20px;
 
-  text-decoration: none; /* ⭐ fix underline */
+  text-decoration: none; 
   display: inline-block;
 
   transition: all 0.25s ease;
@@ -171,7 +171,7 @@ p {
 }
 
 .button:visited {
-  color: var(--text-main); /* ⭐ fix visited color */
+  color: var(--text-main); 
 }
 
 .button-badge {
@@ -181,6 +181,59 @@ p {
 .button-badge:hover {
   background: var(--pink-accent);
   box-shadow: var(--glow-pink);
+}
+
+/* ===== remove default link style inside cards ===== */
+
+.space-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* prevent purple visited link */
+.space-card:visited {
+  color: inherit;
+}
+
+/* ===== button consistency ===== */
+
+.space-card .button {
+  display: inline-block;
+  margin-top: 14px;
+
+  border: 1px solid var(--purple-main);
+  padding: 10px 18px;
+  border-radius: 20px;
+
+  color: var(--text-main);
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+/* unified hover (triggered by card hover) */
+.space-card:hover .button {
+  background: var(--purple-main);
+  box-shadow: var(--glow-purple);
+  transform: translateY(-2px);
+}
+
+/* ===== collection (pink) ===== */
+
+.space-card .button-badge {
+  border-color: var(--pink-accent);
+}
+
+.space-card:hover .button-badge {
+  background: var(--pink-accent);
+  box-shadow: var(--glow-pink);
+}
+
+/* ===== subtle press effect ===== */
+
+.space-card:active {
+  transform: scale(0.98);
 }
 
 /* =====================================================
