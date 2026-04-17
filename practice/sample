@@ -1,0 +1,40 @@
+<main class="project">
+
+  <!-- SECTION BLOCK -->
+  <section class="project-block">
+
+    <!-- TEXT -->
+    <div class="project-text">
+      <h2>Concept</h2>
+      <ul>
+        <li>Gamified interaction system</li>
+        <li>Time-based engagement</li>
+        <li>Emotional feedback loop</li>
+      </ul>
+    </div>
+
+    <!-- IMAGES -->
+    <div class="project-media">
+      <img src="assets/img1.jpg">
+      <img src="assets/img2.jpg">
+    </div>
+
+  </section>
+
+
+  <!-- REPEAT -->
+  <section class="project-block">
+    <div class="project-text">
+      <h2>Process</h2>
+      <ul>
+        <li>Research → mapping → iteration</li>
+        <li>Prototype + testing</li>
+      </ul>
+    </div>
+
+    <div class="project-media">
+      <img src="assets/img3.jpg">
+    </div>
+  </section>
+
+</main>
