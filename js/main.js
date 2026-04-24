@@ -49,7 +49,7 @@ function collectBadge(id) {
 
       alert("Collected ✦");
     } else {
-      alert("Already collected");
+      alert("Already Collected ✦");
     }
 
   } catch (e) {
