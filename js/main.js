@@ -44,31 +44,17 @@ function collectBadge(id) {
     let badges = JSON.parse(localStorage.getItem("badges")) || [];
 
     if (!badges.includes(id)) {
-      badges.push(id);
+      badges.push(id); // preserves order
       localStorage.setItem("badges", JSON.stringify(badges));
-      alert("Badge collected!");
+
+      alert("Collected ✦");
+    } else {
+      alert("Already collected");
     }
+
   } catch (e) {
     console.error("Badge error:", e);
   }
-}
-
-
-// COLLECTION DISPLAY
-try {
-  let container = document.getElementById("collection-container");
-
-  if (container) {
-    let badges = JSON.parse(localStorage.getItem("badges")) || [];
-
-    badges.forEach(b => {
-      let div = document.createElement("div");
-      div.innerText = b;
-      container.appendChild(div);
-    });
-  }
-} catch (e) {
-  console.error("Collection error:", e);
 }
 
 
