@@ -1,155 +1,127 @@
 /* =====================================================
-   1. VARIABLES
+   PROJECT PAGE (11x17 CARD SYSTEM)
 ===================================================== */
 
-:root {
-  --bg: #000;
-  --text: #fff;
-  --text-dim: #bfbfbf;
-
-  --accent: #5A09E5;
-  --accent-soft: rgba(90,9,229,0.2);
-
-  --gap: 32px;
-  --radius: 16px;
-
-  --max-width: 1100px;
-
-  --print-margin: 20mm;
+.project-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding: 40px 20px 80px;
 }
 
-/* =====================================================
-   2. PAGE STRUCTURE
-===================================================== */
+/* ===== CARD BASE ===== */
 
-.project {
-  max-width: var(--max-width);
-  margin: 80px auto;
-  padding: 20px;
+.project-card {
+  width: min(90vw, 900px);
+  aspect-ratio: 11 / 17;
+
+  background: var(--bg-soft);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 2.5vw;
+
+  transition: all 0.3s ease;
 }
 
-/* =====================================================
-   3. PROJECT BLOCK (核心模块)
-===================================================== */
-
-.project-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-
-  margin-bottom: 60px;
-
-  /* ⭐️ 防止分页断裂 */
-  break-inside: avoid;
-  page-break-inside: avoid;
+.project-card:hover {
+  border-color: var(--purple-main);
+  box-shadow: var(--glow-purple);
 }
 
-/* ✨ 左右交错布局 */
-.project-block:nth-child(even) {
-  direction: rtl;
-}
+/* ===== TITLE ===== */
 
-.project-block:nth-child(even) .project-text {
-  direction: ltr;
-}
-
-/* =====================================================
-   4. TEXT
-===================================================== */
-
-.project-text h2 {
-  margin-bottom: 12px;
+.project-title {
+  font-size: clamp(20px, 2.2vw, 32px);
+  font-weight: 700;
   letter-spacing: 0.08em;
+  margin-bottom: 1.5vw;
+}
+
+/* ===== CONTENT LAYOUT ===== */
+
+.project-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2vw;
+  height: 100%;
+}
+
+/* ===== LEFT: IMAGES ===== */
+
+.project-images {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+  overflow: hidden;
+}
+
+.project-images img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+
+  transition: 0.3s ease;
+}
+
+.project-images img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--glow-purple);
+}
+
+/* ===== RIGHT: TEXT ===== */
+
+.project-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1vw;
+  overflow-y: auto;
+}
+
+/* scroll style */
+.project-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-text::-webkit-scrollbar-thumb {
+  background: var(--purple-main);
+  border-radius: 10px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+
+.project-text h3 {
+  font-size: clamp(14px, 1.2vw, 18px);
+  color: var(--blue-accent);
+  margin: 0.5vw 0 0.2vw;
+}
+
+.project-text p,
+.project-text li {
+  font-size: clamp(12px, 1vw, 16px);
+  line-height: 1.6;
+  color: var(--text-dim);
 }
 
 .project-text ul {
-  padding-left: 18px;
+  padding-left: 1.2em;
+  margin: 0;
 }
 
-.project-text li {
-  color: var(--text-dim);
-  line-height: 1.6;
-  margin-bottom: 6px;
+/* ===== BADGE BUTTON ===== */
+
+.project-actions {
+  margin-top: 1.5vw;
 }
 
-/* =====================================================
-   5. MEDIA
-===================================================== */
-
-.project-media {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.project-actions .button {
+  font-size: clamp(12px, 0.9vw, 14px);
+  padding: 0.6em 1.2em;
 }
-
-.project-media img {
-  width: 100%;
-  border-radius: var(--radius);
-  object-fit: cover;
-
-  /* ✨ 轻微视觉增强 */
-  transform: scale(1.01);
-}
-
-/* =====================================================
-   6. RESPONSIVE
-===================================================== */
-
-@media (max-width: 768px) {
-  .project-block {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =====================================================
-   7. PRINT (关键)
-===================================================== */
-
-@media print {
-
-  body {
-    background: white;
-    color: black;
-  }
-
-  .project {
-    margin: 0;
-    padding: var(--print-margin);
-  }
-
-  .project-block {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  img {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  h2 {
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-
-  /* ⭐️ 关键增强：防止 block 被强拆 */
-  section {
-    break-inside: avoid;
-  }
-}
-
-/* =====================================================
-   8. PAGE SIZE (11x17 landscape)
-===================================================== */
-
-@page {
-  size: 11in 17in landscape;
-  margin: 20mm;
-}
-
-/* =====================================================
-Rules to avoid high block:
-each page 1-2 image
-3-6 bullet points
-no more than 1 page (max-height: 950px)
-===================================================== */
