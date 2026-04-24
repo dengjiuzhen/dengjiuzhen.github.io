@@ -11,19 +11,19 @@
   padding: 40px 20px 80px;
 }
 
-/* ===== CARD BASE ===== */
+/* ===== CARD ===== */
 
 .project-card {
-  width: min(90vw, 900px);
+  width: min(92vw, 900px);
   aspect-ratio: 11 / 17;
 
   background: var(--bg-soft);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 20px;
 
+  padding: 2.2vw;
   display: flex;
   flex-direction: column;
-  padding: 2.5vw;
 
   transition: all 0.3s ease;
 }
@@ -36,37 +36,32 @@
 /* ===== TITLE ===== */
 
 .project-title {
-  font-size: clamp(20px, 2.2vw, 32px);
+  font-size: clamp(20px, 2.2vw, 30px);
   font-weight: 700;
+  margin-bottom: 1.2vw;
   letter-spacing: 0.08em;
-  margin-bottom: 1.5vw;
 }
 
-/* ===== CONTENT LAYOUT ===== */
+/* ===== CONTENT ===== */
 
 .project-content {
   flex: 1;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 2vw;
-  height: 100%;
 }
 
-/* ===== LEFT: IMAGES ===== */
+/* ===== IMAGES ===== */
 
 .project-images {
   display: flex;
   flex-direction: column;
-  gap: 1.5vw;
-  overflow: hidden;
+  gap: 1.2vw;
 }
 
 .project-images img {
   width: 100%;
-  height: auto;
   border-radius: 12px;
-  object-fit: cover;
-
   transition: 0.3s ease;
 }
 
@@ -75,21 +70,19 @@
   box-shadow: var(--glow-purple);
 }
 
-/* ===== RIGHT: TEXT ===== */
+/* ===== TEXT ===== */
 
 .project-text {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 1vw;
+  gap: 0.8vw;
   overflow-y: auto;
 }
 
-/* scroll style */
+/* scrollbar */
 .project-text::-webkit-scrollbar {
   width: 6px;
 }
-
 .project-text::-webkit-scrollbar-thumb {
   background: var(--purple-main);
   border-radius: 10px;
@@ -100,28 +93,22 @@
 .project-text h3 {
   font-size: clamp(14px, 1.2vw, 18px);
   color: var(--blue-accent);
-  margin: 0.5vw 0 0.2vw;
+  margin-top: 0.6vw;
 }
 
 .project-text p,
 .project-text li {
-  font-size: clamp(12px, 1vw, 16px);
-  line-height: 1.6;
+  font-size: clamp(12px, 1vw, 15px);
   color: var(--text-dim);
+  line-height: 1.6;
 }
 
 .project-text ul {
   padding-left: 1.2em;
-  margin: 0;
 }
 
-/* ===== BADGE BUTTON ===== */
+/* ===== ACTIONS ===== */
 
 .project-actions {
-  margin-top: 1.5vw;
-}
-
-.project-actions .button {
-  font-size: clamp(12px, 0.9vw, 14px);
-  padding: 0.6em 1.2em;
+  margin-top: 1.2vw;
 }
