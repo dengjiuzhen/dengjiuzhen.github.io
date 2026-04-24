@@ -40,11 +40,8 @@
 /* center */
 .project-center {
   justify-self: center;
-}
-
-/* right (empty spacer for balance) */
-.project-right {
-  width: 80px; /* prevents center shift */
+/*reserve space for timer*/
+  margin-right: 140px; 
 }
 
 /* ===== CARD ===== */
