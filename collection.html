@@ -6,7 +6,7 @@
 </head>
 
 <body>
-
+  <!-- nav -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="lobby.html">Lobby</a>
@@ -21,10 +21,22 @@
 <div class="coin-ui">
   ⏱ <span id="time">0.00</span> ⬤
 </div>
+  <!-- global ends -->
 
 <h1>Your Collection</h1>
 
-<div id="collection-container" class="card">
+<main class="container">
+
+  <h1>Your Collection</h1>
+
+  <!-- each item becomes its own card -->
+  <div id="collection-container" class="grid"></div>
+
+  <button class="button" onclick="exportPDF()">
+    Export as PDF
+  </button>
+
+</main>
   <!-- badges will appear here -->
 </div>
 
