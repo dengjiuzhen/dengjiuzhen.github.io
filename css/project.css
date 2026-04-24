@@ -19,8 +19,8 @@
   left: 0;
   width: 100%;
 
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
 
   padding: 10px 20px;
@@ -29,11 +29,22 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
 
-  z-index: 900;
+  z-index: 800; /* lower than coin-ui */
 }
 
-.project-topbar .button {
-  font-size: 14px;
+/* left */
+.project-back {
+  justify-self: start;
+}
+
+/* center */
+.project-center {
+  justify-self: center;
+}
+
+/* right (empty spacer for balance) */
+.project-right {
+  width: 80px; /* prevents center shift */
 }
 
 /* ===== CARD ===== */
