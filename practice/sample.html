@@ -10,24 +10,37 @@
 
 <body>
 
+<!-- NAV (FIXED PATHS) -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="lobby.html">Lobby</a>
-    <a href="studio.html">Studio</a>
-    <a href="archive.html">Archive</a>
-    <a href="collection.html">Collection</a>
-    <a href="cafe.html">Café</a>
-    <a href="about.html">About</a>
+    <a href="../lobby.html">Lobby</a>
+    <a href="../studio.html">Studio</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../collection.html">Collection</a>
+    <a href="../cafe.html">Café</a>
+    <a href="../about.html">About</a>
   </div>
 </nav>
 
+<!-- PROJECT TOP BAR -->
+<div class="project-topbar">
+  <button class="button" onclick="goBack()">
+    ← Back to Studio
+  </button>
+
+  <button class="button button-badge" onclick="collectBadge('projectA')">
+    Collect Badge ✦
+  </button>
+</div>
+
+<!-- COIN -->
 <div class="coin-ui">
   ⏱ <span id="time">0.00</span> ⬤
 </div>
 
 <main class="project-container">
 
-  <!-- ===== CARD 1 ===== -->
+  <!-- CARD 1 -->
   <section class="project-card">
 
     <div class="project-title">
@@ -36,13 +49,11 @@
 
     <div class="project-content">
 
-      <!-- LEFT: IMAGES -->
       <div class="project-images">
-        <img src="../assets/sample1.jpg" alt="project image">
-        <img src="../assets/sample2.jpg" alt="project image">
+        <img src="../assets/sample1.jpg">
+        <img src="../assets/sample2.jpg">
       </div>
 
-      <!-- RIGHT: TEXT -->
       <div class="project-text">
 
         <h3>Concept</h3>
@@ -58,59 +69,6 @@
           <li>Collective engagement loop</li>
         </ul>
 
-        <h3>Process</h3>
-        <ul>
-          <li>Research in synaesthesia and perception</li>
-          <li>Prototype testing with users</li>
-          <li>Iteration through feedback cycles</li>
-        </ul>
-
-        <h3>Tools</h3>
-        <ul>
-          <li>TouchDesigner</li>
-          <li>After Effects</li>
-          <li>Arduino</li>
-        </ul>
-
-        <div class="project-actions">
-          <button class="button button-badge" onclick="collectBadge('projectA')">
-            Collect Badge
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== CARD 2 (OPTIONAL SECOND PAGE) ===== -->
-  <section class="project-card">
-
-    <div class="project-title">
-      Project A — Documentation
-    </div>
-
-    <div class="project-content">
-
-      <div class="project-images">
-        <img src="../assets/sample3.jpg">
-      </div>
-
-      <div class="project-text">
-
-        <h3>Outcome</h3>
-        <p>
-          Participants reported increased engagement and emotional resonance
-          through embodied interaction.
-        </p>
-
-        <h3>Reflection</h3>
-        <ul>
-          <li>Balancing play and clarity</li>
-          <li>Designing for pacing</li>
-          <li>Encouraging return visits</li>
-        </ul>
-
       </div>
 
     </div>
@@ -121,18 +79,8 @@
 <script src="../js/main.js"></script>
 
 <script>
-/* ===== SIMPLE BADGE SYSTEM ===== */
-
-function collectBadge(id) {
-  let badges = JSON.parse(localStorage.getItem("badges")) || [];
-
-  if (!badges.includes(id)) {
-    badges.push(id);
-    localStorage.setItem("badges", JSON.stringify(badges));
-    alert("Badge collected ✦");
-  } else {
-    alert("Already collected!");
-  }
+function goBack() {
+  window.location.href = "../studio.html";
 }
 </script>
 
