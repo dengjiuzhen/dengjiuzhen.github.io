@@ -40,7 +40,7 @@
 
 .project-card {
   width: min(95vw, 1100px);
-  aspect-ratio: 17 / 11; /* ✅ FIXED */
+  aspect-ratio: 17 / 11; 
 
   background: var(--bg-soft);
   border: 1px solid rgba(255,255,255,0.1);
