@@ -1,40 +1,142 @@
-<main class="project">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Project A</title>
 
-  <!-- SECTION BLOCK -->
-  <section class="project-block">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
 
-    <!-- TEXT -->
-    <div class="project-text">
-      <h2>Concept</h2>
-      <ul>
-        <li>Gamified interaction system</li>
-        <li>Time-based engagement</li>
-        <li>Emotional feedback loop</li>
-      </ul>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="../lobby.html">Lobby</a>
+    <a href="../studio.html">Studio</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../about.html">About</a>
+    <a href="../collection.html">Collection</a>
+    <a href="../cafe.html">Café</a>
+  </div>
+</div>
+
+<!-- COIN UI -->
+<div class="coin-ui" id="coinDisplay">
+  Coins: 0
+</div>
+
+<main class="project-container">
+
+  <!-- ===== CARD 1 ===== -->
+  <section class="project-card">
+
+    <div class="project-title">
+      Project A — Multisensory Installation
     </div>
 
-    <!-- IMAGES -->
-    <div class="project-media">
-      <img src="assets/img1.jpg">
-      <img src="assets/img2.jpg">
-    </div>
+    <div class="project-content">
 
+      <!-- LEFT: IMAGES -->
+      <div class="project-images">
+        <img src="../assets/sample1.jpg" alt="project image">
+        <img src="../assets/sample2.jpg" alt="project image">
+      </div>
+
+      <!-- RIGHT: TEXT -->
+      <div class="project-text">
+
+        <h3>Concept</h3>
+        <p>
+          A multisensory interactive installation exploring collective rhythm,
+          embodiment, and gamified participation.
+        </p>
+
+        <h3>Key Features</h3>
+        <ul>
+          <li>Interactive movement-based participation</li>
+          <li>Dynamic audiovisual feedback</li>
+          <li>Collective engagement loop</li>
+        </ul>
+
+        <h3>Process</h3>
+        <ul>
+          <li>Research in synaesthesia and perception</li>
+          <li>Prototype testing with users</li>
+          <li>Iteration through feedback cycles</li>
+        </ul>
+
+        <h3>Tools</h3>
+        <ul>
+          <li>TouchDesigner</li>
+          <li>After Effects</li>
+          <li>Arduino</li>
+        </ul>
+
+        <div class="project-actions">
+          <button class="button button-badge" onclick="collectBadge('projectA')">
+            Collect Badge
+          </button>
+        </div>
+
+      </div>
+
+    </div>
   </section>
 
+  <!-- ===== CARD 2 (OPTIONAL SECOND PAGE) ===== -->
+  <section class="project-card">
 
-  <!-- REPEAT -->
-  <section class="project-block">
-    <div class="project-text">
-      <h2>Process</h2>
-      <ul>
-        <li>Research → mapping → iteration</li>
-        <li>Prototype + testing</li>
-      </ul>
+    <div class="project-title">
+      Project A — Documentation
     </div>
 
-    <div class="project-media">
-      <img src="assets/img3.jpg">
+    <div class="project-content">
+
+      <div class="project-images">
+        <img src="../assets/sample3.jpg">
+      </div>
+
+      <div class="project-text">
+
+        <h3>Outcome</h3>
+        <p>
+          Participants reported increased engagement and emotional resonance
+          through embodied interaction.
+        </p>
+
+        <h3>Reflection</h3>
+        <ul>
+          <li>Balancing play and clarity</li>
+          <li>Designing for pacing</li>
+          <li>Encouraging return visits</li>
+        </ul>
+
+      </div>
+
     </div>
   </section>
 
 </main>
+
+<script src="../js/main.js"></script>
+
+<script>
+/* ===== SIMPLE BADGE SYSTEM ===== */
+
+function collectBadge(id) {
+  let badges = JSON.parse(localStorage.getItem("badges")) || [];
+
+  if (!badges.includes(id)) {
+    badges.push(id);
+    localStorage.setItem("badges", JSON.stringify(badges));
+    alert("Badge collected ✦");
+  } else {
+    alert("Already collected!");
+  }
+}
+</script>
+
+</body>
+</html>
