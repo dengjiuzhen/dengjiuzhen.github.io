@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Paper 01</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/paper.css">
+</head>
+
+<body>
+
+<!-- NAV (FIX PATHS!) -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../lobby.html">Lobby</a>
+    <a href="../studio.html">Studio</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../collection.html">Collection</a>
+    <a href="../cafe.html">Café</a>
+    <a href="../about.html">About</a>
+  </div>
+</nav>
+
+<!-- TOP BAR -->
+<div class="paper-topbar">
+
+  <div class="paper-back">
+    <button class="button" onclick="goBack()">
+      ← Archive
+    </button>
+  </div>
+
+  <div class="paper-center">
+    <button class="button button-badge" onclick="collectBadge('paper1')">
+      Collect Badge ✦
+    </button>
+  </div>
+
+</div>
+
+<!-- COIN -->
+<div class="coin-ui">
+  ⏱ <span id="time">0.00</span> ⬤
+</div>
+
+<main class="paper-container">
+
+  <section class="paper-card">
+
+    <div class="paper-title">
+      Paper 01 — Collective Embodied Experience
+    </div>
+
+    <div class="paper-content">
+
+      <div class="paper-visual">
+        <img src="../assets/sample3.jpg">
+      </div>
+
+      <div class="paper-text">
+
+        <h3>Abstract</h3>
+        <p>
+          This paper explores multisensory interaction and collective perception
+          through gamified spatial design.
+        </p>
+
+        <h3>Keywords</h3>
+        <ul>
+          <li>Synaesthesia</li>
+          <li>Embodiment</li>
+          <li>Interactive systems</li>
+        </ul>
+
+        <h3>Publication</h3>
+        <p>
+          Engagement emerges not from efficiency, but from layered sensory
+          interaction and shared temporal experience.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script src="../js/main.js"></script>
+
+<script>
+function goBack() {
+  window.location.href = "../archive.html";
+}
+</script>
+
+</body>
+</html>
