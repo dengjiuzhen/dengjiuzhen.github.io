@@ -10,7 +10,7 @@
 
 <body>
 
-<!-- NAV (FIXED PATHS) -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="../lobby.html">Lobby</a>
@@ -24,13 +24,21 @@
 
 <!-- PROJECT TOP BAR -->
 <div class="project-topbar">
-  <button class="button" onclick="goBack()">
-    ← Back to Studio
-  </button>
 
-  <button class="button button-badge" onclick="collectBadge('projectA')">
-    Collect Badge ✦
-  </button>
+  <div class="project-back">
+    <button class="button" onclick="goBack()">
+      ← Studio
+    </button>
+  </div>
+
+  <div class="project-center">
+    <button class="button button-badge" onclick="collectBadge('projectA')"> <!-- ⚠️ Remember to change the name here for new projects -->
+      Collect Badge ✦
+    </button>
+  </div>
+
+  <div class="project-right"></div>
+
 </div>
 
 <!-- COIN -->
