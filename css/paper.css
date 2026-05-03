@@ -116,26 +116,9 @@
 
 .paper-link {
   display: block;
-  margin-top: 0.6vw;
-  padding: 14px 16px;
+  margin-top: 0.8vw;
 
-  border: 1px solid var(--blue-accent);
-  border-radius: 12px;
-
-  color: var(--text-main);
-  text-decoration: none;
-
-  font-size: clamp(14px, 1.1vw, 17px);
-  line-height: 1.6;
-
-  transition: all 0.25s ease;
-}
-
-/* hover = glowing citation */
-.paper-link:hover {
-  border-color: var(--blue-accent);
-  box-shadow: 0 0 12px rgba(146,165,238,0.4);
-  transform: translateY(-2px);
+  text-align: left; 
 }
 
 /* secondary text */
@@ -146,9 +129,9 @@
   color: var(--text-dim);
 }
 
-/* subtle accent line */
+/* icon */
 .paper-link::before {
   content: "↗";
   margin-right: 8px;
-  color: var(--blue-accent);
+  color: var(--pink-accent); 
 }
