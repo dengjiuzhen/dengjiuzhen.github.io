@@ -135,3 +135,7 @@
   margin-right: 8px;
   color: var(--pink-accent); 
 }
+.paper-link {
+  padding: 14px 16px;
+  border-radius: 12px;
+}
