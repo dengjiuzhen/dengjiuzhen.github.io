@@ -1,6 +1,6 @@
 // ===== DATA =====
 
-// saved as ordered list
+// ordered list
 function getCollection() {
   return JSON.parse(localStorage.getItem("badges")) || [];
 }
@@ -9,7 +9,36 @@ function saveCollection(list) {
   localStorage.setItem("badges", JSON.stringify(list));
 }
 
-// ===== RENDER =====
+/* =====================================================
+   ⚠️ CENTRAL DATA MAP（Maintain Needed）
+===================================================== */
+
+const ITEM_DATA = {
+  // ===== PROJECTS =====
+  "project-sample": {
+    title: "Sample Project",              // ⚠️ 
+    path: "practice/sample.html",         // ⚠️ 
+    type: "project"  // ⚠️ 
+  },
+
+  // ===== PAPERS =====
+  "paper-dramatic-structure": {
+    title: "Dramatic Structure x Game Design", 
+    path: "research/paper-dramatic-structure.html", 
+    type: "paper"
+  },
+
+  "paper-narrative-flow": {
+    title: "Narrative Flow", 
+    path: "research/paper-narrative-flow.html", 
+    type: "paper"
+  }
+};
+
+
+/* =====================================================
+   RENDER
+===================================================== */
 
 function renderCollection() {
   const container = document.getElementById("collection-container");
@@ -20,14 +49,25 @@ function renderCollection() {
   let items = getCollection();
 
   items.forEach((id, index) => {
+    const data = ITEM_DATA[id];
+
+    // 防止旧数据崩掉
+    if (!data) return;
+
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-      <h2>${id}</h2>
+      <h2>${data.title}</h2>  
 
-      <div style="margin-top:10px;">
-        <button class="button" onclick="viewItem('${id}')">View</button>
+      <p style="color: var(--text-dim); font-size: 13px;">
+        ${data.type.toUpperCase()}
+      </p>
+
+      <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="button" onclick="viewItem('${id}')">
+          View →
+        </button>
 
         <button class="button" onclick="moveUp(${index})">↑</button>
         <button class="button" onclick="moveDown(${index})">↓</button>
@@ -42,21 +82,26 @@ function renderCollection() {
   });
 }
 
-// ===== VIEW =====
+
+/* =====================================================
+   VIEW
+===================================================== */
 
 function viewItem(id) {
-  // map IDs to pages
-  const routes = {
-    projectA: "practice/sample.html",
-    paper1: "research/sample.html"
-  };
+  const data = ITEM_DATA[id];  
 
-  if (routes[id]) {
-    window.location.href = routes[id];
+  if (!data) {
+    console.warn("Missing item:", id);
+    return;
   }
+
+  window.location.href = data.path;
 }
 
-// ===== RANKING =====
+
+/* =====================================================
+   RANKING
+===================================================== */
 
 function moveUp(index) {
   let list = getCollection();
@@ -76,7 +121,10 @@ function moveDown(index) {
   renderCollection();
 }
 
-// ===== REMOVE =====
+
+/* =====================================================
+   REMOVE
+===================================================== */
 
 function removeItem(id) {
   let list = getCollection();
@@ -86,7 +134,10 @@ function removeItem(id) {
   renderCollection();
 }
 
-// ===== EXPORT PDF =====
+
+/* =====================================================
+   EXPORT PDF
+===================================================== */
 
 async function exportPDF() {
   let list = getCollection();
@@ -96,32 +147,27 @@ async function exportPDF() {
     return;
   }
 
-  // open a new window
   let win = window.open("", "_blank");
 
-  // load pages inside
   let html = `
     <html>
     <head>
       <title>Export</title>
+
       <link rel="stylesheet" href="css/project.css">
       <link rel="stylesheet" href="css/paper.css">
     </head>
-    <body style="background:black;">
+
+    <body style="background:black; padding:40px;">
   `;
 
   for (let id of list) {
-    let pathMap = {
-      projectA: "practice/sample.html",
-      paper1: "research/sample.html"
-    };
+    const data = ITEM_DATA[id];  
+    if (!data) continue;
 
-    if (!pathMap[id]) continue;
-
-    let res = await fetch(pathMap[id]);
+    let res = await fetch(data.path);
     let text = await res.text();
 
-    // extract only cards
     let parser = new DOMParser();
     let doc = parser.parseFromString(text, "text/html");
 
@@ -137,11 +183,14 @@ async function exportPDF() {
   win.document.write(html);
   win.document.close();
 
-  // print (user saves as PDF)
   win.onload = () => {
     win.print();
   };
 }
 
-// ===== INIT =====
+
+/* =====================================================
+   INIT
+===================================================== */
+
 renderCollection();
