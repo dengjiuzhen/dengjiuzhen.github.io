@@ -3,13 +3,21 @@ const papers = [
   {
     id: "Narrative Flow",
     title: "Designing Audience Flow State in Narrative Media",
-    description: "Narrative media emerges its flow state model from a relationship between audience relatability and narrative continuity. When viewers engage with a story, their cognitive abilities and emotional investment interact with the coherence of the narrative, which determines the depth of immersion. Existing research highlights that textual cohesion, probabilistic continuity, and emotional transitions are key to sustaining flow when receiving stories through media. However, cultural background and audience familiarity with storytelling conventions also influence the interpretation of story content and, therefore, cause different degrees of immersive experiences. This study proposes a Two-Dimensional Flow Framework, categorizing factors for flow state into relatability—how much the viewer identifies with the story—and continuity—the logical progression of the narrative. Misalignment in these dimensions can lead to disengagement through negative emotions. This framework allows creators to craft narratives that sustain audience engagement without overwhelming or under-stimulating them through curating the relationship between audience relatability and narrative continuity. The findings suggest that cognitive compatibility and emotional resonance deepen audience connection and sustained participation, so future storytellers should consider these factors when designing narrative media.",
+    description: "What makes a story truly immersive—and why do some narratives lose us along the way? This paper introduces a Two-Dimensional Flow Framework, revealing how relatability and narrative continuity work together to shape audience engagement. Discover how aligning emotional resonance with coherent storytelling can sustain attention and deepen the viewer experience.",
     path: "research/08052025.html"
+  },
+  {
+    id: "Dramatic Structure x Game Design",
+    title: "The Application of Dramatic Structure in Digital Game Design and Its Impact on Player Emotions",
+    description: "What if the secret to unforgettable games lies in classic storytelling? This study reveals how the five stages of dramatic structure shape player emotions and deepen immersion. Explore how game designers can harness narrative pacing to create more engaging, emotionally powerful experiences.",
+    path: "research/26112024.html"
+  }
+//  {
 //    id: "paper1",
 //    title: "Paper 01",
 //    description: "Abstract placeholder.",
 //    path: "research/sample.html"
-  }
+//  }
 ];
 
 // ===== RENDER =====
