@@ -11,7 +11,7 @@
   padding: 100px 20px 80px;
 }
 
-/* ===== TOP BAR (reuse logic) ===== */
+/* ===== TOP BAR ===== */
 
 .paper-topbar {
   position: fixed;
@@ -38,7 +38,7 @@
 
 .paper-center {
   justify-self: center;
-  margin-right: 140px; /* avoid coin UI */
+  margin-right: 140px;
 }
 
 /* ===== CARD ===== */
@@ -48,12 +48,13 @@
   aspect-ratio: 17 / 11;
 
   background: linear-gradient(135deg, #0f0f18, #050507);
-  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 20px;
 
-  padding: 2vw;
+  padding: 3vw;
+
   display: flex;
   flex-direction: column;
+  justify-content: center; 
 
   transition: 0.3s ease;
 }
@@ -66,26 +67,26 @@
 /* ===== TITLE ===== */
 
 .paper-title {
-  font-size: clamp(18px, 1.8vw, 26px);
-  font-weight: 600;
-  margin-bottom: 1vw;
+  font-size: clamp(22px, 2vw, 30px);
+  margin-bottom: 1.2vw;
 }
 
 /* ===== CONTENT ===== */
 
 .paper-content {
-  flex: 1;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 1.5vw;
+  gap: 2vw;
+
+  align-items: center; 
 }
 
-/* ===== LEFT: VISUAL / FIGURE ===== */
+/* ===== VISUAL ===== */
 
 .paper-visual {
   display: flex;
   flex-direction: column;
-  gap: 1vw;
+  gap: 1.2vw;
 }
 
 .paper-visual img {
@@ -93,25 +94,28 @@
   border-radius: 10px;
 }
 
-/* ===== RIGHT: TEXT ===== */
+/* ===== TEXT ===== */
 
 .paper-text {
-  overflow-y: auto;
+  max-width: 540px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
-  gap: 0.6vw;
+  gap: 1vw;
+
+  overflow: visible;
 }
 
 .paper-text h3 {
-  font-size: clamp(13px, 1vw, 16px);
+  font-size: clamp(18px, 1.4vw, 22px);
   color: var(--green-accent);
 }
 
 .paper-text p,
 .paper-text li {
-  font-size: clamp(12px, 0.95vw, 14px);
-  color: var(--text-dim);
-  line-height: 1.6;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.7;
 }
 
 .paper-text ul {
