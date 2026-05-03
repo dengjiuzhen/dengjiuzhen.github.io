@@ -1,13 +1,13 @@
 // ===== PAPER DATA =====
 const papers = [
   {
-    id: "Narrative Flow",
+    id: "paper-narrative-flow",
     title: "Designing Audience Flow State in Narrative Media",
     description: "What makes a story truly immersive—and why do some narratives lose us along the way? This paper introduces a Two-Dimensional Flow Framework, revealing how relatability and narrative continuity work together to shape audience engagement. Discover how aligning emotional resonance with coherent storytelling can sustain attention and deepen the viewer experience.",
     path: "research/08052025.html"
   },
   {
-    id: "Dramatic Structure x Game Design",
+    id: "paper-dramatic-structure",
     title: "The Application of Dramatic Structure in Digital Game Design and Its Impact on Player Emotions",
     description: "What if the secret to unforgettable games lies in classic storytelling? This study reveals how the five stages of dramatic structure shape player emotions and deepen immersion. Explore how game designers can harness narrative pacing to create more engaging, emotionally powerful experiences.",
     path: "research/26112024.html"
