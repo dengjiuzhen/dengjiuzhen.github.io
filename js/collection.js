@@ -23,6 +23,12 @@ const ITEM_DATA = {
 ===================================================== */
 
       // ===== PROJECTS =====
+  "project-dyed-in-rain": {
+    title: "Dyed in Rain: Collaborations in Ink and Code",              
+    path: "practice/project-dyed-in-rain.html",         
+    type: "project"  
+  
+      // ===== PROJECTS =====
   "project-unplant-trees": {
     title: "Unplant Trees — Browser Extension",              
     path: "practice/project-unplant-trees.html",         
