@@ -13,6 +13,12 @@ const projects = [
 //    description: "Test Project Layout Sample.",
 //    path: "practice/sample.html"
 //  },
+    {
+    id: "unplant-trees",
+    title: "Unplant Trees",
+    description: "A Chrome extension that overlays interactive trees on Google AI Overview results.",
+    path: "practice/project-unplant-trees.html"
+  },
   {
     id: "project-dream-manor",
     title: "Dream Manor: Echoing Fields",
