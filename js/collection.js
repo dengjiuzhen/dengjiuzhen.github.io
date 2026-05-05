@@ -21,10 +21,17 @@ const ITEM_DATA = {
     type: "project"  // ⚠️ 
   },
 ===================================================== */
-  // ===== PROJECTS =====
+    // ===== PROJECTS =====
   "project-garden-of-balloons": {
     title: "Garden of Balloons",              
-    path: "practice/project-balloon-garden",         
+    path: "practice/project-balloon-garden.html",         
+    type: "project"  
+  },
+
+  // ===== PROJECTS =====
+  "project-dream-manor": {
+    title: "GDream Manor: Echoing Fields",              
+    path: "practice/project-dream-manor.html",         
     type: "project"  
   },
 
