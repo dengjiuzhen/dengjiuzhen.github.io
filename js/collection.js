@@ -14,11 +14,18 @@ function saveCollection(list) {
 ===================================================== */
 
 const ITEM_DATA = {
-  // ===== PROJECTS =====
-  "project-sample": {
+  /* =====================================================
+     "project-sample": {
     title: "Sample Project",              // ⚠️ 
     path: "practice/sample.html",         // ⚠️ 
     type: "project"  // ⚠️ 
+  },
+===================================================== */
+  // ===== PROJECTS =====
+  "project-garden-of-balloons": {
+    title: "Garden of Balloons",              
+    path: "projects/garden-of-balloons.html",         
+    type: "project"  
   },
 
   // ===== PAPERS =====
