@@ -125,3 +125,83 @@
 .project-text ul {
   padding-left: 1.2em;
 }
+
+/* ===== Content Split SPECIAL LAYOUT ===== */
+
+.project-content-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5vw;
+}
+
+/* images top row */
+.project-content-split .project-images.single {
+  height: 100%;
+}
+
+/* text spans full width */
+.project-content-split .project-text.full {
+  grid-column: span 2;
+}
+
+/* ===== VIDEO THUMB OVERLAY ===== */
+
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb a {
+  display: block;
+  position: relative;
+}
+
+.video-thumb img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* overlay */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.4);
+  color: white;
+
+  font-size: 18px;
+  letter-spacing: 0.08em;
+
+  opacity: 0;
+  transition: 0.3s ease;
+
+  border-radius: 12px;
+}
+
+/* hover effect */
+.video-thumb:hover .video-overlay {
+  opacity: 1;
+  background: rgba(90,9,229,0.5);
+  box-shadow: 0 0 20px var(--purple-main);
+}
+
+/* ===== VIDEO EMBED ===== */
+
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 0 12px rgba(90,9,229,0.3);
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
