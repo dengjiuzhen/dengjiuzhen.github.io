@@ -13,6 +13,12 @@ const projects = [
 //    description: "Test Project Layout Sample.",
 //    path: "practice/sample.html"
 //  },
+  {
+    id: "dyed-in-rain",
+    title: "Dyed in Rain: Collaborations in Ink and Code",
+    description: "An experimental animation where ink, water, and code co-create shifting forms of memory and transformation.",
+    path: "practice/project-dyed-in-rain.html"
+  },
     {
     id: "unplant-trees",
     title: "Unplant Trees",
