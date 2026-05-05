@@ -127,18 +127,18 @@
 }
 
 /* =====================================================
-   UNIVERSAL: SPLIT VISUAL + TEXT (11x17 SAFE)
-   Use for: process, comparison, multi-image cards
+   UNIVERSAL: VISUAL STACK (2 IMAGES → TEXT BELOW)
+   Best for: process, comparison, storytelling
 ===================================================== */
 
-.project-content-visual-text {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* visual dominance */
-  gap: 2vw;
-  align-items: center;
+.project-content-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+  height: 100%;
 }
 
-/* ===== VISUAL AREA (2 images side-by-side) ===== */
+/* ===== VISUAL PAIR (TOP) ===== */
 
 .project-visual-pair {
   display: grid;
@@ -149,7 +149,7 @@
   justify-items: center;
 }
 
-/* prevent image distortion + cropping */
+/* preserve full image */
 .project-visual-pair img {
   width: 100%;
   height: auto;
@@ -163,46 +163,39 @@
   transition: 0.3s ease;
 }
 
-/* subtle hover polish */
 .project-visual-pair img:hover {
   transform: scale(1.02);
   box-shadow: 0 0 12px rgba(90,9,229,0.3);
 }
 
-/* ===== TEXT AREA ===== */
+/* ===== TEXT (BOTTOM) ===== */
 
-.project-text-side {
-  max-width: 420px;
+.project-text-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2vw;
 
-  display: flex;
-  flex-direction: column;
-  gap: 0.8vw;
+  margin-top: 0.5vw;
 }
 
-/* tighter hierarchy for dense cards */
-.project-text-side h3 {
+/* tighter hierarchy */
+.project-text-bottom h3 {
   font-size: clamp(16px, 1.2vw, 20px);
 }
 
-.project-text-side p,
-.project-text-side li {
+.project-text-bottom p,
+.project-text-bottom li {
   font-size: clamp(14px, 1vw, 16px);
   line-height: 1.6;
 }
 
-/* ===== VIDEO LINK OVERLAY (reusable) ===== */
+/* ===== VIDEO LINK TAG ===== */
 
 .project-media-link {
   position: relative;
   display: block;
 }
 
-.project-media-link img {
-  width: 100%;
-  border-radius: 12px;
-}
-
-/* small corner tag instead of full overlay */
 .project-media-tag {
   position: absolute;
   bottom: 8px;
@@ -225,19 +218,15 @@
   box-shadow: var(--glow-purple);
 }
 
-/* ===== RESPONSIVE FALLBACK ===== */
+/* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
-  .project-content-visual-text {
-    grid-template-columns: 1fr;
-  }
-
   .project-visual-pair {
     grid-template-columns: 1fr;
   }
 
-  .project-text-side {
-    max-width: 100%;
+  .project-text-bottom {
+    grid-template-columns: 1fr;
   }
 }
 
