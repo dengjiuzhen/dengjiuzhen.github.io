@@ -14,13 +14,13 @@ const projects = [
 //    path: "practice/sample.html"
 //  },
   {
-    id: "dyed-in-rain",
+    id: "project-dyed-in-rain",
     title: "Dyed in Rain: Collaborations in Ink and Code",
     description: "An experimental animation where ink, water, and code co-create shifting forms of memory and transformation.",
     path: "practice/project-dyed-in-rain.html"
   },
     {
-    id: "unplant-trees",
+    id: "project-unplant-trees",
     title: "Unplant Trees",
     description: "A Chrome extension that overlays interactive trees on Google AI Overview results.",
     path: "practice/project-unplant-trees.html"
