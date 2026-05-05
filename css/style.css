@@ -409,7 +409,6 @@ h1 {
 h2 {
   margin-top: 50px;
   color: var(--blue-accent);
-  text-shadow: 0 0 8px var(--blue-accent);
 }
 
 /* ===== CV button ===== */
