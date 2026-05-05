@@ -30,7 +30,7 @@ const ITEM_DATA = {
 
   // ===== PROJECTS =====
   "project-dream-manor": {
-    title: "GDream Manor: Echoing Fields",              
+    title: "Dream Manor: Echoing Fields",              
     path: "practice/project-dream-manor.html",         
     type: "project"  
   },
