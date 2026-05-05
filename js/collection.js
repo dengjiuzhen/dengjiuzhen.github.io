@@ -27,7 +27,7 @@ const ITEM_DATA = {
     title: "Dyed in Rain: Collaborations in Ink and Code",              
     path: "practice/project-dyed-in-rain.html",         
     type: "project"  
-  
+  },
       // ===== PROJECTS =====
   "project-unplant-trees": {
     title: "Unplant Trees — Browser Extension",              
