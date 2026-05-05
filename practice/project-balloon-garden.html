@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Garden of Balloons</title>
 
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../lobby.html">Lobby</a>
+    <a href="../studio.html">Studio</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../collection.html">Collection</a>
+    <a href="../cafe.html">Café</a>
+    <a href="../about.html">About</a>
+  </div>
+</nav>
+
+<!-- PROJECT TOP BAR -->
+<div class="project-topbar">
+
+  <div class="project-back">
+    <button class="button" onclick="goBack()">
+      ← Studio
+    </button>
+  </div>
+
+  <div class="project-center">
+    <button class="button button-badge" onclick="collectBadge('Garden of Balloons')"> <!-- ⚠️ Remember to change the name here for new projects -->
+      Collect Badge ✦
+    </button>
+  </div>
+
+  <div class="project-right"></div>
+
+</div>
+
+<!-- COIN -->
+<div class="coin-ui">
+  ⏱ <span id="time">0.00</span> ⬤
+</div>
+
+<main class="project-container">
+
+  <!-- CARD 1 -->
+  <section class="project-card">
+
+    <div class="project-title">
+      Garden of Balloons: Multimedia Sensorial Experience
+    </div>
+
+    <div class="project-content">
+
+      <div class="project-images">
+        <img src="../assets/sample1.jpg">
+        <img src="../assets/sample2.jpg">
+      </div>
+
+      <div class="project-text">
+
+        <h3>Context</h3>
+        <p>
+          Urban isolation, effort without meaning
+        </p>
+
+        <h3>Problem</h3>
+        <p>
+          Lack of collective empathy in achievement
+        </p>
+
+        <h3>Purpose</h3>
+        <p>
+        How might we transform daily individual struggle into shared social empowerment?
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+   <!-- END CARD 1 -->
+
+  <!-- CARD 2 -->
+  <section class="project-card">
+
+    <div class="project-title">
+      Research & Definitions
+    </div>
+
+    <div class="project-content">
+
+      <div class="project-images">
+        <img src="../assets/sample1.jpg">
+        <img src="../assets/sample2.jpg">
+      </div>
+
+      <div class="project-text">
+
+        <h3>Theory</h3>
+        <p>
+          Synesthesia, phenomenology, relational aesthetics
+        </p>
+
+        <h3>Psychology</h3>
+        <ul>
+          <li>Pain-gain emotional arc</li>
+          <li>Gamified audience motivation</li>
+        </ul>
+
+        <h3>Impact</h3>
+        <p>
+          Empathy amplified through synchronized play
+        </p>
+        <h3>Emotional Journey</h3>
+        <p>
+         Collective tension → release → joy
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- END CARD 2 -->
+
+  <!-- CARD 3 -->
+  <section class="project-card">
+
+    <div class="project-title">
+      Physical Object Design
+    </div>
+
+    <div class="project-content">
+
+      <div class="project-images">
+        <img src="../assets/sample1.jpg">
+        <img src="../assets/sample2.jpg">
+      </div>
+
+      <div class="project-text">
+
+        <h3>Concept</h3>
+        <p>
+        Scent-reward as an emotional goal artifact
+        </p>
+
+        <h3>Form</h3>
+        <p>
+        Piñata-inspired, abstract, playful sculptural object
+        </p>
+
+        <h3>Material Studies</h3>
+        <p>
+        Balloons, dried flowers, fragrance oil core, fabrics
+        </p>
+
+        <h3>Prototyping</h3>
+        <p>
+        Weight tests + scent release timing
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- END CARD 3 -->
+</main>
+
+<script src="../js/main.js"></script>
+
+<script>
+function goBack() {
+  window.location.href = "../studio.html";
+}
+</script>
+
+</body>
+</html>
