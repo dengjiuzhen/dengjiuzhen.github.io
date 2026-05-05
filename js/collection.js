@@ -164,7 +164,7 @@ function removeItem(id) {
 
 
 /* =====================================================
-   EXPORT PDF
+   EXPORT PDF 
 ===================================================== */
 
 async function exportPDF() {
@@ -182,15 +182,38 @@ async function exportPDF() {
     <head>
       <title>Export</title>
 
+      <!-- INCLUDE ALL STYLES -->
+      <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/project.css">
       <link rel="stylesheet" href="css/paper.css">
+
+      <!-- FORCE DARK MODE + PRINT COLORS -->
+      <style>
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        body {
+          background: var(--bg, #000) !important;
+          color: var(--text, #fff);
+          padding: 40px;
+        }
+
+        /* optional: improve page breaks */
+        .project-card, .paper-card {
+          page-break-inside: avoid;
+          margin-bottom: 40px;
+        }
+      </style>
     </head>
 
-    <body style="background:black; padding:40px;">
+    <body>
+      <div class="project-container">
   `;
 
   for (let id of list) {
-    const data = ITEM_DATA[id];  
+    const data = ITEM_DATA[id];
     if (!data) continue;
 
     let res = await fetch(data.path);
@@ -206,7 +229,11 @@ async function exportPDF() {
     });
   }
 
-  html += "</body></html>";
+  html += `
+      </div>
+    </body>
+    </html>
+  `;
 
   win.document.write(html);
   win.document.close();
