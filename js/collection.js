@@ -21,6 +21,14 @@ const ITEM_DATA = {
     type: "project"  // ⚠️ 
   },
 ===================================================== */
+
+      // ===== PROJECTS =====
+  "project-unplant-trees": {
+    title: "Unplant Trees — Browser Extension",              
+    path: "practice/project-unplant-trees.html",         
+    type: "project"  
+  },
+  
     // ===== PROJECTS =====
   "project-garden-of-balloons": {
     title: "Garden of Balloons",              
