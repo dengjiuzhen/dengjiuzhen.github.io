@@ -345,3 +345,92 @@ body::before {
   0% { transform: scale(0.6); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
+
+/* =====================================================
+   12. ABOUT PAGE
+===================================================== */
+
+.about-container {
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+/* ===== layout ===== */
+
+.about-images {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.about-img {
+  width: 180px;
+  border-radius: 16px;
+  border: 2px solid var(--purple-main);
+
+  box-shadow: var(--glow-purple);
+  transition: all 0.3s ease;
+}
+
+.about-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--purple-main), 0 0 40px var(--purple-main);
+}
+
+/* ===== text block ===== */
+
+.about-text {
+  background: rgba(10, 10, 15, 0.6);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 0 10px rgba(90,9,229,0.15);
+}
+
+.about-text p {
+  margin-bottom: 16px;
+}
+
+/* ===== headings ===== */
+
+h1 {
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 30px;
+
+  color: var(--text-main);
+  text-shadow: 0 0 10px var(--purple-main);
+}
+
+h2 {
+  margin-top: 50px;
+  color: var(--blue-accent);
+  text-shadow: 0 0 8px var(--blue-accent);
+}
+
+/* ===== CV button ===== */
+
+.cv-link {
+  display: inline-block;
+  margin-top: 12px;
+
+  border: 1px solid var(--blue-accent);
+  padding: 10px 18px;
+  border-radius: 20px;
+
+  color: var(--text-main);
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+.cv-link:hover {
+  background: var(--blue-accent);
+  color: black;
+  box-shadow: 0 0 12px var(--blue-accent);
+  transform: translateY(-2px);
+}
