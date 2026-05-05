@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Project A</title>
+
+  <!-- ⚠️ CHANGE: Project Title -->
+  <title>Project Name</title>
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/project.css">
@@ -10,7 +12,9 @@
 
 <body>
 
-<!-- NAV -->
+<!-- =====================================================
+     NAV (GLOBAL — DO NOT EDIT)
+===================================================== -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="../lobby.html">Lobby</a>
@@ -22,7 +26,9 @@
   </div>
 </nav>
 
-<!-- PROJECT TOP BAR -->
+<!-- =====================================================
+     PROJECT TOP BAR
+===================================================== -->
 <div class="project-topbar">
 
   <div class="project-back">
@@ -32,7 +38,8 @@
   </div>
 
   <div class="project-center">
-    <button class="button button-badge" onclick="collectBadge('projectA')"> <!-- ⚠️ Remember to change the name here for new projects -->
+    <!-- ⚠️ CHANGE: project name string -->
+    <button class="button button-badge" onclick="collectBadge('project-name')">
       Collect Badge ✦
     </button>
   </div>
@@ -41,40 +48,72 @@
 
 </div>
 
-<!-- COIN -->
+<!-- =====================================================
+     COIN UI (GLOBAL)
+===================================================== -->
 <div class="coin-ui">
   ⏱ <span id="time">0.00</span> ⬤
 </div>
 
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
 <main class="project-container">
 
-  <!-- CARD 1 -->
+  <!-- =====================================================
+       CARD TYPE 1: BASIC (IMAGE + TEXT)
+       Use for: intro, context, problem
+  ====================================================== -->
   <section class="project-card">
 
     <div class="project-title">
-      Project A — Multisensory Installation
+      ⚠️ Project Title / Section Title
     </div>
 
     <div class="project-content">
 
       <div class="project-images">
+        <!-- ⚠️ CHANGE images -->
+        <img src="../assets/sample1.jpg">
+      </div>
+
+      <div class="project-text">
+
+        <h3>⚠️ Section Heading</h3>
+        <p>Write your content here.</p>
+
+        <h3>⚠️ Section Heading</h3>
+        <p>Write your content here.</p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CARD TYPE 2: MULTI-IMAGE (STACKED)
+       Use for: research, process, iterations
+  ====================================================== -->
+  <section class="project-card">
+
+    <div class="project-title">
+      ⚠️ Research / Process
+    </div>
+
+    <div class="project-content">
+
+      <div class="project-images">
+        <!-- ⚠️ CHANGE images -->
         <img src="../assets/sample1.jpg">
         <img src="../assets/sample2.jpg">
       </div>
 
       <div class="project-text">
 
-        <h3>Concept</h3>
-        <p>
-          A multisensory interactive installation exploring collective rhythm,
-          embodiment, and gamified participation.
-        </p>
-
-        <h3>Key Features</h3>
+        <h3>Insights</h3>
         <ul>
-          <li>Interactive movement-based participation</li>
-          <li>Dynamic audiovisual feedback</li>
-          <li>Collective engagement loop</li>
+          <li>Insight 1</li>
+          <li>Insight 2</li>
         </ul>
 
       </div>
@@ -82,8 +121,126 @@
     </div>
   </section>
 
+  <!-- =====================================================
+       CARD TYPE 3: VISUAL PAIR + 2-COLUMN TEXT
+       Use for: comparison, AI process, before/after
+  ====================================================== -->
+  <section class="project-card">
+
+    <div class="project-title">
+      ⚠️ Process / Comparison
+    </div>
+
+    <div class="project-content-vertical">
+
+      <!-- VISUAL PAIR -->
+      <div class="project-visual-pair">
+
+        <!-- IMAGE -->
+        <div class="project-media">
+          <img src="../assets/sample1.jpg">
+        </div>
+
+        <!-- IMAGE + VIDEO LINK -->
+        <!-- ⚠️ CHANGE LINK -->
+        <a href="https://youtube.com" target="_blank" class="project-media">
+
+          <img src="../assets/sample2.jpg">
+
+          <div class="project-video-cta">
+            <span>▶ Watch Video</span>
+          </div>
+
+        </a>
+
+      </div>
+
+      <!-- TEXT -->
+      <div class="project-text-2col">
+
+        <div class="project-text-block">
+          <h3>⚠️ Goal</h3>
+          <p>Description here.</p>
+        </div>
+
+        <div class="project-text-block">
+          <h3>⚠️ Insight</h3>
+          <ul>
+            <li>Point 1</li>
+            <li>Point 2</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CARD TYPE 4: HERO VIDEO + TEXT
+       Use for: final outcome / showcase
+  ====================================================== -->
+  <section class="project-card">
+
+    <div class="project-title">
+      ⚠️ Final Outcome
+    </div>
+
+    <div class="project-content-video">
+
+      <!-- VIDEO -->
+      <!-- ⚠️ CHANGE YOUTUBE EMBED LINK -->
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          title="Project Video"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- TEXT -->
+      <div class="project-text compact">
+
+        <h2>⚠️ Key Statement</h2>
+
+        <h3>Result</h3>
+        <p>Description</p>
+
+        <h3>Impact</h3>
+        <p>Description</p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CARD TYPE 5: TEXT-FOCUSED (OPTIONAL)
+       Use for: reflection, takeaway, positioning
+  ====================================================== -->
+  <section class="project-card">
+
+    <div class="project-title">
+      ⚠️ Reflection / Takeaways
+    </div>
+
+    <div class="project-text" style="max-width: 700px; margin: 0 auto;">
+
+      <p>
+        Write a concise reflection about your project, its impact,
+        and what you learned.
+      </p>
+
+    </div>
+
+  </section>
+
 </main>
 
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
 <script src="../js/main.js"></script>
 
 <script>
