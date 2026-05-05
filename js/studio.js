@@ -8,16 +8,16 @@ const projects = [
     path: "practice/project-balloon-garden.html"
   },
 //  {
-//    id: "projectB",
-//    title: "Future Project",
-//    description: "Coming soon.",
-//    path: "practice/projectB.html"
+//    id: "projectA",
+//    title: "Sample",
+//    description: "Test Project Layout Sample.",
+//    path: "practice/sample.html"
 //  },
   {
-    id: "projectA",
-    title: "Sample",
-    description: "Test Project Layout Sample.",
-    path: "practice/sample.html"
+    id: "project-dream-manor",
+    title: "Dream Manor: Echoing Fields",
+    description: "Personal development and 2D construction game crafted for accountability with creativity",
+    path: "practice/project-dream-manor.html"
   }
 ];
 
