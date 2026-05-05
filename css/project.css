@@ -171,7 +171,7 @@
   box-shadow: 0 0 16px rgba(90,9,229,0.4);
 }
 
-/* ===== VIDEO CTA (ACCESSIBLE) ===== */
+/* ===== VIDEO CTA ===== */
 
 .project-video-cta {
   position: absolute;
@@ -182,13 +182,40 @@
   justify-content: center;
 
   background: rgba(0,0,0,0.35);
-
   border-radius: 12px;
 
   text-align: center;
   padding: 10px;
 
   transition: 0.25s ease;
+}
+
+/* BUTTON TEXT */
+.project-video-cta span {
+  background: rgba(0,0,0,0.85);
+  color: #ffffff; 
+
+  padding: 10px 16px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  letter-spacing: 0.08em;
+
+  border: 1px solid var(--purple-main);
+
+  transition: 0.25s ease;
+}
+
+/* HOVER STATE */
+.project-media:hover .project-video-cta {
+  background: rgba(90,9,229,0.25);
+}
+
+.project-media:hover .project-video-cta span {
+  background: var(--purple-main);
+  color: #ffffff; 
+
+  box-shadow: var(--glow-purple);
 }
 
 /* actual button */
