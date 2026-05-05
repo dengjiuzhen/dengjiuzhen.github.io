@@ -224,47 +224,59 @@
 
   <div class="project-content">
 
-    <!-- LEFT: VIDEO THUMB -->
-    <a href="https://youtu.be/zk0TkcF-29g" target="_blank" class="project-media">
+    <!-- LEFT: IMAGE (visually stronger) -->
+    <div class="project-images">
 
-      <img src="../assets/Dream_Manor_4.png">
+      <a href="https://youtu.be/zk0TkcF-29g" target="_blank" class="project-media">
+        <img src="../assets/Dream_Manor_4.png">
 
-      <div class="project-video-cta">
-        <span>▶ Watch New Player Demo</span>
+        <div class="project-video-cta">
+          <span>▶ Watch Demo</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- RIGHT: TEXT (split into 2 columns manually) -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5vw;">
+
+      <!-- COLUMN 1 -->
+      <div class="project-text compact">
+
+        <h2 style="font-size: clamp(16px,1.1vw,20px);">
+          Meaningful play = visible transformation + earned progress
+        </h2>
+
+        <h3>Emotional</h3>
+        <ul>
+          <li>Calm tone reduces anxiety</li>
+          <li>Play reframes obligation</li>
+        </ul>
+
+        <h3>Sensory</h3>
+        <ul>
+          <li>Soft palettes signal safety</li>
+          <li>Music sustains immersion</li>
+        </ul>
+
       </div>
 
-    </a>
+      <!-- COLUMN 2 -->
+      <div class="project-text compact">
 
-    <!-- RIGHT: TEXT -->
-    <div class="project-text compact">
+        <h3>Symbolic</h3>
+        <ul>
+          <li>Buildings represent effort</li>
+          <li>Badges encode success</li>
+        </ul>
 
-      <h2>
-        Meaningful play = actions visibly transform environment + progress feels earned → design aesthetics
-      </h2>
+        <h3>Narrative</h3>
+        <ul>
+          <li>Elves = support systems</li>
+          <li>Guidance feels relational</li>
+        </ul>
 
-      <h3>Emotional</h3>
-      <ul>
-        <li>Calm tone reduces task anxiety</li>
-        <li>Play reframes obligation</li>
-      </ul>
-
-      <h3>Sensory</h3>
-      <ul>
-        <li>Soft palettes signal safety</li>
-        <li>Music sustains immersion</li>
-      </ul>
-
-      <h3>Symbolic</h3>
-      <ul>
-        <li>Buildings represent effort</li>
-        <li>Badges encode success</li>
-      </ul>
-
-      <h3>Narrative</h3>
-      <ul>
-        <li>Elve characters personify support systems</li>
-        <li>Guidance feels relational</li>
-      </ul>
+      </div>
 
     </div>
 
@@ -281,7 +293,6 @@
     Outcomes
   </div>
 
-  <!-- ✅ RESTORE STRUCTURE -->
   <div class="project-content">
 
     <!-- LEFT: IMAGE -->
@@ -293,10 +304,24 @@
     <div class="project-text">
 
       <p>
-        <a href="../assets/Dream_Manor_GDD.pdf">
-          View detailed game design document PDF
-        </a>
-      </p>
+  <a href="../assets/Dream_Manor_GDD.pdf"
+     style="
+       display:inline-block;
+       padding:10px 16px;
+       border-radius:20px;
+       background: rgba(0,0,0,0.85);
+       color: white;
+       text-decoration:none;
+       border:1px solid var(--purple-main);
+       font-size:14px;
+       letter-spacing:0.05em;
+     "
+     onmouseover="this.style.background='var(--purple-main)'"
+     onmouseout="this.style.background='rgba(0,0,0,0.85)'"
+  >
+    📄 View Game Design Document
+  </a>
+</p>
 
       <h3>Psychological</h3>
       <ul>
