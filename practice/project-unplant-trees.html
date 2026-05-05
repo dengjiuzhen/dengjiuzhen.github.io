@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Unplant Trees</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../lobby.html">Lobby</a>
+    <a href="../studio.html">Studio</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../collection.html">Collection</a>
+    <a href="../cafe.html">Café</a>
+    <a href="../about.html">About</a>
+  </div>
+</nav>
+
+<!-- TOP BAR -->
+<div class="project-topbar">
+
+  <div class="project-back">
+    <button class="button" onclick="goBack()">← Studio</button>
+  </div>
+
+  <div class="project-center">
+    <button class="button button-badge" onclick="collectBadge('project-unplant-trees')">
+      Collect Badge ✦
+    </button>
+  </div>
+
+  <div></div>
+</div>
+
+<!-- COIN -->
+<div class="coin-ui">
+  ⏱ <span id="time">0.00</span> ⬤
+</div>
+
+<main class="project-container">
+
+<!-- =====================================================
+CARD 1 — CONCEPT + THEORY
+===================================================== -->
+<section class="project-card">
+
+  <div class="project-title">
+    Unplant Trees — Browser Extension as Media Resistance
+  </div>
+
+  <div class="project-content">
+
+    <!-- IMAGE -->
+    <div class="project-images">
+      <img src="../assets/Unplant_Trees_1.png">
+    </div>
+
+    <!-- TEXT -->
+    <div class="project-text">
+
+      <h3>What it does</h3>
+      <p>
+        A Chrome extension that overlays interactive trees on Google AI Overview results.
+      </p>
+
+      <h3>Core Interaction</h3>
+      <ul>
+        <li>Trees appear over AI-generated summaries</li>
+        <li>Click once → tree is cut</li>
+        <li>Click twice → tree disappears</li>
+      </ul>
+
+      <h3>Media Resistance Concept</h3>
+      <ul>
+        <li>AI generation consumes real-world energy</li>
+        <li>Each AI answer implies environmental cost</li>
+        <li>Seamless UX hides this cost from users</li>
+      </ul>
+
+      <h3>Design Position</h3>
+      <ul>
+        <li>Does not block AI → keeps visibility</li>
+        <li>Introduces friction instead of removal</li>
+        <li>Transforms passive consumption into action</li>
+      </ul>
+
+      <h3>Critical Framing</h3>
+      <ul>
+        <li>Using AI reduces active research behaviors</li>
+        <li>Search becomes consumption, not exploration</li>
+        <li>This tool visualizes both environmental and cognitive loss</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+CARD 2 — DEMO + DOWNLOAD
+===================================================== -->
+<section class="project-card">
+
+  <div class="project-title">
+    Demo, Download & Usage
+  </div>
+
+  <div class="project-content-video">
+
+    <!-- VIDEO -->
+    <div class="video-wrapper">
+      <iframe 
+        src="https://youtu.be/3MYxEW_KXr8"
+        title="Unplant Trees Demo"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- TEXT -->
+    <div class="project-text compact">
+
+      <h3>Download Extension</h3>
+
+      <p>
+        <a href="../assets/Unplant_Trees_Extension.zip"
+           style="
+             display:inline-block;
+             padding:10px 16px;
+             border-radius:20px;
+             background: rgba(0,0,0,0.85);
+             color:white;
+             text-decoration:none;
+             border:1px solid var(--purple-main);
+           "
+           onmouseover="this.style.background='var(--purple-main)'"
+           onmouseout="this.style.background='rgba(0,0,0,0.85)'"
+        >
+          ⬇ Download ZIP (Updated May 2026)
+        </a>
+      </p>
+
+      <h3>Install (Chrome)</h3>
+      <ul>
+        <li>Unzip the downloaded file</li>
+        <li>Open: chrome://extensions</li>
+        <li>Enable <b>Developer Mode</b></li>
+        <li>Click <b>Load unpacked</b></li>
+        <li>Select the unzipped folder</li>
+      </ul>
+
+      <h3>How to Use</h3>
+      <ul>
+        <li>Search on Google</li>
+        <li>AI Overview appears</li>
+        <li>Trees overlay automatically</li>
+        <li>Click to “unplant” them</li>
+      </ul>
+
+      <h3>Get ZIP from GitHub</h3>
+      <ul>
+        <li>Go to your GitHub repository</li>
+        <li>Click the green <b>Code</b> button</li>
+        <li>Select <b>Download ZIP</b></li>
+        <li>Or clone repo locally</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<script src="../js/main.js"></script>
+
+<script>
+function goBack() {
+  window.location.href = "../studio.html";
+}
+</script>
+
+</body>
+</html>
