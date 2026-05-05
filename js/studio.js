@@ -2,16 +2,22 @@
 //Sample ===== PROJECT DATA =====
 const projects = [
   {
+    id: "project-balloon-garden",
+    title: "Garden of Balloons",
+    description: "How might we transform daily individual struggle into shared social empowerment?",
+    path: "practice/project-balloon-garden.html"
+  },
+//  {
+//    id: "projectB",
+//    title: "Future Project",
+//    description: "Coming soon.",
+//    path: "practice/projectB.html"
+//  },
+  {
     id: "projectA",
     title: "Sample",
     description: "Test Project Layout Sample.",
     path: "practice/sample.html"
-  },
-  {
-    id: "projectB",
-    title: "Future Project",
-    description: "Coming soon.",
-    path: "practice/projectB.html"
   }
 ];
 
