@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Dyed in Rain</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../lobby.html">Lobby</a>
+    <a href="../studio.html">Studio</a>
+    <a href="../archive.html">Archive</a>
+    <a href="../collection.html">Collection</a>
+    <a href="../cafe.html">Café</a>
+    <a href="../about.html">About</a>
+  </div>
+</nav>
+
+<!-- TOP BAR -->
+<div class="project-topbar">
+
+  <div class="project-back">
+    <button class="button" onclick="goBack()">← Studio</button>
+  </div>
+
+  <div class="project-center">
+    <!-- ⚠️ CHANGE ID -->
+    <button class="button button-badge" onclick="collectBadge('project-dyed-in-rain')">
+      Collect Badge ✦
+    </button>
+  </div>
+
+  <div></div>
+</div>
+
+<!-- COIN -->
+<div class="coin-ui">
+  ⏱ <span id="time">0.00</span> ⬤
+</div>
+
+<main class="project-container">
+
+<!-- =====================================================
+SINGLE CARD — ARTWORK PRESENTATION
+===================================================== -->
+<section class="project-card">
+
+  <div class="project-title">
+    Dyed in Rain: Collaborations in Ink and Code
+  </div>
+
+  <!-- use video layout to center everything nicely -->
+  <div class="project-content-video">
+
+    <!-- VIDEO (dominant) -->
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/xKaI83FPOWo"
+        title="Dyed in Rain"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- TEXT (minimal, poetic) -->
+    <div class="project-text compact">
+
+      <h3>Logline</h3>
+      <p>
+        An experimental animation created in collaboration with traditional ink painting tools and digital scanning systems, where water, ink, and computation co-author the image.
+      </p>
+
+      <p>
+        As the work dissolves and transforms, it evokes memory, rain, and the quiet inevitability of being dyed into the currents of social life.
+      </p>
+
+      <h3>Medium</h3>
+      <p>
+        Ink, water, paper, scanner, code
+      </p>
+
+      <h3>Concept</h3>
+      <ul>
+        <li>Material and digital systems co-produce imagery</li>
+        <li>Transformation replaces control</li>
+        <li>Process becomes authorship</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<script src="../js/main.js"></script>
+
+<script>
+function goBack() {
+  window.location.href = "../studio.html";
+}
+</script>
+
+</body>
+</html>
