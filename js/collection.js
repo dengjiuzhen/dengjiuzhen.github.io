@@ -24,7 +24,7 @@ const ITEM_DATA = {
   // ===== PROJECTS =====
   "project-garden-of-balloons": {
     title: "Garden of Balloons",              
-    path: "projects/garden-of-balloons.html",         
+    path: "practice/garden-of-balloons.html",         
     type: "project"  
   },
 
