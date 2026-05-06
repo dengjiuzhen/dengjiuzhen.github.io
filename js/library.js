@@ -21,8 +21,8 @@ const papers = [
 ];
 
 // ===== RENDER =====
-function renderArchive() {
-  const container = document.getElementById("archive-container");
+function renderLibrary() {
+  const container = document.getElementById("library-container");
   if (!container) return;
 
   papers.forEach(p => {
@@ -55,4 +55,4 @@ function goToPaper(id) {
 }
 
 // ===== INIT =====
-renderArchive();
+renderLibrary();
