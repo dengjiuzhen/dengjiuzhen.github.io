@@ -23,7 +23,7 @@ The user experience follows a simple loop:
 **Explore → View → Collect → Earn → Unlock**
 
 Visitors can:  
-- navigate through different spaces (Studio, Archive, Café)  
+- navigate through different spaces (Studio, Library, Café)  
 - collect badges from works they find interesting  
 - accumulate coins based on time spent on the site  
 - spend coins in a café-like interaction space  
@@ -78,7 +78,7 @@ This acts as a soft acknowledgment of engagement.
 ## Site Structure  
 / → Lobby (entry point)
 /studio → Design works (practice)
-/archive → Theory works (papers)
+/library → Theory works (papers)
 /about → Bio + CV
 /collection → Saved works (badges)
 /cafe → Interactive rest space
