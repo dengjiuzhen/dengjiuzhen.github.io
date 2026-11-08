@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Penguin Reunion: a VR narrative prototype about endurance, survival, and return, by Jiuzhen Deng.">
+  <title>Penguin Reunion | Jiuzhen Deng</title>
+
+  <!-- Keep the two existing stylesheets used by other Studio projects. -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+
+  <!-- Page-specific styles: intentionally scoped, so existing project pages are unchanged. -->
+  <style>
+    .penguin-page .project-container,
+    .penguin-page .project-card,
+    .penguin-page .project-card * {
+      box-sizing: border-box;
+    }
+    .penguin-page .project-container {
+      max-width: none;
+      margin: 0;
+      padding: 94px 20px 80px;
+      gap: clamp(26px, 5vw, 60px);
+    }
+    .penguin-page .project-card {
+      width: min(95vw, 1100px);
+      height: auto;
+      min-height: 0;
+      aspect-ratio: auto; /* Longer development materials need flexible card heights. */
+      padding: clamp(24px, 4vw, 48px);
+      justify-content: flex-start;
+      gap: 20px;
+    }
+    .penguin-page .project-title {
+      margin: 0;
+      font-size: clamp(24px, 2.8vw, 36px);
+      line-height: 1.25;
+    }
+    .penguin-page .project-topbar { box-sizing: border-box; }
+    .penguin-page .project-center { margin-right: 0; }
+    .penguin-page .project-text { margin: 0; max-width: none; gap: 12px; }
+    .penguin-page .project-text h3 { margin: 12px 0 0; }
+    .penguin-page .project-text p { margin: 0; }
+    .penguin-page a:not(.button):not(.project-media) { color: var(--blue-accent); }
+    .penguin-page a:not(.button):not(.project-media):hover { color: white; }
+
+    .penguin-eyebrow {
+      margin: 0;
+      color: var(--blue-accent);
+      font-size: 12px;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+    .penguin-lead {
+      margin: 0;
+      max-width: 70ch;
+      font-size: clamp(16px, 1.55vw, 20px);
+      line-height: 1.7;
+      color: var(--text-dim);
+    }
+    .penguin-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .penguin-meta span {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid rgba(146,165,238,.32);
+      border-radius: 30px;
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+    .penguin-hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(240px, 1fr);
+      align-items: start;
+      gap: clamp(22px, 3vw, 36px);
+    }
+    .penguin-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #05060a;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 0 22px rgba(90,9,229,.22);
+    }
+    .penguin-video iframe {
+      width: 100%; height: 100%; display: block; border: 0;
+    }
+    .penguin-small {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .penguin-section-intro {
+      margin: 0;
+      color: var(--text-dim);
+      line-height: 1.65;
+      max-width: 78ch;
+    }
+    .penguin-act-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    .penguin-act {
+      padding: 20px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+    }
+    .penguin-act-number {
+      margin: 0 0 9px;
+      color: var(--pink-accent);
+      font-size: 12px;
+      letter-spacing: .12em;
+    }
+    .penguin-act h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--blue-accent);
+    }
+    .penguin-act > p { margin: 0 0 16px; line-height: 1.65; }
+    .penguin-script {
+      border-top: 1px solid rgba(255,255,255,.13);
+      padding-top: 14px;
+    }
+    .penguin-script summary {
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+      outline-offset: 5px;
+    }
+    .penguin-script summary:hover { color: var(--blue-accent); }
+    .penguin-script p {
+      margin: 14px 0 0;
+      line-height: 1.7;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .penguin-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 20px;
+    }
+    .penguin-figure { margin: 0; min-width: 0; }
+    .penguin-figure a {
+      display: block;
+      line-height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+    .penguin-figure img {
+      display: block;
+      width: 100%;
+      max-height: 390px;
+      object-fit: contain;
+      transition: transform .25s ease;
+    }
+    .penguin-figure a:hover img { transform: scale(1.02); }
+    .penguin-figure figcaption {
+      margin-top: 9px;
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .penguin-label {
+      display: block;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .penguin-subhead {
+      margin: 6px 0 0;
+      color: var(--blue-accent);
+      font-size: clamp(18px, 1.8vw, 23px);
+    }
+    .penguin-textures {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+    }
+    .penguin-textures .penguin-figure img { max-height: 190px; aspect-ratio: 1.4; }
+    .penguin-models {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 14px;
+    }
+    .penguin-models .penguin-figure img { height: 170px; object-fit: contain; }
+    .penguin-models figcaption { font-size: 12px; }
+    .penguin-gallery .penguin-figure img { aspect-ratio: 16 / 10; object-fit: contain; }
+    .penguin-notes {
+      display: grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+      gap: 24px;
+      align-items: center;
+    }
+    .penguin-credit {
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 3px;
+      padding-top: 14px;
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .penguin-credit p { margin: 0 0 5px; }
+    .penguin-page .nav-inner { max-width: 900px; }
+    @media (max-width: 850px) {
+      .penguin-hero-layout, .penguin-notes { grid-template-columns: 1fr; }
+      .penguin-act-grid { grid-template-columns: 1fr; }
+      .penguin-models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .penguin-page .nav-inner { overflow-x: auto; gap: 16px; white-space: nowrap; scrollbar-width: none; }
+      .penguin-page .nav-inner::-webkit-scrollbar { display: none; }
+      .penguin-page .project-topbar { padding: 8px 12px; grid-template-columns: 1fr auto; }
+      .penguin-page .project-back { justify-self: start; }
+      .penguin-page .project-center { justify-self: end; }
+      .penguin-page .project-topbar .button { font-size: 12px; padding: 8px 10px; }
+      .penguin-page .coin-ui { right: 10px; padding: 6px 10px; font-size: 12px; }
+      .penguin-page .project-container { padding: 82px 12px 48px; }
+      .penguin-page .project-card { width: 100%; padding: 22px 18px; }
+      .penguin-visual-grid { grid-template-columns: 1fr; }
+      .penguin-textures { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .penguin-figure img { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="penguin-page">
+  <!-- Same global navigation as the existing Studio pages. -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../lobby.html">Lobby</a>
+      <a href="../studio.html">Studio</a>
+      <a href="../library.html">Library</a>
+      <a href="../collection.html">Collection</a>
+      <a href="../cafe.html">Café</a>
+      <a href="../about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="project-topbar">
+    <div class="project-back"><a class="button" href="../studio.html">← Studio</a></div>
+    <div class="project-center">
+      <!-- Register this same ID in js/collection.js when you add the Studio card later. -->
+      <button class="button button-badge" type="button" onclick="collectBadge('project-penguin-reunion')">
+        Collect Badge ✦
+      </button>
+    </div>
+  </div>
+
+  <!-- Uses your existing timer / coin system. -->
+  <div class="coin-ui">⏱ <span id="time">0.00</span> ⬤</div>
+
+  <main class="project-container">
+
+    <!-- CARD 1: OUTCOME FIRST -->
+    <section class="project-card" aria-labelledby="penguin-title">
+      <p class="penguin-eyebrow">Immersive Narrative / VR Prototype / 2026</p>
+      <h1 class="project-title" id="penguin-title">Penguin Reunion</h1>
+      <p class="penguin-lead">A three-act story following an emperor penguin through endurance, survival, and the journey back to his family.</p>
+      <div class="penguin-meta">
+        <span>Narrative Concepts of 3-D Spaces</span>
+        <span>VR / 3D Prototyping</span>
+        <span>Narrative &amp; Scene Design</span>
+      </div>
+      <div class="penguin-hero-layout">
+        <div>
+          <div class="penguin-video">
+            <iframe src="https://www.youtube.com/embed/h9qJ9vRjXq0"
+              title="Penguin Reunion — final VR project demonstration"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <p class="penguin-small" style="margin-top:10px;">Final VR project demonstration · <a href="https://www.youtube.com/watch?v=h9qJ9vRjXq0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+        <div class="project-text compact">
+          <h3>Project Concept</h3>
+          <p>Pen becomes a father, survives a dangerous journey at sea, and struggles through the Antarctic storm to reunite with Penko and their chick, Guin.</p>
+          <h3>Experiential Arc</h3>
+          <p>Endurance → Survival → Return</p>
+          <h3>Prototype Outcome</h3>
+          <p>I built a working VR scene and am happy with the environment I created. Some planned functions, however, remained unfinished or did not behave as expected.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 2: NARRATIVE -->
+    <section class="project-card" aria-labelledby="narrative-title">
+      <h2 class="project-title" id="narrative-title">Narrative Design — Three Acts</h2>
+      <p class="penguin-section-intro">The intended story moves between patient care, fast-paced danger, and a difficult return. Open any act to read the original script.</p>
+      <div class="penguin-act-grid">
+        <article class="penguin-act">
+          <p class="penguin-act-number">ACT I</p>
+          <h3>Endurance</h3>
+          <p>Pen shelters the egg through the Antarctic winter, waits for Guin to hatch, and transfers the chick to Penko when she returns.</p>
+          <details class="penguin-script">
+            <summary>Read full script</summary>
+            <p>Pen, an emperor penguin, stands on a vast sheet of Antarctic ice as winter begins to settle in. His partner, Penko, has just laid their egg. Carefully, she shifts it toward him. The transfer is fragile—one small mistake could mean losing it to the cold. The egg wobbles between them, and for a moment, everything feels suspended. Pen steadies it on his feet and draws it safely into his brood pouch. Penko lingers only briefly before turning toward the distant ocean. Pen remains behind with the other males. Through weeks of darkness and storm, he endures. The wind howls, and the snow erases the horizon. The penguins huddle tightly together, conserving warmth as their bodies weaken from hunger. Then one day, a faint crack breaks the silence. The egg begins to hatch. A small, silver-gray chick emerges. Pen lowers his head gently. He names him Guin. Not long after, the females return from the sea. Guided by familiar calls, Pen and Penko find each other again. With care, he transfers Guin to her. His long vigil is over. At last, it is his turn to leave.</p>
+          </details>
+        </article>
+        <article class="penguin-act">
+          <p class="penguin-act-number">ACT II · GAMEFUL SEQUENCE</p>
+          <h3>Survival</h3>
+          <p>Pen dives for fish and is pursued by a leopard seal. What begins as rhythmic movement becomes a struggle to reach the ice.</p>
+          <details class="penguin-script">
+            <summary>Read full script</summary>
+            <p>At the ocean’s edge, Pen dives beneath the surface. The world transforms into motion and light. Schools of fish flicker through the water, and he moves with instinctive precision—diving, chasing, catching. For a moment, there is rhythm again. Then the current shifts. A shadow cuts through the water—a leopard seal. The calm shatters. Pen surges forward, pushing himself toward the surface. He breaks through the water and leaps toward the ice, but his footing slips. Behind him, the seal lunges, closing the distance in an instant. For a split second, everything hangs in balance. Then Pen scrambles upward, claws scraping against the ice. With one final effort, he pulls himself free. The seal snaps just below him, missing by inches. He survives.</p>
+          </details>
+        </article>
+        <article class="penguin-act">
+          <p class="penguin-act-number">ACT III</p>
+          <h3>Return</h3>
+          <p>After surviving the ocean, Pen crosses a storm and follows familiar calls back to Penko, Guin, and the colony.</p>
+          <details class="penguin-script">
+            <summary>Read full script</summary>
+            <p>But survival does not end at the water’s edge. As Pen journeys back inland, a storm rises, swallowing the landscape in white. Alone, he presses forward through the wind and cold, guided only by instinct and memory. Gradually, shapes begin to emerge through the snow—familiar forms, distant calls. The colony. Penko. Guin. He finds them at last. This time, Pen takes his place beside them again, feeding Guin and sharing in the quiet, hard-won warmth of reunion. Around them, the colony endures as it always has—through loss, through distance, through return. And within that cycle, Pen continues—no longer alone.</p>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- CARD 3: VISUAL DEVELOPMENT -->
+    <section class="project-card" aria-labelledby="visual-title">
+      <h2 class="project-title" id="visual-title">Storyboarding &amp; Environment</h2>
+      <p class="penguin-section-intro">The storyboard establishes the narrative sequence. The background study explores the Antarctic setting before the VR scene is assembled.</p>
+      <div class="penguin-visual-grid">
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Storyboard.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size storyboard">
+            <img src="../assets/Penguin_Reunion_Storyboard.jpg" alt="Storyboard panels for the Penguin Reunion narrative" loading="lazy">
+          </a>
+          <figcaption><span class="penguin-label">Storyboard</span>Sequence and pacing of Pen's journey.</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Background.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size background study">
+            <img src="../assets/Penguin_Reunion_Background.png" alt="Antarctic environment background concept created with Google Gemini" loading="lazy">
+          </a>
+          <figcaption><span class="penguin-label">Background Study</span>Generated with Google Gemini for visual exploration.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CARD 4: MATERIALS AND ASSETS -->
+    <section class="project-card" aria-labelledby="assets-title">
+      <h2 class="project-title" id="assets-title">Building the 3D World</h2>
+      <p class="penguin-section-intro">Texture studies and third-party 3D models helped establish the visual vocabulary for ice, water, snow, penguins, fish, and the seal.</p>
+
+      <h3 class="penguin-subhead">Texture Studies</h3>
+      <div class="penguin-textures">
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Texture_Ice.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Texture_Ice.png" alt="Ice texture" loading="lazy"></a>
+          <figcaption>Ice</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Texture_Wet_Ice.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Texture_Wet_Ice.png" alt="Wet ice texture" loading="lazy"></a>
+          <figcaption>Wet Ice</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Texture_Snow.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Texture_Snow.png" alt="Snow texture" loading="lazy"></a>
+          <figcaption>Snow</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="penguin-subhead">3D Model Studies</h3>
+      <div class="penguin-models">
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Model_Penguin.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Model_Penguin.png" alt="Penguin 3D character model screenshot" loading="lazy"></a>
+          <figcaption><span class="penguin-label">Penguin</span><a href="https://assetstore.unity.com/packages/3d/characters/animals/birds/stylized-penguin-free-lite-version-368972" target="_blank" rel="noopener noreferrer">Unity Asset Store</a></figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Model_Fish.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Model_Fish.png" alt="Low-poly fish model screenshot" loading="lazy"></a>
+          <figcaption><span class="penguin-label">Fish</span><a href="https://assetstore.unity.com/packages/3d/characters/animals/fish/low-poly-fish-339618" target="_blank" rel="noopener noreferrer">Unity Asset Store</a></figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Model_Chick.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Model_Chick.png" alt="Baby penguin 3D model screenshot" loading="lazy"></a>
+          <figcaption><span class="penguin-label">Baby Penguin</span><a href="https://skfb.ly/opzn8" target="_blank" rel="noopener noreferrer">cukoo / Sketchfab</a></figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Model_Seal.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Model_Seal.png" alt="Seal 3D enemy model screenshot" loading="lazy"></a>
+          <figcaption><span class="penguin-label">Seal</span><a href="https://skfb.ly/6Bz7y" target="_blank" rel="noopener noreferrer">Kugatsu Tsukai / Sketchfab</a></figcaption>
+        </figure>
+      </div>
+      <div class="penguin-credit">
+        <p>3D model credits: “3d Penguin” by <a href="https://skfb.ly/opzn8" target="_blank" rel="noopener noreferrer">cukoo</a> and “Dotted White Seal – Free Giveaway” by <a href="https://skfb.ly/6Bz7y" target="_blank" rel="noopener noreferrer">Kugatsu Tsukai 3D Model Hub</a>, both licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+        <p>Penguin and fish models are sourced from the Unity Asset Store (see individual links above).</p>
+      </div>
+    </section>
+
+    <!-- CARD 5: PROTOTYPE SCREENSHOTS -->
+    <section class="project-card penguin-gallery" aria-labelledby="prototype-title">
+      <h2 class="project-title" id="prototype-title">VR Prototype — Scene Development</h2>
+      <p class="penguin-section-intro">Screenshots from the scene I built. Although not every interaction reached the intended state, the environment and characters came together in a working VR prototype.</p>
+      <div class="penguin-visual-grid">
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Prototype_1.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Prototype_1.png" alt="Penguin Reunion VR prototype screenshot 1" loading="lazy"></a>
+          <figcaption>Prototype screenshot 01</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Prototype_2.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Prototype_2.png" alt="Penguin Reunion VR prototype screenshot 2" loading="lazy"></a>
+          <figcaption>Prototype screenshot 02</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Prototype_3.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Prototype_3.png" alt="Penguin Reunion VR prototype screenshot 3" loading="lazy"></a>
+          <figcaption>Prototype screenshot 03</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Prototype_4.png" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Prototype_4.png" alt="Penguin Reunion VR prototype screenshot 4" loading="lazy"></a>
+          <figcaption>Prototype screenshot 04</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CARD 6: REFLECTION -->
+    <section class="project-card" aria-labelledby="reflection-title">
+      <h2 class="project-title" id="reflection-title">Iteration, Bugs &amp; Lessons</h2>
+      <div class="penguin-notes">
+        <div class="project-text compact">
+          <h3>What Worked</h3>
+          <p>I got a VR scene working, and I'm happy with how the environment turned out.</p>
+          <h3>What Remained Unresolved</h3>
+          <p>The water collider still did not function as intended, despite repeated attempts to fix it. Adding more fish and penguins also caused performance problems, including device freezes and difficult update cycles.</p>
+          <h3>What the Prototype Shows</h3>
+          <p>Beyond the initial narrative plan, this project became an exercise in bringing a 3D world into VR and navigating the practical limits of physics, interaction, and performance.</p>
+          <p class="penguin-small">The demo at the beginning shows the outcome of this iteration; it should not be read as a fully implemented version of all three planned acts.</p>
+        </div>
+        <figure class="penguin-figure">
+          <a href="../assets/Penguin_Reunion_Debug.jpg" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Debug.jpg" alt="Photo documenting a device or debugging issue during VR development" loading="lazy"></a>
+          <figcaption>Development and debugging process.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
