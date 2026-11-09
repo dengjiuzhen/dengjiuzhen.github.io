@@ -10,75 +10,143 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/project.css">
 
-  <!-- Page-specific styles: intentionally scoped, so existing project pages are unchanged. -->
+  <!-- Scoped to this project page; overrides alignment/width defaults from project.css. -->
   <style>
+    body.penguin-page { min-width: 0; overflow-x: hidden; }
+
     .penguin-page .project-container,
     .penguin-page .project-card,
-    .penguin-page .project-card * {
-      box-sizing: border-box;
-    }
-    .penguin-page .project-container {
+    .penguin-page .project-card * { box-sizing: border-box; }
+
+    .penguin-page main.project-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
       max-width: none;
-      margin: 0;
+      margin: 0 auto;
       padding: 94px 20px 80px;
       gap: clamp(26px, 5vw, 60px);
+      scroll-snap-type: none;
     }
-    .penguin-page .project-card {
-      width: min(95vw, 1100px);
+
+    .penguin-page main.project-container > section.project-card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      width: min(100%, 1100px);
+      max-width: 1100px;
       height: auto;
       min-height: 0;
-      aspect-ratio: auto; /* Longer development materials need flexible card heights. */
+      max-height: none;
+      aspect-ratio: auto;
+      margin: 0 auto;
       padding: clamp(24px, 4vw, 48px);
-      justify-content: flex-start;
       gap: 20px;
+      text-align: left;
+      overflow: visible;
+      scroll-snap-align: none;
     }
-    .penguin-page .project-title {
+
+    /* The older project stylesheet centers some titles and caps content widths.
+       Reset those rules here so paragraphs always use the actual card width. */
+    .penguin-page main.project-container > .project-card > *,
+    .penguin-page .project-card .project-text > * {
+      min-width: 0;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      text-align: left;
+    }
+
+    .penguin-page .project-card h1.project-title,
+    .penguin-page .project-card h2.project-title {
+      display: block;
+      align-self: stretch;
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      font-size: clamp(24px, 2.8vw, 36px);
+      font-size: clamp(27px, 3vw, 38px);
       line-height: 1.25;
+      text-align: left;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
     }
+
+    .penguin-page .project-card p,
+    .penguin-page .project-card figcaption,
+    .penguin-page .project-card h3,
+    .penguin-page .project-card summary {
+      text-align: left;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
+      hyphens: none;
+    }
+
+    .penguin-page .project-text,
+    .penguin-page .project-text.compact {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 0;
+      gap: 10px;
+      text-align: left;
+    }
+    .penguin-page .project-text h3 { margin: 10px 0 0; }
+    .penguin-page .project-text h3:first-child { margin-top: 0; }
+    .penguin-page .project-text p { margin: 0; }
     .penguin-page .project-topbar { box-sizing: border-box; }
     .penguin-page .project-center { margin-right: 0; }
-    .penguin-page .project-text { margin: 0; max-width: none; gap: 12px; }
-    .penguin-page .project-text h3 { margin: 12px 0 0; }
-    .penguin-page .project-text p { margin: 0; }
-    .penguin-page a:not(.button):not(.project-media) { color: var(--blue-accent); }
-    .penguin-page a:not(.button):not(.project-media):hover { color: white; }
+    .penguin-page .nav-inner { max-width: 900px; }
+
+    .penguin-page a:not(.button):not(.project-media) { color: var(--blue-accent, #9aa8ff); }
+    .penguin-page a:not(.button):not(.project-media):hover { color: #fff; }
 
     .penguin-eyebrow {
       margin: 0;
-      color: var(--blue-accent);
+      color: var(--blue-accent, #9aa8ff);
       font-size: 12px;
-      letter-spacing: 0.17em;
+      letter-spacing: .17em;
+      line-height: 1.6;
       text-transform: uppercase;
     }
-    .penguin-lead {
+    .penguin-page .project-card p.penguin-lead {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      max-width: 70ch;
       font-size: clamp(16px, 1.55vw, 20px);
       line-height: 1.7;
-      color: var(--text-dim);
+      color: var(--text-dim, #aaa5bb);
     }
-    .penguin-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 2px;
-    }
+    .penguin-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
     .penguin-meta span {
       display: inline-block;
       padding: 7px 12px;
       border: 1px solid rgba(146,165,238,.32);
       border-radius: 30px;
-      color: var(--text-dim);
+      color: var(--text-dim, #aaa5bb);
       font-size: 12px;
+      line-height: 1.45;
     }
     .penguin-hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.65fr) minmax(240px, 1fr);
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
       align-items: start;
       gap: clamp(22px, 3vw, 36px);
+      width: 100%;
     }
+    .penguin-hero-layout > *,
+    .penguin-notes > *,
+    .penguin-visual-grid > *,
+    .penguin-models > *,
+    .penguin-debug-grid > * { min-width: 0; }
     .penguin-video {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -88,69 +156,49 @@
       border: 1px solid rgba(255,255,255,.12);
       box-shadow: 0 0 22px rgba(90,9,229,.22);
     }
-    .penguin-video iframe {
-      width: 100%; height: 100%; display: block; border: 0;
-    }
-    .penguin-small {
+    .penguin-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .penguin-page .project-card p.penguin-small {
       margin: 0;
-      color: var(--text-dim);
+      color: var(--text-dim, #aaa5bb);
       font-size: 13px;
       line-height: 1.65;
     }
-    .penguin-section-intro {
+    .penguin-page .project-card p.penguin-section-intro {
       margin: 0;
-      color: var(--text-dim);
+      width: 100%;
+      max-width: 100%;
+      color: var(--text-dim, #aaa5bb);
       line-height: 1.65;
-      max-width: 78ch;
     }
     .penguin-act-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       align-items: start;
+      width: 100%;
     }
     .penguin-act {
+      min-width: 0;
       padding: 20px;
       background: rgba(255,255,255,.025);
       border: 1px solid rgba(255,255,255,.12);
       border-radius: 16px;
     }
-    .penguin-act-number {
+    .penguin-act .penguin-act-number {
       margin: 0 0 9px;
-      color: var(--pink-accent);
+      color: var(--pink-accent, #e79beb);
       font-size: 12px;
       letter-spacing: .12em;
     }
-    .penguin-act h3 {
-      margin: 0 0 12px;
-      font-size: 20px;
-      color: var(--blue-accent);
-    }
+    .penguin-act h3 { margin: 0 0 12px; font-size: 20px; color: var(--blue-accent, #9aa8ff); }
     .penguin-act > p { margin: 0 0 16px; line-height: 1.65; }
-    .penguin-script {
-      border-top: 1px solid rgba(255,255,255,.13);
-      padding-top: 14px;
-    }
-    .penguin-script summary {
-      color: white;
-      font-size: 13px;
-      cursor: pointer;
-      outline-offset: 5px;
-    }
-    .penguin-script summary:hover { color: var(--blue-accent); }
-    .penguin-script p {
-      margin: 14px 0 0;
-      line-height: 1.7;
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-    .penguin-visual-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 20px;
-    }
+    .penguin-script { border-top: 1px solid rgba(255,255,255,.13); padding-top: 14px; }
+    .penguin-script summary { color: #fff; font-size: 13px; cursor: pointer; outline-offset: 5px; }
+    .penguin-script summary:hover { color: var(--blue-accent, #9aa8ff); }
+    .penguin-script p { margin: 14px 0 0; line-height: 1.7; font-size: 13px; color: var(--text-dim, #aaa5bb); }
+    .penguin-visual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; width: 100%; }
     .penguin-figure { margin: 0; min-width: 0; }
-    .penguin-figure a {
+    .penguin-figure > a:has(img) {
       display: block;
       line-height: 0;
       border-radius: 12px;
@@ -165,58 +213,49 @@
       object-fit: contain;
       transition: transform .25s ease;
     }
-    .penguin-figure a:hover img { transform: scale(1.02); }
+    .penguin-figure > a:hover img { transform: scale(1.02); }
     .penguin-figure figcaption {
       margin-top: 9px;
-      color: var(--text-dim);
+      color: var(--text-dim, #aaa5bb);
       font-size: 13px;
       line-height: 1.6;
     }
-    .penguin-label {
-      display: block;
-      color: white;
-      font-weight: 600;
-      margin-bottom: 3px;
-    }
-    .penguin-subhead {
-      margin: 6px 0 0;
-      color: var(--blue-accent);
-      font-size: clamp(18px, 1.8vw, 23px);
-    }
-    .penguin-textures {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 14px;
-    }
+    .penguin-label { display: block; color: #fff; font-weight: 600; margin-bottom: 3px; }
+    .penguin-subhead { margin: 6px 0 0; color: var(--blue-accent, #9aa8ff); font-size: clamp(18px, 1.8vw, 23px); }
+    .penguin-textures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; width: 100%; }
     .penguin-textures .penguin-figure img { max-height: 190px; aspect-ratio: 1.4; }
-    .penguin-models {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 14px;
-    }
+    .penguin-models { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; width: 100%; }
     .penguin-models .penguin-figure img { height: 170px; object-fit: contain; }
     .penguin-models figcaption { font-size: 12px; }
     .penguin-gallery .penguin-figure img { aspect-ratio: 16 / 10; object-fit: contain; }
-    .penguin-notes {
-      display: grid;
-      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-      gap: 24px;
-      align-items: center;
+    .penguin-notes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: start; width: 100%; }
+    .penguin-debug-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: 100%; }
+    .penguin-debug-video-wrap {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      background: #05060a;
     }
+    .penguin-debug-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #05060a; }
+    .penguin-video-message { display: none; margin: 0; padding: 10px 12px; font-size: 12px; line-height: 1.5; color: var(--text-dim, #aaa5bb); }
+    .penguin-video-message.is-visible { display: block; }
     .penguin-credit {
       border-top: 1px solid rgba(255,255,255,.12);
       margin-top: 3px;
       padding-top: 14px;
       font-size: 12px;
-      color: var(--text-dim);
+      color: var(--text-dim, #aaa5bb);
       line-height: 1.7;
     }
     .penguin-credit p { margin: 0 0 5px; }
-    .penguin-page .nav-inner { max-width: 900px; }
+
     @media (max-width: 850px) {
-      .penguin-hero-layout, .penguin-notes { grid-template-columns: 1fr; }
-      .penguin-act-grid { grid-template-columns: 1fr; }
+      .penguin-hero-layout, .penguin-notes { grid-template-columns: minmax(0, 1fr); }
+      .penguin-act-grid { grid-template-columns: minmax(0, 1fr); }
       .penguin-models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .penguin-debug-grid { grid-template-columns: minmax(0, 1fr); }
     }
     @media (max-width: 560px) {
       .penguin-page .nav-inner { overflow-x: auto; gap: 16px; white-space: nowrap; scrollbar-width: none; }
@@ -226,14 +265,12 @@
       .penguin-page .project-center { justify-self: end; }
       .penguin-page .project-topbar .button { font-size: 12px; padding: 8px 10px; }
       .penguin-page .coin-ui { right: 10px; padding: 6px 10px; font-size: 12px; }
-      .penguin-page .project-container { padding: 82px 12px 48px; }
-      .penguin-page .project-card { width: 100%; padding: 22px 18px; }
-      .penguin-visual-grid { grid-template-columns: 1fr; }
-      .penguin-textures { grid-template-columns: 1fr; }
+      .penguin-page main.project-container { padding: 82px 12px 48px; }
+      .penguin-page main.project-container > section.project-card { width: 100%; padding: 22px 18px; }
+      .penguin-visual-grid, .penguin-textures { grid-template-columns: minmax(0, 1fr); }
+      .penguin-models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .penguin-figure img { transition: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { .penguin-figure img { transition: none; } }
   </style>
 </head>
 
@@ -269,7 +306,7 @@
     <section class="project-card" aria-labelledby="penguin-title">
       <p class="penguin-eyebrow">Immersive Narrative / VR Prototype / 2026</p>
       <h1 class="project-title" id="penguin-title">A Penguin’s Return</h1>
-      <p class="penguin-lead">A three-act story following an emperor penguin through endurance, survival, and the journey back to his family.</p>
+      <p class="penguin-lead">A three-act gameful narrative following an emperor penguin through endurance, survival, and the journey back to his family.</p>
       <div class="penguin-meta">
         <span>Narrative Concepts of 3-D Spaces</span>
         <span>VR / 3D Prototyping</span>
@@ -293,7 +330,7 @@
           <h3>Experiential Arc</h3>
           <p>Endurance → Survival → Return</p>
           <h3>Prototype Outcome</h3>
-          <p>I built a working VR scene. Through this experience, I hope to explore how immersive storytelling and embodied interaction can foster emotional connections between participants and virtual characters, allowing them to engage with narratives of survival, care, and belonging through participation rather than observation alone.</p>
+          <p>I built a working VR scene with Unity. Through this experience, I hope to explore how immersive storytelling and embodied interaction can foster emotional connections between participants and virtual characters, allowing them to engage with narratives of survival, care, and belonging through participation rather than observation alone.</p>
         </div>
       </div>
     </section>
@@ -423,7 +460,7 @@
       </div>
     </section>
 
-    <!-- CARD 6: REFLECTION -->
+    <!-- CARD 6: REFLECTION AND TWO AUTOPLAYING DEVELOPMENT VIDEOS -->
     <section class="project-card" aria-labelledby="reflection-title">
       <h2 class="project-title" id="reflection-title">Iteration, Bugs &amp; Lessons</h2>
       <div class="penguin-notes">
@@ -435,15 +472,84 @@
           <p class="penguin-small">The demo at the beginning shows the outcome of this iteration; it should not be read as a fully implemented version of all three planned acts.</p>
         </div>
         <figure class="penguin-figure">
-          <a href="../assets/Penguin_Reunion_Debug.jpg" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Debug_1.mov" alt="Video 1 documenting a device or debugging issue during VR development" loading="lazy"></a>
-          <figcaption>Development and debugging process: super snowy land.</figcaption>
-          <a href="../assets/Penguin_Reunion_Debug.jpg" target="_blank" rel="noopener noreferrer"><img src="../assets/Penguin_Reunion_Debug_2.mov" alt="Video 2 documenting a device or debugging issue during VR development" loading="lazy"></a>
-          <figcaption>Development and debugging process: penguin freefall.</figcaption>
+          <a href="../assets/Penguin_Reunion_Debug.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open debugging process photo">
+            <img src="../assets/Penguin_Reunion_Debug.jpg" alt="Photograph of the VR debugging process" loading="lazy">
+          </a>
+          <figcaption>Development and debugging process.</figcaption>
+        </figure>
+      </div>
+      <h3 class="penguin-subhead">Debugging in Motion</h3>
+      <p class="penguin-section-intro">Two short development clips: a super snowy landscape and a penguin freefall. These videos are set to loop silently whenever they come into view.</p>
+      <div class="penguin-debug-grid">
+        <figure class="penguin-figure">
+          <div class="penguin-debug-video-wrap">
+            <video class="penguin-debug-video" autoplay muted loop playsinline webkit-playsinline controls preload="metadata"
+                   aria-label="Debug video 1: super snowy land">
+              <source src="../assets/Penguin_Reunion_Debug_1.mp4" type="video/mp4">
+              <source src="../assets/Penguin_Reunion_Debug_1.mov" type="video/quicktime">
+              Your browser does not support the HTML5 video element.
+            </video>
+            <p class="penguin-video-message" role="status">This video could not play in your browser. Please upload an H.264 MP4 version of Penguin_Reunion_Debug_1.</p>
+          </div>
+          <figcaption><span class="penguin-label">Debug 01</span>Super snowy land.</figcaption>
+        </figure>
+        <figure class="penguin-figure">
+          <div class="penguin-debug-video-wrap">
+            <video class="penguin-debug-video" autoplay muted loop playsinline webkit-playsinline controls preload="metadata"
+                   aria-label="Debug video 2: penguin freefall">
+              <source src="../assets/Penguin_Reunion_Debug_2.mp4" type="video/mp4">
+              <source src="../assets/Penguin_Reunion_Debug_2.mov" type="video/quicktime">
+              Your browser does not support the HTML5 video element.
+            </video>
+            <p class="penguin-video-message" role="status">This video could not play in your browser. Please upload an H.264 MP4 version of Penguin_Reunion_Debug_2.</p>
+          </div>
+          <figcaption><span class="penguin-label">Debug 02</span>Penguin freefall.</figcaption>
         </figure>
       </div>
     </section>
 
   </main>
+  <script>
+    (function () {
+      const videos = Array.from(document.querySelectorAll('.penguin-debug-video'));
+      const attemptPlay = (video) => {
+        video.muted = true; // Autoplay requires muted playback in most browsers.
+        const promise = video.play();
+        if (promise && typeof promise.catch === 'function') {
+          promise.catch(() => { video.controls = true; });
+        }
+      };
+
+      videos.forEach((video) => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.addEventListener('error', () => {
+          const message = video.parentElement.querySelector('.penguin-video-message');
+          if (message) message.classList.add('is-visible');
+        });
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(({ target, isIntersecting }) => {
+            if (isIntersecting && !document.hidden) attemptPlay(target);
+            else target.pause();
+          });
+        }, { threshold: 0.1 });
+        videos.forEach((video) => observer.observe(video));
+      } else {
+        videos.forEach(attemptPlay);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+          videos.forEach((video) => {
+            if (video.getBoundingClientRect().bottom > 0 && video.getBoundingClientRect().top < window.innerHeight) attemptPlay(video);
+          });
+        } else videos.forEach((video) => video.pause());
+      });
+    }());
+  </script>
   <script src="../js/main.js"></script>
 </body>
 </html>
