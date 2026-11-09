@@ -432,3 +432,170 @@ h2 {
   box-shadow: 0 0 12px var(--blue-accent);
   transform: translateY(-2px);
 }
+
+
+/* =====================================================
+   GLOBAL MOBILE HEADER 
+   Navigation + Project/Paper Topbar + Coin UI
+
+   Shared across all project and research pages.
+   Does not affect the 17:11 card scaling system.
+===================================================== */
+
+@media (max-width: 650px) {
+
+  /* =====================================================
+     1. MAIN NAVIGATION
+     Horizontal scrolling instead of clipping
+  ===================================================== */
+
+  .nav {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  body .nav-inner.nav-inner {
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    max-width: none;
+
+    gap: 20px;
+    padding: 0 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  body .nav-inner.nav-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .nav-inner.nav-inner a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+
+  /* =====================================================
+     2. PROJECT / PAPER TOP BAR
+     Reserve space for the timer on the right
+  ===================================================== */
+
+  body .project-topbar.project-topbar,
+  body .paper-topbar.paper-topbar {
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    /* Reserve 112px on the right for the timer */
+    padding: 9px 112px 9px 12px;
+
+    min-height: 58px;
+    gap: 6px;
+  }
+
+  /* Back buttons */
+
+  body .project-back,
+  body .paper-back {
+    flex: 0 0 auto;
+  }
+
+  /* Collect Badge */
+
+  body .project-center.project-center,
+  body .paper-center.paper-center {
+    flex: 0 0 auto;
+
+    margin: 0;
+    justify-self: auto;
+  }
+
+  /* Compact mobile buttons */
+
+  body .project-topbar.project-topbar .button,
+  body .paper-topbar.paper-topbar .button {
+    padding: 8px 9px;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    white-space: nowrap;
+  }
+
+  /* Unused third topbar column */
+
+  body .project-topbar > .project-right {
+    display: none;
+  }
+
+
+  /* =====================================================
+     3. TIMER / COIN UI
+     Align on the right without covering Collect Badge
+  ===================================================== */
+
+  body .coin-ui.coin-ui {
+    position: fixed;
+
+    top: calc(var(--nav-height) + 11px);
+    right: 8px;
+
+    padding: 7px 9px;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    z-index: 850;
+  }
+}
+
+
+/* =====================================================
+   EXTRA SMALL PHONES
+===================================================== */
+
+@media (max-width: 375px) {
+
+  body .project-topbar.project-topbar,
+  body .paper-topbar.paper-topbar {
+    padding-left: 8px;
+    padding-right: 102px;
+    gap: 4px;
+  }
+
+  body .project-topbar.project-topbar .button,
+  body .paper-topbar.paper-topbar .button {
+    font-size: 10px;
+    padding: 7px 7px;
+  }
+
+  body .coin-ui.coin-ui {
+    right: 5px;
+    padding: 6px 7px;
+    font-size: 10px;
+  }
+
+  body .nav-inner.nav-inner {
+    gap: 16px;
+    padding: 0 12px;
+  }
+}
+
