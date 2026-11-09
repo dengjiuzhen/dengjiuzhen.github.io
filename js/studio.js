@@ -11,7 +11,7 @@ const projects = [
     id: "penguin-reunion",
     title: "A Penguin’s Return",
     description: "A gameful VR narrative prototype exploring embodied interaction, emotional engagement, and character connection through a penguin’s journey of survival and reunion.",
-    path: "practice/penguin-reunion.html"
+    path: "practice/project-penguin-reunion.html"
   },
 //  {
 //    id: "projectA",
