@@ -567,3 +567,39 @@
     transition: none;
   }
 }
+
+/* =====================================================
+   AUTO-FIT LANDSCAPE CARDS
+   Fixed 17:11 ratio, no internal scrolling
+===================================================== */
+
+.project-card.auto-fit-card {
+  box-sizing: border-box;
+
+  aspect-ratio: 17 / 11;
+  height: auto;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: stretch;
+
+  overflow: hidden !important;
+  position: relative;
+}
+
+/* Inner wrapper is scaled as a whole */
+
+.auto-fit-content {
+  width: 100%;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+/* Make expandable elements usable */
+
+.auto-fit-content details {
+  overflow: visible;
+}
