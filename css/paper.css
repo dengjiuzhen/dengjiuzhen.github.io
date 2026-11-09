@@ -368,3 +368,52 @@
 @media (prefers-reduced-motion: reduce) {
   .paper-card, .paper-link, .paper-link::before { transition: none; }
 }
+
+/* =====================================================
+   PAPER SUMMARY — ABSTRACT + KEYWORDS (17:11)
+
+   The first long paragraph and the second headed keyword
+   list on summary cards use the available landscape width.
+   This does not change the fixed canvas or its scaling.
+===================================================== */
+
+/* Full paper-summary width instead of narrow reading column. */
+.paper-container .paper-card .paper-text {
+  max-width: 100%;
+  width: 100%;
+  gap: 13px;
+}
+
+/* If the card contains an abstract followed by a headed
+   keyword list, flow the first paragraph into two columns.
+   This keeps the original wording and avoids clipping. */
+.paper-container .paper-card .paper-text:has(> h3:nth-of-type(2) + ul)
+  > h3:first-of-type + p {
+  columns: 2;
+  column-gap: 34px;
+  column-rule: 1px solid rgba(146, 165, 238, .13);
+  font-size: 16px;
+  line-height: 1.57;
+  text-align: left;
+  hyphens: none;
+}
+
+/* Arrange keywords across the width rather than as a long
+   single column. */
+.paper-container .paper-card .paper-text > h3:nth-of-type(2) + ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px 15px;
+  padding-left: 20px;
+  list-style-position: inside;
+}
+
+.paper-container .paper-card .paper-text > h3:nth-of-type(2) + ul li {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.paper-container .paper-card .paper-text > .paper-link {
+  margin-top: 4px;
+}
