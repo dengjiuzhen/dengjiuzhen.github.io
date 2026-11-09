@@ -1,21 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
 
-  <!-- ⚠️ CHANGE: Project Title -->
-  <title>Project Name</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ⚠️ CHANGE: Project title and description -->
+  <title>Project Name | Jiuzhen Deng</title>
+
+  <meta
+    name="description"
+    content="A brief description of this project by Jiuzhen Deng."
+  >
+
+  <!-- =====================================================
+       GLOBAL STYLESHEETS — DO NOT EDIT
+  ===================================================== -->
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/project.css">
+
+  <!-- =====================================================
+       OPTIONAL: PROJECT-SPECIFIC CSS
+
+       Only add styles here if this project needs
+       a unique layout or interaction.
+
+       Shared Card 1 styles are already in project.css.
+
+       Do not override:
+       - aspect-ratio: 17 / 11
+       - .project-card dimensions
+       - .project-intro layout
+  ===================================================== -->
+
+  <style>
+    /* ⚠️ OPTIONAL: Project-specific styles */
+  </style>
+
 </head>
+
 
 <body>
 
 <!-- =====================================================
-     NAV (GLOBAL — DO NOT EDIT)
+     GLOBAL NAVIGATION — DO NOT EDIT
 ===================================================== -->
-<nav class="nav">
+
+<nav class="nav" aria-label="Main navigation">
+
   <div class="nav-inner">
     <a href="../lobby.html">Lobby</a>
     <a href="../studio.html">Studio</a>
@@ -24,230 +58,646 @@
     <a href="../cafe.html">Café</a>
     <a href="../about.html">About</a>
   </div>
+
 </nav>
+
 
 <!-- =====================================================
      PROJECT TOP BAR
 ===================================================== -->
+
 <div class="project-topbar">
 
+  <!-- BACK TO STUDIO -->
   <div class="project-back">
-    <button class="button" onclick="goBack()">
+
+    <a class="button" href="../studio.html">
       ← Studio
-    </button>
+    </a>
+
   </div>
 
+  <!-- COLLECT BADGE -->
   <div class="project-center">
-    <!-- ⚠️ CHANGE: project name string -->
-    <button class="button button-badge" onclick="collectBadge('project-name')">
+
+    <!-- ⚠️ CHANGE:
+         Replace project-name with the exact badge ID
+         registered in js/collection.js.
+    -->
+
+    <button
+      class="button button-badge"
+      type="button"
+      onclick="collectBadge('project-name')">
+
       Collect Badge ✦
+
     </button>
+
   </div>
 
   <div class="project-right"></div>
 
 </div>
 
+
 <!-- =====================================================
-     COIN UI (GLOBAL)
+     COIN / TIME UI — GLOBAL
 ===================================================== -->
+
 <div class="coin-ui">
   ⏱ <span id="time">0.00</span> ⬤
 </div>
 
+
 <!-- =====================================================
-     MAIN CONTAINER
+     MAIN PROJECT CONTAINER
+
+     Every .project-card uses the shared 17:11 layout.
+
+     Auto-fit is enabled by project-autofit.js.
 ===================================================== -->
+
 <main class="project-container">
 
-  <!-- =====================================================
-       CARD TYPE 1: BASIC (IMAGE + TEXT)
-       Use for: intro, context, problem
-  ====================================================== -->
-  <section class="project-card">
 
-    <div class="project-title">
-      ⚠️ Project Title / Section Title
+  <!-- =====================================================
+       CARD 1: PROJECT INTRODUCTION
+
+       Shared layout based on A Penguin's Return.
+
+       USE FOR:
+       - Project overview
+       - Outcome / concept
+       - Key research or design information
+
+       ⚠️ CHANGE all project-specific text and media.
+  ====================================================== -->
+
+  <section
+    class="project-card project-intro"
+    aria-labelledby="project-main-title">
+
+    <!-- EYEBROW: CATEGORY / FORMAT / YEAR -->
+
+    <p class="project-eyebrow">
+      ⚠️ Project Category / Project Type / 2026
+    </p>
+
+    <!-- PROJECT TITLE -->
+
+    <h1
+      class="project-title"
+      id="project-main-title">
+
+      ⚠️ Project Name
+
+    </h1>
+
+    <!-- METADATA TAGS -->
+
+    <div class="project-meta">
+
+      <span>⚠️ Research / Design Area</span>
+      <span>⚠️ Tools / Methodology</span>
+      <span>⚠️ Creative / Technical Focus</span>
+
     </div>
+
+    <!-- LEAD DESCRIPTION -->
+
+    <p class="project-lead">
+      ⚠️ Write one or two sentences introducing the project,
+      its purpose, and the experience or research question
+      it explores.
+    </p>
+
+    <!-- HERO CONTENT: IMAGE + TEXT -->
 
     <div class="project-content">
 
+      <!-- LEFT: IMAGE -->
+
       <div class="project-images">
-        <!-- ⚠️ CHANGE images -->
-        <img src="../assets/sample1.jpg">
+
+        <!-- ⚠️ CHANGE IMAGE -->
+
+        <img
+          src="../assets/sample1.jpg"
+          alt="Project overview image"
+          loading="lazy">
+
       </div>
 
-      <div class="project-text">
+      <!-- RIGHT: PROJECT INFORMATION -->
 
-        <h3>⚠️ Section Heading</h3>
-        <p>Write your content here.</p>
+      <div class="project-text compact">
 
-        <h3>⚠️ Section Heading</h3>
-        <p>Write your content here.</p>
+        <h3>Project Concept</h3>
+
+        <p>
+          ⚠️ Describe the main idea of the project.
+        </p>
+
+        <h3>Design / Research Approach</h3>
+
+        <p>
+          ⚠️ Explain the methods, technologies,
+          or creative approach used.
+        </p>
+
+        <h3>Project Outcome</h3>
+
+        <p>
+          ⚠️ Explain what you created, what you discovered,
+          or what the prototype demonstrates.
+        </p>
 
       </div>
 
     </div>
+
   </section>
 
-  <!-- =====================================================
-       CARD TYPE 2: MULTI-IMAGE (STACKED)
-       Use for: research, process, iterations
-  ====================================================== -->
-  <section class="project-card">
+  <!-- END CARD 1 -->
 
-    <div class="project-title">
-      ⚠️ Research / Process
-    </div>
+
+  <!-- =====================================================
+       CARD 2: BASIC IMAGE + TEXT
+
+       USE FOR:
+       - Context
+       - Research
+       - Problem / Purpose
+       - Design concepts
+  ====================================================== -->
+
+  <section
+    class="project-card"
+    aria-labelledby="project-context-title">
+
+    <h2
+      class="project-title"
+      id="project-context-title">
+
+      ⚠️ Context &amp; Research
+
+    </h2>
 
     <div class="project-content">
 
+      <!-- LEFT: IMAGE -->
+
       <div class="project-images">
-        <!-- ⚠️ CHANGE images -->
-        <img src="../assets/sample1.jpg">
-        <img src="../assets/sample2.jpg">
+
+        <!-- ⚠️ CHANGE IMAGE -->
+
+        <img
+          src="../assets/sample2.jpg"
+          alt="Research and context visual"
+          loading="lazy">
+
       </div>
+
+      <!-- RIGHT: TEXT -->
 
       <div class="project-text">
 
-        <h3>Insights</h3>
+        <h3>Context</h3>
+        <p>
+          ⚠️ Describe the background of the project.
+        </p>
+
+        <h3>Problem</h3>
+        <p>
+          ⚠️ What problem or question does it address?
+        </p>
+
+        <h3>Purpose</h3>
+        <p>
+          ⚠️ What are you trying to explore or achieve?
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- END CARD 2 -->
+
+
+  <!-- =====================================================
+       CARD 3: MULTI-IMAGE + TEXT
+
+       USE FOR:
+       - Research process
+       - Prototyping
+       - Design iterations
+       - Material studies
+  ====================================================== -->
+
+  <section
+    class="project-card"
+    aria-labelledby="project-process-title">
+
+    <h2
+      class="project-title"
+      id="project-process-title">
+
+      ⚠️ Research &amp; Process
+
+    </h2>
+
+    <div class="project-content">
+
+      <!-- LEFT: STACKED IMAGES -->
+
+      <div class="project-images">
+
+        <!-- ⚠️ CHANGE IMAGES -->
+
+        <img
+          src="../assets/sample3.jpg"
+          alt="Research or process image 1"
+          loading="lazy">
+
+        <img
+          src="../assets/sample4.jpg"
+          alt="Research or process image 2"
+          loading="lazy">
+
+      </div>
+
+      <!-- RIGHT: TEXT -->
+
+      <div class="project-text">
+
+        <h3>Research</h3>
+
+        <p>
+          ⚠️ Describe your research approach.
+        </p>
+
+        <h3>Key Insights</h3>
+
         <ul>
-          <li>Insight 1</li>
-          <li>Insight 2</li>
+          <li>⚠️ Insight 1</li>
+          <li>⚠️ Insight 2</li>
+          <li>⚠️ Insight 3</li>
         </ul>
 
+        <h3>Iterations</h3>
+
+        <p>
+          ⚠️ Explain how the project developed
+          through testing and experimentation.
+        </p>
+
       </div>
 
     </div>
+
   </section>
 
-  <!-- =====================================================
-       CARD TYPE 3: VISUAL PAIR + 2-COLUMN TEXT
-       Use for: comparison, AI process, before/after
-  ====================================================== -->
-  <section class="project-card">
+  <!-- END CARD 3 -->
 
-    <div class="project-title">
-      ⚠️ Process / Comparison
-    </div>
+
+  <!-- =====================================================
+       CARD 4: VISUAL PAIR + TWO-COLUMN TEXT
+
+       USE FOR:
+       - Visual comparison
+       - AI-assisted process
+       - Before / After
+       - Design explorations
+  ====================================================== -->
+
+  <section
+    class="project-card"
+    aria-labelledby="project-comparison-title">
+
+    <h2
+      class="project-title"
+      id="project-comparison-title">
+
+      ⚠️ Design Process / Comparison
+
+    </h2>
 
     <div class="project-content-vertical">
 
       <!-- VISUAL PAIR -->
+
       <div class="project-visual-pair">
 
-        <!-- IMAGE -->
+        <!-- IMAGE 1 -->
+
         <div class="project-media">
-          <img src="../assets/sample1.jpg">
+
+          <img
+            src="../assets/sample5.jpg"
+            alt="Design exploration 1"
+            loading="lazy">
+
         </div>
 
-        <!-- IMAGE + VIDEO LINK -->
-        <!-- ⚠️ CHANGE LINK -->
-        <a href="https://youtube.com" target="_blank" class="project-media">
+        <!-- IMAGE 2 WITH VIDEO LINK -->
 
-          <img src="../assets/sample2.jpg">
+        <!-- ⚠️ CHANGE YouTube URL -->
+
+        <a
+          href="https://www.youtube.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-media">
+
+          <img
+            src="../assets/sample6.jpg"
+            alt="Design exploration 2 with video"
+            loading="lazy">
 
           <div class="project-video-cta">
+
             <span>▶ Watch Video</span>
+
           </div>
 
         </a>
 
       </div>
 
-      <!-- TEXT -->
+      <!-- TWO-COLUMN TEXT -->
+
       <div class="project-text-2col">
 
         <div class="project-text-block">
-          <h3>⚠️ Goal</h3>
-          <p>Description here.</p>
+
+          <h3>Goal</h3>
+
+          <p>
+            ⚠️ Explain the purpose of this design process.
+          </p>
+
         </div>
 
         <div class="project-text-block">
-          <h3>⚠️ Insight</h3>
+
+          <h3>Design Decisions</h3>
+
           <ul>
-            <li>Point 1</li>
-            <li>Point 2</li>
+            <li>⚠️ Decision 1</li>
+            <li>⚠️ Decision 2</li>
           </ul>
+
         </div>
 
       </div>
 
     </div>
+
   </section>
 
-  <!-- =====================================================
-       CARD TYPE 4: HERO VIDEO + TEXT
-       Use for: final outcome / showcase
-  ====================================================== -->
-  <section class="project-card">
+  <!-- END CARD 4 -->
 
-    <div class="project-title">
+
+  <!-- =====================================================
+       CARD 5: HERO VIDEO + TEXT
+
+       USE FOR:
+       - Final outcome
+       - Interactive prototype
+       - Project demonstration
+       - Installation documentation
+  ====================================================== -->
+
+  <section
+    class="project-card"
+    aria-labelledby="project-outcome-title">
+
+    <h2
+      class="project-title"
+      id="project-outcome-title">
+
       ⚠️ Final Outcome
-    </div>
+
+    </h2>
 
     <div class="project-content-video">
 
-      <!-- VIDEO -->
-      <!-- ⚠️ CHANGE YOUTUBE EMBED LINK -->
+      <!-- LEFT: VIDEO -->
+
       <div class="video-wrapper">
-        <iframe 
+
+        <!-- ⚠️ CHANGE VIDEO_ID -->
+
+        <iframe
           src="https://www.youtube.com/embed/VIDEO_ID"
-          title="Project Video"
-          allow="autoplay; encrypted-media"
+          title="Project final demonstration"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen>
         </iframe>
+
       </div>
 
-      <!-- TEXT -->
+      <!-- RIGHT: TEXT -->
+
       <div class="project-text compact">
 
-        <h2>⚠️ Key Statement</h2>
+        <h2>
+          ⚠️ One-sentence outcome statement
+        </h2>
 
         <h3>Result</h3>
-        <p>Description</p>
+
+        <p>
+          ⚠️ What did you create?
+        </p>
+
+        <h3>Experience</h3>
+
+        <p>
+          ⚠️ How do participants interact with it?
+        </p>
 
         <h3>Impact</h3>
-        <p>Description</p>
+
+        <p>
+          ⚠️ What does the work demonstrate?
+        </p>
 
       </div>
 
     </div>
+
   </section>
 
+  <!-- END CARD 5 -->
+
+
   <!-- =====================================================
-       CARD TYPE 5: TEXT-FOCUSED (OPTIONAL)
-       Use for: reflection, takeaway, positioning
+       CARD 6: REFLECTION / TAKEAWAYS
+
+       USE FOR:
+       - What worked
+       - Challenges
+       - Lessons learned
+       - Future directions
   ====================================================== -->
-  <section class="project-card">
 
-    <div class="project-title">
-      ⚠️ Reflection / Takeaways
-    </div>
+  <section
+    class="project-card"
+    aria-labelledby="project-reflection-title">
 
-    <div class="project-text" style="max-width: 700px; margin: 0 auto;">
+    <h2
+      class="project-title"
+      id="project-reflection-title">
+
+      ⚠️ Reflection &amp; Takeaways
+
+    </h2>
+
+    <div
+      class="project-text"
+      style="max-width: 800px; margin: 0;">
+
+      <h3>What Worked</h3>
 
       <p>
-        Write a concise reflection about your project, its impact,
-        and what you learned.
+        ⚠️ Describe the successful aspects of the project.
+      </p>
+
+      <h3>Challenges</h3>
+
+      <p>
+        ⚠️ Describe the limitations, challenges,
+        or unresolved technical and creative problems.
+      </p>
+
+      <h3>What I Learned</h3>
+
+      <p>
+        ⚠️ Reflect on what the process revealed
+        about your research or design practice.
+      </p>
+
+      <h3>Future Directions</h3>
+
+      <p>
+        ⚠️ Explain how this project could develop further.
       </p>
 
     </div>
 
   </section>
 
+  <!-- END CARD 6 -->
+
+
+  <!-- =====================================================
+       CARD 7: RESEARCH PUBLICATION (OPTIONAL)
+
+       USE FOR:
+       - Published research
+       - Conference papers
+       - Writing samples
+       - Research reports
+
+       Delete this entire section if not applicable.
+
+       ⚠️ Upload the PDF to assets/
+       ⚠️ Update the PDF filename
+  ====================================================== -->
+
+  <section
+    class="project-card"
+    aria-labelledby="project-publication-title">
+
+    <h2
+      class="project-title"
+      id="project-publication-title">
+
+      Research Publication
+
+    </h2>
+
+    <div
+      class="project-text"
+      style="max-width: 850px; margin: 0;">
+
+      <h3>
+        ⚠️ Full Title of Research Paper
+      </h3>
+
+      <p>
+        ⚠️ Author(s) · Year · Publication / Conference
+      </p>
+
+      <h3>Research Focus</h3>
+
+      <p>
+        ⚠️ Briefly introduce the research question
+        and its connection to this project.
+      </p>
+
+      <h3>Methodology</h3>
+
+      <p>
+        ⚠️ Explain the research approach,
+        data collection, and analytical method.
+      </p>
+
+      <h3>Research Contributions</h3>
+
+      <ul>
+        <li>⚠️ Contribution 1</li>
+        <li>⚠️ Contribution 2</li>
+        <li>⚠️ Contribution 3</li>
+      </ul>
+
+      <h3>Full Paper</h3>
+
+      <!-- ⚠️ CHANGE PDF FILENAME -->
+
+      <p>
+        <a
+          href="../assets/paper-project-name.pdf"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          Read Research Paper (PDF) ↗
+
+        </a>
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- END CARD 7 -->
+
+
 </main>
+
 
 <!-- =====================================================
      SCRIPTS
+
+     GLOBAL:
+     main.js handles existing site functionality.
+
+     PROJECT AUTO-FIT:
+     project-autofit.js scales card contents
+     to fit the 17:11 landscape card system.
+
+     Do not add a second auto-fit implementation here.
 ===================================================== -->
+
 <script src="../js/main.js"></script>
 
-<script>
-function goBack() {
-  window.location.href = "../studio.html";
-}
-</script>
+<script src="../js/project-autofit.js"></script>
 
 </body>
 </html>
