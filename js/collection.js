@@ -23,6 +23,13 @@ const ITEM_DATA = {
 ===================================================== */
 
       // ===== PROJECTS =====
+  "project-penguin-reunion": {
+    title: "A Penguin's Return",              
+    path: "practice/penguin-reunion.html",         
+    type: "project"  
+  },
+  
+      // ===== PROJECTS =====
   "project-dyed-in-rain": {
     title: "Dyed in Rain: Collaborations in Ink and Code",              
     path: "practice/project-dyed-in-rain.html",         
