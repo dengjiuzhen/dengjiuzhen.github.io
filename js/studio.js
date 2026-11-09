@@ -8,7 +8,7 @@ const projects = [
     path: "practice/project-balloon-garden.html"
   },
     {
-    id: "penguin-reunion",
+    id: "project-penguin-reunion",
     title: "A Penguin’s Return",
     description: "A gameful VR narrative prototype exploring embodied interaction, emotional engagement, and character connection through a penguin’s journey of survival and reunion.",
     path: "practice/project-penguin-reunion.html"
