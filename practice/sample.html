@@ -1,703 +1,639 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ⚠️ CHANGE: Project title and description -->
-  <title>Project Name | Jiuzhen Deng</title>
+  <!-- CHANGE: Page metadata -->
+  <title>Sample Project | Jiuzhen Deng</title>
+  <meta name="description" content="A reusable 17:11 project-page template for Jiuzhen Deng's portfolio.">
 
-  <meta
-    name="description"
-    content="A brief description of this project by Jiuzhen Deng."
-  >
-
-  <!-- =====================================================
-       GLOBAL STYLESHEETS — DO NOT EDIT
-  ===================================================== -->
-
+  <!-- KEEP: Shared website styles -->
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/project.css">
 
-  <!-- =====================================================
-       OPTIONAL: PROJECT-SPECIFIC CSS
-
-       Only add styles here if this project needs
-       a unique layout or interaction.
-
-       Shared Card 1 styles are already in project.css.
-
-       Do not override:
-       - aspect-ratio: 17 / 11
-       - .project-card dimensions
-       - .project-intro layout
-  ===================================================== -->
-
   <style>
-    /* ⚠️ OPTIONAL: Project-specific styles */
-  </style>
+    /* =========================================================
+       PROJECT SAMPLE — 17:11 LANDSCAPE CARD TEMPLATE
 
+       Each card is designed at 1100 × 711.76 CSS pixels.
+       project-slide-scale.js scales the ENTIRE card when the
+       viewport narrows; text and columns do not reflow.
+
+       CHANGE: Replace sample-specific classes/content as needed.
+       IMPORTANT: Design every card to fit at its BASE size.
+       No internal scrollbars, content autofit, or clipping fixes.
+       ========================================================= */
+
+    body.sample-page { min-width: 0; overflow-x: hidden; }
+
+    .sample-page main.project-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: 94px 20px 80px;
+      gap: 60px;
+      scroll-snap-type: none;
+    }
+    .sample-page .project-topbar { box-sizing: border-box; }
+    .sample-page .project-center { margin-right: 0; }
+    .sample-page .nav-inner { max-width: 900px; }
+
+    /* Project cards are wrapped by project-slide-scale.js. */
+    .sample-page .project-slide-stage .project-card,
+    .sample-page .project-slide-stage .project-card * {
+      box-sizing: border-box;
+    }
+    .sample-page .project-slide-stage .project-card {
+      justify-content: flex-start;
+      align-items: stretch;
+      text-align: left;
+    }
+    .sample-page .project-slide-stage .project-card > * { min-width: 0; }
+    .sample-page .project-slide-stage .project-card h1.project-title,
+    .sample-page .project-slide-stage .project-card h2.project-title {
+      display: block;
+      width: 100%;
+      margin: 0;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    /* ===== SHARED CARD 1 HEADER (GARDEN / PENGUIN STYLE) ===== */
+    .sample-page .project-eyebrow {
+      margin: 0;
+      color: var(--blue-accent, #9aa8ff);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .17em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+    .sample-page .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 2px 0 0;
+    }
+    .sample-page .project-meta span {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid rgba(146,165,238,.32);
+      border-radius: 30px;
+      color: var(--text-dim, #aaa5bb);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .sample-page .project-card p.project-lead {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      color: var(--text-dim, #aaa5bb);
+      font-size: 20px;
+      line-height: 1.52;
+    }
+
+    /* ===== SHARED TEXT AND MEDIA COMPONENTS ===== */
+    .sample-page .sample-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      gap: 10px;
+    }
+    .sample-page .sample-copy h3 {
+      margin: 0;
+      color: var(--blue-accent, #9aa8ff);
+      font-size: 20px;
+      line-height: 1.3;
+    }
+    .sample-page .sample-copy h3:not(:first-child) { margin-top: 10px; }
+    .sample-page .sample-copy p,
+    .sample-page .sample-copy li {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text-dim, #aaa5bb);
+    }
+    .sample-page .sample-copy ul { margin: 0; padding-left: 21px; }
+    .sample-page .sample-copy li + li { margin-top: 5px; }
+
+    /* A built-in visual placeholder means this SAMPLE looks complete
+       even before you add your project's real image files.
+       Replace the placeholder with <img> as shown in comments. */
+    .sample-page .sample-media {
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(146,165,238,.24);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(111,77,168,.16), rgba(67,82,143,.08) 60%, rgba(255,255,255,.025));
+      text-align: center;
+      color: #b7b4d6;
+    }
+    .sample-page .sample-media strong {
+      color: #ece5ff;
+      font-size: 19px;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+    .sample-page .sample-media span {
+      color: #aaa5bb;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .sample-page .sample-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .sample-page .sample-caption {
+      margin: 0;
+      color: var(--text-dim, #aaa5bb);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .sample-page .sample-section-intro {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--text-dim, #aaa5bb);
+    }
+
+    /* ===== CARD 1: INTRODUCTION / HERO ===== */
+    .sample-page .sample-hero {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 34px;
+    }
+    .sample-page .sample-hero .sample-media { height: 340px; }
+
+    /* ===== CARD 2: CONTEXT / RESEARCH ===== */
+    .sample-page .sample-basic-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 36px;
+    }
+    .sample-page .sample-basic-layout .sample-media { height: 455px; }
+
+    /* ===== CARD 3: PROCESS / TWO STACKED IMAGES ===== */
+    .sample-page .sample-process-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 36px;
+    }
+    .sample-page .sample-image-stack {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      height: 450px;
+    }
+
+    /* ===== CARD 4: SIDE-BY-SIDE VISUAL COMPARISON ===== */
+    .sample-page .sample-comparison-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 24px;
+    }
+    .sample-page .sample-visual-pair {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .sample-page .sample-visual-pair .sample-media { height: 350px; }
+    .sample-page .sample-text-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+    .sample-page .sample-text-pair .sample-copy { justify-content: flex-start; }
+
+    /* ===== CARD 5: VIDEO + OUTCOME ===== */
+    .sample-page .sample-video-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 34px;
+    }
+    .sample-page .sample-video-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+    .sample-page .sample-video-frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #05060a;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      box-shadow: 0 0 22px rgba(90,9,229,.22);
+    }
+    .sample-page .sample-video-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .sample-page .sample-video-frame .sample-media { width: 100%; height: 100%; border: 0; border-radius: 0; }
+
+    /* ===== CARD 6: REFLECTION / TAKEAWAYS ===== */
+    .sample-page .sample-reflection-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 26px;
+    }
+    .sample-page .sample-reflection-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      padding: 26px;
+      border: 1px solid rgba(146,165,238,.22);
+      border-radius: 15px;
+      background: rgba(146,165,238,.035);
+    }
+    .sample-page .sample-reflection-panel h3 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--blue-accent, #9aa8ff);
+    }
+    .sample-page .sample-reflection-panel h3:not(:first-child) { margin-top: 11px; }
+    .sample-page .sample-reflection-panel p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-dim, #aaa5bb);
+    }
+
+    /* ===== CARD 7: PUBLICATION / WRITING SAMPLE (OPTIONAL) ===== */
+    .sample-page .sample-publication-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 22px 32px;
+      align-items: start;
+    }
+    .sample-page .sample-paper-overview {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      min-width: 0;
+    }
+    .sample-page .sample-paper-eyebrow {
+      margin: 0;
+      color: var(--blue-accent, #9aa8ff);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .sample-page .sample-paper-overview h3 {
+      margin: 0;
+      color: #eee8ff;
+      font-size: 25px;
+      line-height: 1.3;
+    }
+    .sample-page .sample-paper-overview p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-dim, #aaa5bb);
+    }
+    .sample-page .sample-paper-overview .sample-paper-meta {
+      color: #9994aa;
+      font-size: 13px;
+    }
+    .sample-page .sample-contributions {
+      border: 1px solid rgba(146,165,238,.25);
+      border-radius: 15px;
+      padding: 24px;
+      background: rgba(146,165,238,.035);
+    }
+    .sample-page .sample-contributions h3 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      color: #e5ddff;
+    }
+    .sample-page .sample-contributions ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .sample-page .sample-contributions li {
+      color: var(--text-dim, #aaa5bb);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .sample-page .sample-contributions li + li { margin-top: 13px; }
+    .sample-page .sample-paper-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-self: end;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.13);
+    }
+    .sample-page .sample-paper-link {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 11px 19px;
+      color: #e9e0ff;
+      background: rgba(114,58,235,.22);
+      border: 1px solid #9869ff;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 15px;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+    .sample-page .sample-paper-link:hover { background: rgba(135,75,255,.3); }
+    .sample-page .sample-paper-note { margin: 0; color: #9994aa; font-size: 13px; }
+
+    /* Do not stack columns at narrow viewport widths. The entire
+       1100px artboard is scaled uniformly by project-slide-scale.js. */
+    @media (max-width: 650px) {
+      .sample-page main.project-container { padding: 82px 12px 48px; gap: 28px; }
+      .sample-page .nav-inner { overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+      .sample-page .nav-inner::-webkit-scrollbar { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sample-page .sample-paper-link { transition: none; }
+    }
+  </style>
 </head>
 
+<body class="sample-page">
+  <!-- =========================================================
+       GLOBAL NAVIGATION / TOP BAR / TIMER — KEEP STRUCTURE
+       ========================================================= -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../lobby.html">Lobby</a>
+      <a href="../studio.html">Studio</a>
+      <a href="../library.html">Library</a>
+      <a href="../collection.html">Collection</a>
+      <a href="../cafe.html">Café</a>
+      <a href="../about.html">About</a>
+    </div>
+  </nav>
 
-<body>
-
-<!-- =====================================================
-     GLOBAL NAVIGATION — DO NOT EDIT
-===================================================== -->
-
-<nav class="nav" aria-label="Main navigation">
-
-  <div class="nav-inner">
-    <a href="../lobby.html">Lobby</a>
-    <a href="../studio.html">Studio</a>
-    <a href="../library.html">Library</a>
-    <a href="../collection.html">Collection</a>
-    <a href="../cafe.html">Café</a>
-    <a href="../about.html">About</a>
+  <div class="project-topbar">
+    <div class="project-back"><a class="button" href="../studio.html">← Studio</a></div>
+    <div class="project-center">
+      <!-- CHANGE: Register this SAME ID in js/collection.js before publishing. -->
+      <button class="button button-badge" type="button"
+              onclick="collectBadge('project-sample')">Collect Badge ✦</button>
+    </div>
+    <div class="project-right"></div>
   </div>
+  <div class="coin-ui">⏱ <span id="time">0.00</span> ⬤</div>
 
-</nav>
-
-
-<!-- =====================================================
-     PROJECT TOP BAR
-===================================================== -->
-
-<div class="project-topbar">
-
-  <!-- BACK TO STUDIO -->
-  <div class="project-back">
-
-    <a class="button" href="../studio.html">
-      ← Studio
-    </a>
-
-  </div>
-
-  <!-- COLLECT BADGE -->
-  <div class="project-center">
-
-    <!-- ⚠️ CHANGE:
-         Replace project-name with the exact badge ID
-         registered in js/collection.js.
-    -->
-
-    <button
-      class="button button-badge"
-      type="button"
-      onclick="collectBadge('project-name')">
-
-      Collect Badge ✦
-
-    </button>
-
-  </div>
-
-  <div class="project-right"></div>
-
-</div>
-
-
-<!-- =====================================================
-     COIN / TIME UI — GLOBAL
-===================================================== -->
-
-<div class="coin-ui">
-  ⏱ <span id="time">0.00</span> ⬤
-</div>
-
-
-<!-- =====================================================
-     MAIN PROJECT CONTAINER
-
-     Every .project-card uses the shared 17:11 layout.
-
-     Auto-fit is enabled by project-autofit.js.
-===================================================== -->
-
-<main class="project-container">
-
-
-  <!-- =====================================================
-       CARD 1: PROJECT INTRODUCTION
-
-       Shared layout based on A Penguin's Return.
-
-       USE FOR:
-       - Project overview
-       - Outcome / concept
-       - Key research or design information
-
-       ⚠️ CHANGE all project-specific text and media.
-  ====================================================== -->
-
-  <section
-    class="project-card project-intro"
-    aria-labelledby="project-main-title">
-
-    <!-- EYEBROW: CATEGORY / FORMAT / YEAR -->
-
-    <p class="project-eyebrow">
-      ⚠️ Project Category / Project Type / 2026
-    </p>
-
-    <!-- PROJECT TITLE -->
-
-    <h1
-      class="project-title"
-      id="project-main-title">
-
-      ⚠️ Project Name
-
-    </h1>
-
-    <!-- METADATA TAGS -->
-
-    <div class="project-meta">
-
-      <span>⚠️ Research / Design Area</span>
-      <span>⚠️ Tools / Methodology</span>
-      <span>⚠️ Creative / Technical Focus</span>
-
-    </div>
-
-    <!-- LEAD DESCRIPTION -->
-
-    <p class="project-lead">
-      ⚠️ Write one or two sentences introducing the project,
-      its purpose, and the experience or research question
-      it explores.
-    </p>
-
-    <!-- HERO CONTENT: IMAGE + TEXT -->
-
-    <div class="project-content">
-
-      <!-- LEFT: IMAGE -->
-
-      <div class="project-images">
-
-        <!-- ⚠️ CHANGE IMAGE -->
-
-        <img
-          src="../assets/sample1.jpg"
-          alt="Project overview image"
-          loading="lazy">
-
+  <main class="project-container">
+    <!-- =======================================================
+         CARD 1 — PROJECT INTRO / PRIMARY MEDIA
+         CHANGE: eyebrow, title, tags, lead, image, project details.
+         ======================================================= -->
+    <section class="project-card project-intro sample-intro" aria-labelledby="sample-title">
+      <p class="project-eyebrow">Project Category / Format / Year</p>
+      <h1 class="project-title" id="sample-title">Sample Project Title</h1>
+      <div class="project-meta">
+        <span>Research / Design Area</span>
+        <span>Method / Technology</span>
+        <span>Creative / Technical Focus</span>
       </div>
-
-      <!-- RIGHT: PROJECT INFORMATION -->
-
-      <div class="project-text compact">
-
-        <h3>Project Concept</h3>
-
-        <p>
-          ⚠️ Describe the main idea of the project.
-        </p>
-
-        <h3>Design / Research Approach</h3>
-
-        <p>
-          ⚠️ Explain the methods, technologies,
-          or creative approach used.
-        </p>
-
-        <h3>Project Outcome</h3>
-
-        <p>
-          ⚠️ Explain what you created, what you discovered,
-          or what the prototype demonstrates.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- END CARD 1 -->
-
-
-  <!-- =====================================================
-       CARD 2: BASIC IMAGE + TEXT
-
-       USE FOR:
-       - Context
-       - Research
-       - Problem / Purpose
-       - Design concepts
-  ====================================================== -->
-
-  <section
-    class="project-card"
-    aria-labelledby="project-context-title">
-
-    <h2
-      class="project-title"
-      id="project-context-title">
-
-      ⚠️ Context &amp; Research
-
-    </h2>
-
-    <div class="project-content">
-
-      <!-- LEFT: IMAGE -->
-
-      <div class="project-images">
-
-        <!-- ⚠️ CHANGE IMAGE -->
-
-        <img
-          src="../assets/sample2.jpg"
-          alt="Research and context visual"
-          loading="lazy">
-
-      </div>
-
-      <!-- RIGHT: TEXT -->
-
-      <div class="project-text">
-
-        <h3>Context</h3>
-        <p>
-          ⚠️ Describe the background of the project.
-        </p>
-
-        <h3>Problem</h3>
-        <p>
-          ⚠️ What problem or question does it address?
-        </p>
-
-        <h3>Purpose</h3>
-        <p>
-          ⚠️ What are you trying to explore or achieve?
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- END CARD 2 -->
-
-
-  <!-- =====================================================
-       CARD 3: MULTI-IMAGE + TEXT
-
-       USE FOR:
-       - Research process
-       - Prototyping
-       - Design iterations
-       - Material studies
-  ====================================================== -->
-
-  <section
-    class="project-card"
-    aria-labelledby="project-process-title">
-
-    <h2
-      class="project-title"
-      id="project-process-title">
-
-      ⚠️ Research &amp; Process
-
-    </h2>
-
-    <div class="project-content">
-
-      <!-- LEFT: STACKED IMAGES -->
-
-      <div class="project-images">
-
-        <!-- ⚠️ CHANGE IMAGES -->
-
-        <img
-          src="../assets/sample3.jpg"
-          alt="Research or process image 1"
-          loading="lazy">
-
-        <img
-          src="../assets/sample4.jpg"
-          alt="Research or process image 2"
-          loading="lazy">
-
-      </div>
-
-      <!-- RIGHT: TEXT -->
-
-      <div class="project-text">
-
-        <h3>Research</h3>
-
-        <p>
-          ⚠️ Describe your research approach.
-        </p>
-
-        <h3>Key Insights</h3>
-
-        <ul>
-          <li>⚠️ Insight 1</li>
-          <li>⚠️ Insight 2</li>
-          <li>⚠️ Insight 3</li>
-        </ul>
-
-        <h3>Iterations</h3>
-
-        <p>
-          ⚠️ Explain how the project developed
-          through testing and experimentation.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- END CARD 3 -->
-
-
-  <!-- =====================================================
-       CARD 4: VISUAL PAIR + TWO-COLUMN TEXT
-
-       USE FOR:
-       - Visual comparison
-       - AI-assisted process
-       - Before / After
-       - Design explorations
-  ====================================================== -->
-
-  <section
-    class="project-card"
-    aria-labelledby="project-comparison-title">
-
-    <h2
-      class="project-title"
-      id="project-comparison-title">
-
-      ⚠️ Design Process / Comparison
-
-    </h2>
-
-    <div class="project-content-vertical">
-
-      <!-- VISUAL PAIR -->
-
-      <div class="project-visual-pair">
-
-        <!-- IMAGE 1 -->
-
-        <div class="project-media">
-
-          <img
-            src="../assets/sample5.jpg"
-            alt="Design exploration 1"
-            loading="lazy">
-
+      <p class="project-lead">One or two sentences introducing what you made, why you made it, and the experience or question it explores.</p>
+
+      <div class="sample-hero">
+        <div class="sample-media" role="img" aria-label="Placeholder for the project hero image">
+          <strong>HERO IMAGE / PROTOTYPE</strong>
+          <span>Replace this placeholder with your own image</span>
+          <!-- EXAMPLE:
+          <img src="../assets/your-project-hero.png" alt="Describe the image">
+          -->
         </div>
+        <div class="sample-copy">
+          <h3>Project Concept</h3>
+          <p>Describe the central idea and intended experience.</p>
+          <h3>Design / Research Approach</h3>
+          <p>Explain the method, materials, tools, or systems used to develop it.</p>
+          <h3>Current Outcome</h3>
+          <p>State what you built or demonstrated. Distinguish a working prototype from a proposed feature.</p>
+        </div>
+      </div>
+    </section>
 
-        <!-- IMAGE 2 WITH VIDEO LINK -->
+    <!-- =======================================================
+         CARD 2 — CONTEXT / RESEARCH
+         ======================================================= -->
+    <section class="project-card sample-basic" aria-labelledby="sample-context-title">
+      <h2 class="project-title" id="sample-context-title">Context &amp; Research</h2>
+      <div class="sample-basic-layout">
+        <div class="sample-media" role="img" aria-label="Placeholder for a research visualization">
+          <strong>RESEARCH IMAGE / DIAGRAM</strong>
+          <span>Replace with fieldwork, diagram, study, or reference</span>
+          <!-- EXAMPLE: <img src="../assets/your-research.png" alt="Describe the image"> -->
+        </div>
+        <div class="sample-copy">
+          <h3>Context</h3>
+          <p>Introduce the situation or question that motivated the work.</p>
+          <h3>Research Question</h3>
+          <p>What relationship, experience, or design challenge are you exploring?</p>
+          <h3>Method</h3>
+          <p>Briefly describe observation, prototyping, literature research, interviews, or other approaches actually used.</p>
+          <h3>Key Insight</h3>
+          <p>Explain one finding or design consideration supported by the process.</p>
+        </div>
+      </div>
+    </section>
 
-        <!-- ⚠️ CHANGE YouTube URL -->
-
-        <a
-          href="https://www.youtube.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="project-media">
-
-          <img
-            src="../assets/sample6.jpg"
-            alt="Design exploration 2 with video"
-            loading="lazy">
-
-          <div class="project-video-cta">
-
-            <span>▶ Watch Video</span>
-
+    <!-- =======================================================
+         CARD 3 — PROCESS / ITERATIONS (STACKED MEDIA)
+         ======================================================= -->
+    <section class="project-card sample-process" aria-labelledby="sample-process-title">
+      <h2 class="project-title" id="sample-process-title">Design Process &amp; Iterations</h2>
+      <div class="sample-process-layout">
+        <div class="sample-image-stack">
+          <div class="sample-media" role="img" aria-label="Placeholder for first process image">
+            <strong>PROCESS IMAGE 01</strong>
+            <span>First test, sketch, or prototype</span>
           </div>
-
-        </a>
-
-      </div>
-
-      <!-- TWO-COLUMN TEXT -->
-
-      <div class="project-text-2col">
-
-        <div class="project-text-block">
-
-          <h3>Goal</h3>
-
-          <p>
-            ⚠️ Explain the purpose of this design process.
-          </p>
-
+          <div class="sample-media" role="img" aria-label="Placeholder for second process image">
+            <strong>PROCESS IMAGE 02</strong>
+            <span>Revision, experiment, or subsequent prototype</span>
+          </div>
         </div>
-
-        <div class="project-text-block">
-
-          <h3>Design Decisions</h3>
-
+        <div class="sample-copy">
+          <h3>Initial Exploration</h3>
+          <p>Describe the starting design direction and what you wanted to test.</p>
+          <h3>What Changed</h3>
+          <p>Show how feedback, constraints, or experimentation shaped later iterations.</p>
+          <h3>Technical / Creative Decisions</h3>
           <ul>
-            <li>⚠️ Decision 1</li>
-            <li>⚠️ Decision 2</li>
+            <li>Decision 1 — what changed and why.</li>
+            <li>Decision 2 — how it affected the experience.</li>
+            <li>Decision 3 — what remains unresolved.</li>
           </ul>
-
         </div>
-
       </div>
+    </section>
 
-    </div>
-
-  </section>
-
-  <!-- END CARD 4 -->
-
-
-  <!-- =====================================================
-       CARD 5: HERO VIDEO + TEXT
-
-       USE FOR:
-       - Final outcome
-       - Interactive prototype
-       - Project demonstration
-       - Installation documentation
-  ====================================================== -->
-
-  <section
-    class="project-card"
-    aria-labelledby="project-outcome-title">
-
-    <h2
-      class="project-title"
-      id="project-outcome-title">
-
-      ⚠️ Final Outcome
-
-    </h2>
-
-    <div class="project-content-video">
-
-      <!-- LEFT: VIDEO -->
-
-      <div class="video-wrapper">
-
-        <!-- ⚠️ CHANGE VIDEO_ID -->
-
-        <iframe
-          src="https://www.youtube.com/embed/VIDEO_ID"
-          title="Project final demonstration"
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-
+    <!-- =======================================================
+         CARD 4 — VISUAL PAIR / COMPARISON / BEFORE & AFTER
+         ======================================================= -->
+    <section class="project-card sample-comparison" aria-labelledby="sample-comparison-title">
+      <h2 class="project-title" id="sample-comparison-title">Visual Development &amp; Comparison</h2>
+      <div class="sample-comparison-layout">
+        <div class="sample-visual-pair">
+          <div class="sample-media" role="img" aria-label="Placeholder for first comparison image">
+            <strong>VISUAL STUDY A</strong>
+            <span>Concept / Before</span>
+          </div>
+          <div class="sample-media" role="img" aria-label="Placeholder for second comparison image">
+            <strong>VISUAL STUDY B</strong>
+            <span>Iteration / After</span>
+          </div>
+        </div>
+        <div class="sample-text-pair">
+          <div class="sample-copy">
+            <h3>Design Goal</h3>
+            <p>What did you want these visual or interaction studies to investigate?</p>
+          </div>
+          <div class="sample-copy">
+            <h3>Comparison / Insight</h3>
+            <p>What changed across versions, and what did that change reveal?</p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- RIGHT: TEXT -->
-
-      <div class="project-text compact">
-
-        <h2>
-          ⚠️ One-sentence outcome statement
-        </h2>
-
-        <h3>Result</h3>
-
-        <p>
-          ⚠️ What did you create?
-        </p>
-
-        <h3>Experience</h3>
-
-        <p>
-          ⚠️ How do participants interact with it?
-        </p>
-
-        <h3>Impact</h3>
-
-        <p>
-          ⚠️ What does the work demonstrate?
-        </p>
-
+    <!-- =======================================================
+         CARD 5 — FINAL OUTCOME / VIDEO + TEXT
+         CHANGE: Replace placeholder with an actual <iframe>.
+         ======================================================= -->
+    <section class="project-card sample-outcome" aria-labelledby="sample-outcome-title">
+      <h2 class="project-title" id="sample-outcome-title">Prototype &amp; Final Outcome</h2>
+      <p class="sample-section-intro">Present what exists today, then identify the part of the experience the demonstration shows.</p>
+      <div class="sample-video-layout">
+        <div class="sample-video-col">
+          <div class="sample-video-frame">
+            <div class="sample-media" role="img" aria-label="Placeholder for a demonstration video">
+              <strong>VIDEO DEMONSTRATION</strong>
+              <span>Replace this with a YouTube iframe</span>
+            </div>
+            <!-- REPLACE the .sample-media above with:
+            <iframe
+              src="https://www.youtube.com/embed/VIDEO_ID"
+              title="Your project demonstration"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            -->
+          </div>
+          <p class="sample-caption">Demonstration video · Add an optional external video link here.</p>
+        </div>
+        <div class="sample-copy">
+          <h3>What Was Built</h3>
+          <p>Describe the working prototype, installation, interaction, or finished media artifact.</p>
+          <h3>Participant Experience</h3>
+          <p>Explain what a visitor or player actually sees, chooses, or does.</p>
+          <h3>Outcome &amp; Limitations</h3>
+          <p>Explain what the work demonstrates and what remains proposed or untested.</p>
+        </div>
       </div>
+    </section>
 
-    </div>
+    <!-- =======================================================
+         CARD 6 — REFLECTION / TAKEAWAYS (OPTIONAL)
+         ======================================================= -->
+    <section class="project-card sample-reflection" aria-labelledby="sample-reflection-title">
+      <h2 class="project-title" id="sample-reflection-title">Reflection &amp; Next Steps</h2>
+      <p class="sample-section-intro">A concise account of the design process, its limits, and the questions it opens up.</p>
+      <div class="sample-reflection-layout">
+        <div class="sample-reflection-panel">
+          <h3>What Worked</h3>
+          <p>Describe a successful design decision or a technically functioning component.</p>
+          <h3>What Changed</h3>
+          <p>Explain one important finding from testing, observation, or iteration.</p>
+        </div>
+        <div class="sample-reflection-panel">
+          <h3>Limitations</h3>
+          <p>State a meaningful constraint, unresolved challenge, or untested hypothesis.</p>
+          <h3>Future Directions</h3>
+          <p>Describe the next research or prototyping question, without presenting it as an achieved result.</p>
+        </div>
+      </div>
+    </section>
 
-  </section>
+    <!-- =======================================================
+         CARD 7 — RESEARCH PUBLICATION / WRITING SAMPLE
+         OPTIONAL: Delete if the project has no corresponding paper.
+         ======================================================= -->
+    <section class="project-card sample-publication" aria-labelledby="sample-publication-title">
+      <h2 class="project-title" id="sample-publication-title">Research Publication</h2>
+      <div class="sample-publication-layout">
+        <div class="sample-paper-overview">
+          <p class="sample-paper-eyebrow">Research / Academic Writing / Year</p>
+          <h3>Full Title of the Research Paper or Writing Sample</h3>
+          <p class="sample-paper-meta">Author(s) · Year · Journal / Conference / Research Paper</p>
+          <p>Briefly explain how this publication relates to the project, including the question or problem it examines.</p>
+          <p>Describe the actual methodology and evidence used in the paper.</p>
+        </div>
+        <div class="sample-contributions">
+          <h3>Research Contributions</h3>
+          <ul>
+            <li><strong>Contribution 1</strong> — A finding, framework, or design consideration.</li>
+            <li><strong>Contribution 2</strong> — A methodological or conceptual insight.</li>
+            <li><strong>Contribution 3</strong> — A question or implication for further inquiry.</li>
+          </ul>
+        </div>
+        <div class="sample-paper-footer">
+          <!-- CHANGE the PDF path before publishing this card. -->
+          <a class="sample-paper-link" href="../assets/paper-project-name.pdf"
+             target="_blank" rel="noopener noreferrer">↗ Read Research Paper (PDF)</a>
+          <p class="sample-paper-note">Writing sample · Update publication details and page count if relevant.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- END CARD 5 -->
+  </main>
 
-
-  <!-- =====================================================
-       CARD 6: REFLECTION / TAKEAWAYS
-
-       USE FOR:
-       - What worked
-       - Challenges
-       - Lessons learned
-       - Future directions
-  ====================================================== -->
-
-  <section
-    class="project-card"
-    aria-labelledby="project-reflection-title">
-
-    <h2
-      class="project-title"
-      id="project-reflection-title">
-
-      ⚠️ Reflection &amp; Takeaways
-
-    </h2>
-
-    <div
-      class="project-text"
-      style="max-width: 800px; margin: 0;">
-
-      <h3>What Worked</h3>
-
-      <p>
-        ⚠️ Describe the successful aspects of the project.
-      </p>
-
-      <h3>Challenges</h3>
-
-      <p>
-        ⚠️ Describe the limitations, challenges,
-        or unresolved technical and creative problems.
-      </p>
-
-      <h3>What I Learned</h3>
-
-      <p>
-        ⚠️ Reflect on what the process revealed
-        about your research or design practice.
-      </p>
-
-      <h3>Future Directions</h3>
-
-      <p>
-        ⚠️ Explain how this project could develop further.
-      </p>
-
-    </div>
-
-  </section>
-
-  <!-- END CARD 6 -->
-
-
-  <!-- =====================================================
-       CARD 7: RESEARCH PUBLICATION (OPTIONAL)
-
-       USE FOR:
-       - Published research
-       - Conference papers
-       - Writing samples
-       - Research reports
-
-       Delete this entire section if not applicable.
-
-       ⚠️ Upload the PDF to assets/
-       ⚠️ Update the PDF filename
-  ====================================================== -->
-
-  <section
-    class="project-card"
-    aria-labelledby="project-publication-title">
-
-    <h2
-      class="project-title"
-      id="project-publication-title">
-
-      Research Publication
-
-    </h2>
-
-    <div
-      class="project-text"
-      style="max-width: 850px; margin: 0;">
-
-      <h3>
-        ⚠️ Full Title of Research Paper
-      </h3>
-
-      <p>
-        ⚠️ Author(s) · Year · Publication / Conference
-      </p>
-
-      <h3>Research Focus</h3>
-
-      <p>
-        ⚠️ Briefly introduce the research question
-        and its connection to this project.
-      </p>
-
-      <h3>Methodology</h3>
-
-      <p>
-        ⚠️ Explain the research approach,
-        data collection, and analytical method.
-      </p>
-
-      <h3>Research Contributions</h3>
-
-      <ul>
-        <li>⚠️ Contribution 1</li>
-        <li>⚠️ Contribution 2</li>
-        <li>⚠️ Contribution 3</li>
-      </ul>
-
-      <h3>Full Paper</h3>
-
-      <!-- ⚠️ CHANGE PDF FILENAME -->
-
-      <p>
-        <a
-          href="../assets/paper-project-name.pdf"
-          target="_blank"
-          rel="noopener noreferrer">
-
-          Read Research Paper (PDF) ↗
-
-        </a>
-      </p>
-
-    </div>
-
-  </section>
-
-  <!-- END CARD 7 -->
-
-
-</main>
-
-
-<!-- =====================================================
-     SCRIPTS
-
-     GLOBAL:
-     main.js handles existing site functionality.
-
-     PROJECT AUTO-FIT:
-     project-autofit.js scales card contents
-     to fit the 17:11 landscape card system.
-
-     Do not add a second auto-fit implementation here.
-===================================================== -->
-
-<script src="../js/main.js"></script>
-
-<script src="../js/project-autofit.js"></script>
-
+  <!-- KEEP: existing site functionality and WHOLE-CARD scaling.
+       Do NOT reintroduce project-autofit.js. -->
+  <script src="../js/main.js"></script>
+  <script src="../js/project-slide-scale.js"></script>
 </body>
 </html>
