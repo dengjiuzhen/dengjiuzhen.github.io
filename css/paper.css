@@ -1,361 +1,262 @@
-/* ===== PAGE CONTAINER ===== */
-
+/* ===== PAGE / NAVIGATION ===== */
 .paper-container {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: none;
-  margin: 0 auto;
+  width: 100%; max-width: none;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  gap: 60px; margin: 0 auto;
   padding: 100px 20px 80px;
-  gap: 60px;
   scroll-snap-type: none;
 }
-
-/* ===== TOP BAR — MATCH PROJECT PAGES ===== */
-
 .paper-topbar {
   box-sizing: border-box;
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  z-index: 800;
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  padding: 10px 20px;
+  position: fixed; top: var(--nav-height); left: 0; z-index: 800;
+  width: 100%; min-height: 58px;
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; padding: 10px 20px;
   background: rgba(0, 0, 0, .6);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
-
 .paper-back { justify-self: start; }
 .paper-center { justify-self: center; margin-right: 0; }
 
-/* ===== PAPER CARD: THE ORIGINAL-SIZE ARTBOARD ===== */
-
+/* ===== CARD: FIXED PRESENTATION ARTBOARD ===== */
 .paper-card {
   box-sizing: border-box;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: min(95vw, 1100px);
-  max-width: 1100px;
-  height: auto;
-  min-height: 0;
+  flex: 0 0 auto;
+  display: flex; flex-direction: column;
+  align-items: stretch; justify-content: flex-start;
+  width: min(95vw,1100px); max-width: 1100px;
   aspect-ratio: 17 / 11;
-  margin: 0 auto;
-  padding: 40px;
-  gap: 20px;
+  height: auto; min-height: 0;
+  padding: 34px 38px 30px;
+  gap: 12px; margin: 0 auto;
+  color: var(--text-main, #f6f1ff);
+  background: linear-gradient(140deg,#14111f 0%,#0b0a12 58%,#09090f 100%);
+  border: 1px solid rgba(160,158,205,.22);
+  border-radius: 20px;
   text-align: left;
   overflow: hidden;
-  color: var(--text-main, #f5f1fa);
-  background: linear-gradient(140deg, #14111f 0%, #0b0a12 58%, #09090f 100%);
-  border: 1px solid rgba(160,158,205,.19);
-  border-radius: 20px;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
-
 .paper-card:hover {
-  border-color: var(--blue-accent, #9aa8ff);
+  border-color: var(--blue-accent,#9aa8ff);
   box-shadow: 0 0 24px rgba(125,92,213,.21);
 }
-
-/* A subtle visual accent, rather than a large decorative panel. */
 .paper-card::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 40px;
-  width: 90px;
-  height: 3px;
+  position: absolute; top: 0; left: 38px;
+  width: 90px; height: 3px;
   border-radius: 0 0 3px 3px;
-  background: var(--blue-accent, #9aa8ff);
-  box-shadow: 0 0 14px rgba(154,168,255,.28);
+  background: var(--blue-accent,#9aa8ff);
   pointer-events: none;
 }
-
 .paper-card, .paper-card * { box-sizing: border-box; }
 .paper-card > * { min-width: 0; }
 
-/* ===== TITLE & INTRODUCTION ===== */
-
+/* ===== PAPER TITLE ===== */
 .paper-title {
   flex: 0 0 auto;
-  align-self: stretch;
-  width: 100%;
-  max-width: 100%;
+  width: 100%; max-width: 100%;
   margin: 0;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.24;
-  letter-spacing: -.025em;
-  color: #f6f1ff;
-  text-align: left;
+  font-size: 31px; font-weight: 700;
+  line-height: 1.18; letter-spacing: -.02em;
+  color: #f6f1ff; text-align: left;
   overflow-wrap: break-word;
 }
-
-/* Optional classes for a richer first paper card. */
+/* Optional metadata; avoid adding too many header lines to a long abstract. */
 .paper-eyebrow {
-  margin: 0;
-  color: var(--blue-accent, #9aa8ff);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.6;
-  letter-spacing: .16em;
+  margin: 0; font-size: 11px; font-weight: 600;
+  letter-spacing: .15em; line-height: 1.4;
   text-transform: uppercase;
+  color: var(--blue-accent,#9aa8ff);
 }
-
-.paper-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-}
-
+.paper-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; }
 .paper-meta span {
-  display: inline-block;
-  padding: 7px 12px;
-  border: 1px solid rgba(146,165,238,.32);
+  display: inline-block; padding: 5px 10px;
   border-radius: 999px;
-  color: var(--text-dim, #bdb6cc);
-  font-size: 12px;
-  line-height: 1.45;
+  border: 1px solid rgba(146,165,238,.32);
+  font-size: 11px; line-height: 1.4;
+  color: var(--text-dim,#c3bed0);
 }
+.paper-lead { margin: 0; font-size: 17px; line-height: 1.48; color: #d2cde1; }
 
-.paper-lead {
-  margin: 0;
-  max-width: 980px;
-  font-size: 19px;
-  line-height: 1.58;
-  color: #d2cde1;
-}
-
-/* ===== CONTENT — LEFT-ALIGNED READING SPACE ===== */
-
+/* ===== TEXT CONTAINER ===== */
 .paper-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  flex: 1 1 auto;
-  min-width: 0;
-  min-height: 0;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
+  display: flex; flex: 1 1 auto;
+  flex-direction: column; align-items: stretch; justify-content: flex-start;
+  width: 100%; min-width: 0; min-height: 0;
+  margin: 0; padding: 0;
 }
-
 .paper-text {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 920px;
-  min-width: 0;
-  min-height: 0;
-  margin: 0;
-  gap: 13px;
-  text-align: left;
+  display: flex; flex-direction: column;
+  width: 100%; max-width: 100%; min-width: 0;
+  margin: 0; gap: 10px; text-align: left;
 }
-
 .paper-text h3 {
-  margin: 4px 0 0;
-  font-size: 21px;
-  font-weight: 650;
-  line-height: 1.35;
-  color: var(--green-accent, #b8e7cc);
+  margin: 0;
+  font-size: 19px; font-weight: 650;
+  line-height: 1.3;
+  color: var(--green-accent,#acf4c0);
 }
-
 .paper-text h4 {
-  margin: 2px 0 0;
-  font-size: 18px;
-  line-height: 1.4;
+  margin: 0; font-size: 17px; line-height: 1.35;
   color: #e1d8f1;
 }
-
-.paper-text p,
-.paper-text li {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--text-dim, #c0bacb);
-  text-align: left;
-  overflow-wrap: break-word;
+.paper-text p, .paper-text li {
+  margin: 0; font-size: 15.5px; line-height: 1.53;
+  color: var(--text-dim,#c0bacb);
+  overflow-wrap: break-word; hyphens: none;
 }
-
-.paper-text ul,
-.paper-text ol {
-  margin: 0;
-  padding-left: 1.35em;
-}
-
-.paper-text li + li { margin-top: 6px; }
+.paper-text ul, .paper-text ol { margin: 0; padding-left: 1.25em; }
+.paper-text li + li { margin-top: 4px; }
 .paper-text strong { color: #e9e2f1; }
-.paper-text a:not(.paper-link) { color: var(--blue-accent, #9aa8ff); }
+.paper-text a:not(.paper-link) { color: var(--blue-accent,#9aa8ff); }
 .paper-text a:not(.paper-link):hover { color: #fff; }
 
-/* Optional: two-column summaries when the HTML is deliberately written
-   in two manageable sections (not for an entire long abstract). */
-.paper-columns {
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link) {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  height: calc(100% - 45px);
+  column-gap: 30px;
+  row-gap: 10px;
+  align-content: start;
   align-items: start;
-  gap: 30px;
-  width: 100%;
 }
-.paper-columns > * { min-width: 0; }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(1) { grid-column: 1 / -1; grid-row: 1; }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(1) + p {
+    grid-column: 1 / -1; grid-row: 2;
+    columns: 2; column-gap: 30px;
+    column-rule: 1px solid rgba(146,165,238,.15);
+    font-size: 15.2px; line-height: 1.51;
+    text-align: left; hyphens: none;
+  }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(2) { grid-column: 1; grid-row: 4; }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(2) + ul {
+    grid-column: 1; grid-row: 5;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 7px 10px;
+    align-content: start;
+    padding-left: 18px;
+  }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(2) + ul li {
+    margin: 0; font-size: 14px; line-height: 1.43;
+  }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(3) { grid-column: 2; grid-row: 4; }
+.paper-card .paper-text:has(> h3:nth-of-type(2) + ul):has(> h3:nth-of-type(3) + a.paper-link)
+  > h3:nth-of-type(3) + a.paper-link {
+    grid-column: 2; grid-row: 5;
+    width: 100%; max-width: 100%;
+    margin: 0; align-self: start;
+  }
 
-/* Optional highlighted methodology / finding block. */
-.paper-highlight {
-  padding: 18px 20px;
-  background: rgba(146,165,238,.065);
-  border: 1px solid rgba(146,165,238,.2);
-  border-radius: 14px;
-}
-
-/* ===== PUBLICATION / PDF LINK ===== */
-
+/* ===== PUBLICATION LINK ===== */
 .paper-link {
   display: block;
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 8px;
-  padding: 12px 20px;
-  background: rgba(142,85,223,.13);
+  width: fit-content; max-width: 100%;
+  margin-top: 4px; padding: 10px 14px;
+  border-radius: 14px;
   border: 1px solid rgba(186,140,248,.55);
-  border-radius: 999px;
-  color: #eee7fa;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.5;
+  background: rgba(142,85,223,.13);
+  color: #eee7fa; text-decoration: none;
+  font-size: 14px; font-weight: 550;
+  line-height: 1.42;
+  overflow-wrap: break-word;
   transition: background .25s ease, border-color .25s ease,
               box-shadow .25s ease, transform .25s ease;
 }
-
 .paper-link::before {
-  content: "↗";
-  display: inline-block;
-  margin-right: 9px;
-  color: var(--pink-accent, #ebb1e2);
-  transition: color .25s ease;
+  content: "↗"; display: inline;
+  margin-right: 8px;
+  color: var(--pink-accent,#ebb1e2);
 }
-
 .paper-link:hover {
-  background: rgba(142,85,223,.28);
-  color: #fff;
-  border-color: #b48bff;
-  box-shadow: 0 0 18px rgba(128,72,208,.25);
+  color: #fff; background: rgba(142,85,223,.28);
+  border-color: #b48bff; box-shadow: 0 0 18px rgba(128,72,208,.25);
   transform: translateY(-2px);
 }
-
-.paper-link:hover::before { color: white; }
-
+.paper-link:hover::before { color: #fff; }
 .paper-link-sub {
-  display: block;
-  margin-top: 5px;
-  color: var(--text-dim, #a9a1b8);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.5;
+  display: block; margin-top: 5px;
+  color: var(--text-dim,#a9a1b8);
+  font-size: 12.5px; font-weight: 400; line-height: 1.45;
 }
 
-/* ===== RESPONSIVE STAGE — ARTBOARD CONTENT NEVER REFLOWS =====
-   paper-slide-scale.js inserts this wrapper around every paper card.
-   Window changes resize the STAGE; the entire card transforms as one.
-===================================================== */
+/* ===== OPTIONAL ADVANCED LAYOUTS ===== */
+.paper-columns {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 25px; align-items: start;
+}
+.paper-highlight {
+  padding: 15px 18px; border-radius: 14px;
+  background: rgba(146,165,238,.065);
+  border: 1px solid rgba(146,165,238,.2);
+}
 
+/* ===== RESPONSIVE STAGE (CREATED BY paper-slide-scale.js) ===== */
 .paper-container > .project-slide-stage {
   box-sizing: border-box;
-  position: relative;
-  display: block;
-  flex: 0 0 auto;
-  width: min(100%, 1100px);
-  max-width: 1100px;
+  position: relative; display: block; flex: 0 0 auto;
+  width: min(100%,1100px); max-width: 1100px;
   aspect-ratio: 17 / 11;
-  margin: 0 auto;
-  padding: 0;
+  margin: 0 auto; padding: 0;
   overflow: visible;
 }
-
 .paper-container > .project-slide-stage > .paper-card {
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 1100px;
-  min-width: 1100px;
-  max-width: 1100px;
+  position: absolute; inset: 0 auto auto 0;
+  width: 1100px; min-width: 1100px; max-width: 1100px;
   height: 711.76470588px;
   min-height: 711.76470588px;
   max-height: 711.76470588px;
   aspect-ratio: auto;
   margin: 0;
-  padding: 40px;
   overflow: hidden;
   transform-origin: top left;
 }
-
-/* Do not stack or reflow the designed card on narrow devices. */
 @media (max-width: 650px) {
-  .paper-container {
-    gap: 28px;
-    padding: 82px 12px 48px;
-  }
-  .paper-topbar { padding: 8px 12px; }
-  .paper-topbar .button { font-size: 12px; padding: 8px 10px; }
+  .paper-container { padding: 82px 12px 48px; gap: 28px; }
 }
 
-/* ===== DIRECT PRINT — ONE PAPER CARD PER 17 × 11 IN PAGE ===== */
+/* ===== DIRECT PRINT: ONE 17 × 11 IN LANDSCAPE PAGE PER CARD ===== */
 @page { size: 17in 11in; margin: 0; }
-
 @media print {
   *, *::before, *::after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-
   .nav, .paper-topbar, .coin-ui { display: none !important; }
-
   .paper-container {
     display: block;
     width: 17in;
-    margin: 0 !important;
     padding: 0 !important;
+    margin: 0 !important;
     gap: 0;
   }
-
   .paper-container > .project-slide-stage {
-    display: block;
-    width: 17in !important;
-    height: 11in !important;
-    max-width: none !important;
-    aspect-ratio: auto;
-    margin: 0 !important;
-    overflow: hidden;
-    break-after: page;
-    page-break-after: always;
+    width: 17in !important; max-width: none !important;
+    height: 11in !important; aspect-ratio: auto;
+    margin: 0 !important; overflow: hidden;
+    break-after: page; page-break-after: always;
   }
-
   .paper-container > .project-slide-stage:last-child {
-    break-after: auto;
-    page-break-after: auto;
+    break-after: auto; page-break-after: auto;
   }
-
   .paper-container > .project-slide-stage > .paper-card {
     transform: scale(1.4836363636) !important;
     transform-origin: top left !important;
     box-shadow: none !important;
   }
-
-  /* Fallback when printing before the scaling script loads. */
   .paper-container > .paper-card {
     width: 1100px !important;
     height: 711.76470588px !important;
@@ -364,56 +265,6 @@
     break-after: page;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .paper-card, .paper-link, .paper-link::before { transition: none; }
-}
-
-/* =====================================================
-   PAPER SUMMARY — ABSTRACT + KEYWORDS (17:11)
-
-   The first long paragraph and the second headed keyword
-   list on summary cards use the available landscape width.
-   This does not change the fixed canvas or its scaling.
-===================================================== */
-
-/* Full paper-summary width instead of narrow reading column. */
-.paper-container .paper-card .paper-text {
-  max-width: 100%;
-  width: 100%;
-  gap: 13px;
-}
-
-/* If the card contains an abstract followed by a headed
-   keyword list, flow the first paragraph into two columns.
-   This keeps the original wording and avoids clipping. */
-.paper-container .paper-card .paper-text:has(> h3:nth-of-type(2) + ul)
-  > h3:first-of-type + p {
-  columns: 2;
-  column-gap: 34px;
-  column-rule: 1px solid rgba(146, 165, 238, .13);
-  font-size: 16px;
-  line-height: 1.57;
-  text-align: left;
-  hyphens: none;
-}
-
-/* Arrange keywords across the width rather than as a long
-   single column. */
-.paper-container .paper-card .paper-text > h3:nth-of-type(2) + ul {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7px 15px;
-  padding-left: 20px;
-  list-style-position: inside;
-}
-
-.paper-container .paper-card .paper-text > h3:nth-of-type(2) + ul li {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-.paper-container .paper-card .paper-text > .paper-link {
-  margin-top: 4px;
+  .paper-card, .paper-link { transition: none; }
 }
