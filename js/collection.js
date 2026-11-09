@@ -25,7 +25,7 @@ const ITEM_DATA = {
       // ===== PROJECTS =====
   "project-penguin-reunion": {
     title: "A Penguin's Return",              
-    path: "practice/penguin-reunion.html",         
+    path: "practice/project-penguin-reunion.html",         
     type: "project"  
   },
   
