@@ -1,45 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Collection</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collection | Jiuzhen Deng</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <!-- nav -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="lobby.html">Lobby</a>
-    <a href="studio.html">Studio</a>
-    <a href="library.html">Library</a>
-    <a href="collection.html">Collection</a>
-    <a href="cafe.html">Café</a>
-    <a href="about.html">About</a>
-  </div>
-</nav>
-  
-<div class="coin-ui">
-  ⏱ <span id="time">0.00</span> ⬤
-</div>
-  <!-- global ends -->
+  <!-- GLOBAL NAVIGATION -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="lobby.html">Lobby</a>
+      <a href="studio.html">Studio</a>
+      <a href="library.html">Library</a>
+      <a href="collection.html">Collection</a>
+      <a href="cafe.html">Café</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
 
-<main class="container">
+  <!-- COIN / TIME UI -->
+  <div class="coin-ui">⏱ <span id="time">0.00</span> ⬤</div>
 
-  <h1>Your Collection</h1>
+  <main class="container">
+    <h1>Your Collection</h1>
+    <div id="collection-container" class="grid" aria-live="polite"></div>
+    <button class="button" type="button" onclick="exportPDF()">
+      Export as PDF
+    </button>
+  </main>
 
-  <!-- each item becomes its own card -->
-  <div id="collection-container" class="grid"></div>
-
-  <button class="button" onclick="exportPDF()">
-    Export as PDF
-  </button>
-
-</main>
-  <!-- badges will appear here -->
-</div>
-
-
-<script src="js/main.js"></script>
-<script src="js/collection.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/collection.js"></script>
 </body>
 </html>
