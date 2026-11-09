@@ -70,6 +70,24 @@ const ITEM_DATA = {
   }
 };
 
+"paper-collective-experience": {
+  title: "Designing Collective Experience",
+  path: "research/paper-collective-experience.html",
+  type: "paper"
+},
+
+"paper-algorithmic-kaiwai": {
+  title: "Inside the Algorithmic Kaiwai",
+  path: "research/paper-algorithmic-kaiwai.html",
+  type: "paper"
+},
+
+"paper-creative-process-ai": {
+  title: "Rethinking Creative Process with AI",
+  path: "research/paper-creative-process-ai.html",
+  type: "paper"
+},
+
 
 /* =====================================================
    RENDER
