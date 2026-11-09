@@ -1,372 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-
-  <!-- ⚠️ CHANGE: Project Title -->
-  <title>Dream Manor: Echoing Fields</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dream Manor: Echoing Fields is a serious game app concept by Jiuzhen Deng exploring goal-setting, self-regulation, creative construction, and social play.">
+  <title>Dream Manor: Echoing Fields | Jiuzhen Deng</title>
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/project.css">
+
+  <style>
+
+    body.dream-page { min-width: 0; overflow-x: hidden; }
+    .dream-page main.project-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: 94px 20px 80px;
+      gap: 60px;
+      scroll-snap-type: none;
+    }
+    .dream-page .project-topbar { box-sizing: border-box; }
+    .dream-page .project-center { margin-right: 0; }
+    .dream-page .nav-inner { max-width: 900px; }
+    .dream-page .project-slide-stage .project-card,
+    .dream-page .project-slide-stage .project-card * { box-sizing: border-box; }
+    .dream-page .project-slide-stage .project-card {
+      justify-content: flex-start;
+      align-items: stretch;
+      text-align: left;
+    }
+    .dream-page .project-slide-stage .project-card > * { min-width: 0; }
+    .dream-page .project-slide-stage .project-card h1.project-title,
+    .dream-page .project-slide-stage .project-card h2.project-title {
+      display: block;
+      width: 100%;
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.2;
+      text-align: left;
+      overflow-wrap: break-word;
+    }
+    .dream-page .project-slide-stage p,
+    .dream-page .project-slide-stage li {
+      color: var(--text-dim, #aaa5bb);
+      overflow-wrap: break-word;
+    }
+
+    /* ===== CARD 1: SHARED PENGUIN / GARDEN HEADER ===== */
+    .dream-page .dream-eyebrow {
+      margin: 0;
+      color: var(--blue-accent, #9aa8ff);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .17em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+    .dream-page .dream-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 2px 0 0;
+    }
+    .dream-page .dream-meta span {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid rgba(146,165,238,.32);
+      border-radius: 30px;
+      color: var(--text-dim, #aaa5bb);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .dream-page .project-card p.dream-lead {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.52;
+      color: var(--text-dim, #aaa5bb);
+    }
+
+    /* ===== SHARED IMAGE FRAMES & BODY TYPOGRAPHY ===== */
+    .dream-page .dream-frame {
+      width: 100%;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+    .dream-page .dream-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    .dream-page .dream-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      min-width: 0;
+      gap: 10px;
+    }
+    .dream-page .dream-copy h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.3;
+      color: var(--blue-accent, #9aa8ff);
+    }
+    .dream-page .dream-copy h3:not(:first-child) { margin-top: 9px; }
+    .dream-page .dream-copy p,
+    .dream-page .dream-copy li {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .dream-page .dream-copy ul { margin: 0; padding-left: 21px; }
+    .dream-page .dream-copy li + li { margin-top: 5px; }
+    .dream-page .dream-section-intro {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    /* ===== CARD 1: PROJECT OVERVIEW ===== */
+    .dream-page .dream-intro-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 34px;
+      align-items: center;
+    }
+    .dream-page .dream-intro-layout .dream-frame { height: 355px; }
+    .dream-page .dream-intro-layout .dream-copy { gap: 10px; }
+    .dream-page .dream-intro-layout .dream-copy h3:not(:first-child) { margin-top: 10px; }
+
+    /* ===== CARD 2: GAME SYSTEMS + MODES ===== */
+    .dream-page .dream-systems-body {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 18px;
+    }
+    .dream-page .dream-systems-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 30px;
+      min-height: 0;
+    }
+    .dream-page .dream-systems-main .dream-frame { height: 350px; }
+    .dream-page .dream-systems-main .dream-copy { gap: 7px; }
+    .dream-page .dream-systems-main .dream-copy h3 { font-size: 18px; }
+    .dream-page .dream-systems-main .dream-copy h3:not(:first-child) { margin-top: 7px; }
+    .dream-page .dream-systems-main .dream-copy p { font-size: 15px; line-height: 1.4; }
+    .dream-page .dream-modes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+    .dream-page .dream-mode {
+      min-width: 0;
+      padding: 13px 17px;
+      border-radius: 13px;
+      background: rgba(146,165,238,.045);
+      border: 1px solid rgba(146,165,238,.21);
+    }
+    .dream-page .dream-mode h3 {
+      margin: 0 0 5px;
+      font-size: 16px;
+      color: #e4dcff;
+    }
+    .dream-page .dream-mode p { margin: 0; font-size: 14px; line-height: 1.4; }
+
+    /* ===== CARD 3: PLAYER EXPERIENCE ===== */
+    .dream-page .dream-behavior-body {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 23px;
+    }
+    .dream-page .dream-visual-pair {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: center;
+    }
+    .dream-page .dream-visual-pair .dream-frame { height: 300px; }
+    .dream-page .dream-theory-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .dream-page .dream-theory-panel {
+      min-width: 0;
+      padding: 17px 20px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+    }
+    .dream-page .dream-theory-panel h3 {
+      margin: 0 0 9px;
+      font-size: 19px;
+      color: var(--blue-accent, #9aa8ff);
+    }
+    .dream-page .dream-theory-panel ul { margin: 0; padding-left: 21px; }
+    .dream-page .dream-theory-panel li { font-size: 15px; line-height: 1.45; }
+    .dream-page .dream-theory-panel li + li { margin-top: 4px; }
+
+    /* ===== CARD 4: AFFECTIVE & NARRATIVE DESIGN ===== */
+    .dream-page .dream-experience-layout {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+    .dream-page .dream-demo-link {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 365px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,.025);
+    }
+    .dream-page .dream-demo-link img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .dream-page .dream-demo-link .project-video-cta { background: rgba(0,0,0,.14); }
+    .dream-page .dream-demo-link .project-video-cta span {
+      color: #fff;
+      background: rgba(0,0,0,.82);
+      border: 1px solid var(--purple-main, #8544ed);
+      border-radius: 24px;
+      padding: 10px 16px;
+    }
+    .dream-page .dream-concept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .dream-page .dream-concept {
+      min-width: 0;
+      min-height: 135px;
+      padding: 18px 16px;
+      border: 1px solid rgba(146,165,238,.2);
+      border-radius: 13px;
+      background: rgba(146,165,238,.035);
+    }
+    .dream-page .dream-concept h3 {
+      margin: 0 0 9px;
+      font-size: 18px;
+      color: var(--blue-accent, #9aa8ff);
+    }
+    .dream-page .dream-concept p { margin: 0; font-size: 15px; line-height: 1.48; }
+    .dream-page .dream-meaning { margin: 0; font-size: 19px; color: #e8dfff; line-height: 1.4; }
+
+    /* ===== CARD 5: DESIGN RATIONALE + GDD ===== */
+    .dream-page .dream-outcome-body {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 18px;
+    }
+    .dream-page .dream-outcome-main {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+      gap: 34px;
+      align-items: center;
+    }
+    .dream-page .dream-outcome-main .dream-frame { height: 390px; }
+    .dream-page .dream-outcome-main .dream-copy h3 { font-size: 19px; }
+    .dream-page .dream-outcome-main .dream-copy p { font-size: 16px; line-height: 1.48; }
+    .dream-page .dream-outcome-main .dream-copy h3:not(:first-child) { margin-top: 7px; }
+    .dream-page .dream-document-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 17px;
+      border-top: 1px solid rgba(255,255,255,.13);
+    }
+    .dream-page .dream-paper-link {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      padding: 11px 19px;
+      border: 1px solid #9869ff;
+      border-radius: 999px;
+      background: rgba(114,58,235,.22);
+      color: #e9e0ff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.3;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .dream-page .dream-paper-link:hover { background: rgba(135,75,255,.3); transform: translateY(-2px); }
+    .dream-page .dream-stage-note { margin: 0; font-size: 13px; line-height: 1.35; color: #9994aa; }
+
+    @media (max-width: 650px) {
+      .dream-page main.project-container { padding: 82px 12px 48px; gap: 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dream-page .dream-paper-link { transition: none; }
+    }
+  </style>
 </head>
 
-<body>
-
-<!-- =====================================================
-     NAV (GLOBAL — DO NOT EDIT)
-===================================================== -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="../lobby.html">Lobby</a>
-    <a href="../studio.html">Studio</a>
-    <a href="../library.html">Library</a>
-    <a href="../collection.html">Collection</a>
-    <a href="../cafe.html">Café</a>
-    <a href="../about.html">About</a>
-  </div>
-</nav>
-
-<!-- =====================================================
-     PROJECT TOP BAR
-===================================================== -->
-<div class="project-topbar">
-
-  <div class="project-back">
-    <button class="button" onclick="goBack()">
-      ← Studio
-    </button>
-  </div>
-
-  <div class="project-center">
-    <!-- ⚠️ CHANGE: project name string -->
-    <button class="button button-badge" onclick="collectBadge('project-dream-manor')">
-      Collect Badge ✦
-    </button>
-  </div>
-
-  <div class="project-right"></div>
-
-</div>
-
-<!-- =====================================================
-     COIN UI (GLOBAL)
-===================================================== -->
-<div class="coin-ui">
-  ⏱ <span id="time">0.00</span> ⬤
-</div>
-
-<!-- =====================================================
-     MAIN CONTAINER
-===================================================== -->
-<main class="project-container">
-
-  <!-- =====================================================
-       card 1
-  ====================================================== -->
-  <section class="project-card">
-
-    <div class="project-title">
-   Dream Manor: Echoing Fields - Serious Game App Concept
+<body class="dream-page">
+  <!-- GLOBAL NAVIGATION -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../lobby.html">Lobby</a>
+      <a href="../studio.html">Studio</a>
+      <a href="../library.html">Library</a>
+      <a href="../collection.html">Collection</a>
+      <a href="../cafe.html">Café</a>
+      <a href="../about.html">About</a>
     </div>
+  </nav>
 
-    <p class="project-subtitle">
-  Personal development and 2D construction game crafted for accountability with creativity
-</p>
+  <!-- PROJECT TOP BAR -->
+  <div class="project-topbar">
+    <div class="project-back"><a class="button" href="../studio.html">← Studio</a></div>
+    <div class="project-center">
+      <button class="button button-badge" type="button"
+        onclick="collectBadge('project-dream-manor')">Collect Badge ✦</button>
+    </div>
+    <div class="project-right"></div>
+  </div>
 
-    <div class="project-content">
+  <!-- TIME / COIN UI -->
+  <div class="coin-ui">⏱ <span id="time">0.00</span> ⬤</div>
 
-      <div class="project-images">
-        <!-- ⚠️ CHANGE images -->
-        <img src="../assets/Dream_Manor_1.png">
+  <main class="project-container">
+    <!-- CARD 1: PROJECT OVERVIEW -->
+    <section class="project-card project-intro" aria-labelledby="dream-title">
+      <p class="dream-eyebrow">Serious Game / Gameful Self-Regulation / App Concept</p>
+      <h1 class="project-title" id="dream-title">Dream Manor: Echoing Fields</h1>
+      <div class="dream-meta">
+        <span>Gameful &amp; Participatory Design</span>
+        <span>MDA Framework</span>
+        <span>Creative Construction &amp; Social Play</span>
       </div>
-
-      <div class="project-text">
-
-        <h3>Problem</h3>
-        <ul>
-          <li>To-do overload reduces goal follow-through</li>
-          <li>Progress often feels abstract</li>
-        </ul>
-
-        <h3>Design Objective</h3>
-        <ul>
-          <li>Transform goals into playable systems</li>
-          <li>Externalize progress through interaction</li>
-        </ul>
-
-        <h3>MDA Lens</h3>
-        <ul>
-          <li>Mechanics structure goal execution</li>
-          <li>Dynamics shape player behavior</li>
-          <li>Aesthetics drive motivation</li>
-        </ul>
-
-        <h3>Research Focus</h3>
-        <p>Gamification for self-regulation</p>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =====================================================
-      Card 2
-  ====================================================== -->
-  <section class="project-card">
-
-    <div class="project-title">
-     Play, Development, Growth
-    </div>
-
-    <div class="project-content">
-
-      <div class="project-images">
-        <!-- ⚠️ CHANGE images -->
-        <img src="../assets/Dream_Manor_2.png">
-      </div>
-
-      <div class="project-text">
-
-        <h3>Game-Life Relation</h3>
-        <ul>
-          <li>Real goals mapped to tasks</li>
-          <li>Timelines define effort pacing</li>
-        </ul>
-
-        <h3>Resource Systems</h3>
-        <ul>
-          <li>Mana Sparks reward completion</li>
-          <li>Materials gate visible progress</li>
-        </ul>
-
-        <h3>Construction Rules</h3>
-        <ul>
-          <li>Grounded placement enforces structure</li>
-          <li>Durability reflects goal completion</li>
-        </ul>
-
-        <h3>Level Adjustment</h3>
-        <ul>
-          <li>Plans/goals are editable without penalties</li>
-          <li>Player controls the difficulty</li>
-        </ul>
-
-        <h3>Modes</h3>
-        <ul>
-          <li>Free play in plot mode</li>
-          <li>Collectibles visualize achievements in development mode</li>
-          <li>Visit friends to gain real-life ranking and connections for personal development motivation</li>
-        </ul>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =====================================================
-       CARD 3
-  ====================================================== -->
-  <section class="project-card">
-
-    <div class="project-title">
-    Emergent Player Behavior
-    </div>
-
-    <div class="project-content-vertical">
-
-      <!-- VISUAL PAIR -->
-<div class="project-visual-pair">
-
-  <div class="project-media">
-    <img src="../assets/Dream_Manor_3_1.png">
-  </div>
-
-  <div class="project-media">
-    <img src="../assets/Dream_Manor_3_2.png">
-  </div>
-
-</div>
-
-      <!-- TEXT -->
-      <div class="project-text-2col">
-
-        <div class="project-text-block">
-          <h3>Immersive Engagement & Flow States</h3>
-          <ul>
-            <li>Micro-tasks encourage daily action</li>
-            <li>Consistency reinforced through feedback</li>
-            <li>Challenge adapts to performance</li>
-            <li>Focus sustained through pacing</li>
-          </ul>
+      <p class="dream-lead">A serious game app concept that turns personal goals into a 2D construction world, making everyday effort visible through play while allowing players to set their own pace.</p>
+      <div class="dream-intro-layout">
+        <div class="dream-frame">
+          <img src="../assets/Dream_Manor_1.png" alt="Dream Manor concept art and overview of its gameful goal-setting environment" loading="lazy">
         </div>
-
-        <div class="project-text-block">
-          <h3>Self-Regulations</h3>
-          <ul>
-            <li>Players recalibrate effort realistically</li>
-            <li>Autonomy balances accountability</li>
-          </ul>
+        <div class="dream-copy">
+          <h3>Problem</h3>
+          <p>Overloaded to-do lists can make progress feel abstract and difficult to sustain.</p>
+          <h3>Design Objective</h3>
+          <p>Translate personal goals into playable tasks and visible changes in a world players build themselves.</p>
+          <h3>Design Lens</h3>
+          <p>The Mechanics–Dynamics–Aesthetics (MDA) framework connects goal structure, player behavior, and the felt experience of progress.</p>
         </div>
-
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- =====================================================
-      Card 4
-  ====================================================== -->
- <section class="project-card">
-
-  <div class="project-title">
-    Psychological Experience
-  </div>
-
-  <div class="project-content">
-
-    <!-- LEFT: IMAGE (visually stronger) -->
-    <div class="project-images">
-
-      <a href="https://youtu.be/zk0TkcF-29g" target="_blank" class="project-media">
-        <img src="../assets/Dream_Manor_4.png">
-
-        <div class="project-video-cta">
-          <span>▶ Watch Demo</span>
+    <!-- CARD 2: RULES, RESOURCES, AND PLAY MODES -->
+    <section class="project-card dream-systems" aria-labelledby="dream-systems-title">
+      <h2 class="project-title" id="dream-systems-title">From Goals to Playable Systems</h2>
+      <div class="dream-systems-body">
+        <div class="dream-systems-main">
+          <div class="dream-frame">
+            <img src="../assets/Dream_Manor_2.png" alt="Dream Manor game systems, resources, and building mechanics" loading="lazy">
+          </div>
+          <div class="dream-copy">
+            <h3>Game–Life Mapping</h3>
+            <p>Real-life goals become tasks with timelines that make effort and pacing visible.</p>
+            <h3>Resource Systems</h3>
+            <p>Task completion earns Mana Sparks; collected materials support construction.</p>
+            <h3>Construction Rules</h3>
+            <p>Placement rules shape the world, while building durability reflects goal completion.</p>
+            <h3>Player Control</h3>
+            <p>Goals and difficulty can be adjusted without penalties when circumstances change.</p>
+          </div>
         </div>
-      </a>
-
-    </div>
-
-    <!-- RIGHT: TEXT (split into 2 columns manually) -->
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5vw;">
-
-      <!-- COLUMN 1 -->
-      <div class="project-text compact">
-
-        <h2 style="font-size: clamp(16px,1.1vw,20px);">
-          Meaningful play = visible transformation + earned progress
-        </h2>
-
-        <h3>Emotional</h3>
-        <ul>
-          <li>Calm tone reduces anxiety</li>
-          <li>Play reframes obligation</li>
-        </ul>
-
-        <h3>Sensory</h3>
-        <ul>
-          <li>Soft palettes signal safety</li>
-          <li>Music sustains immersion</li>
-        </ul>
-
+        <div class="dream-modes" aria-label="Three proposed modes of play">
+          <div class="dream-mode">
+            <h3>Plot Mode</h3>
+            <p>Experiment with construction through free play.</p>
+          </div>
+          <div class="dream-mode">
+            <h3>Development Mode</h3>
+            <p>Use collectible objects to visualize achieved goals.</p>
+          </div>
+          <div class="dream-mode">
+            <h3>Social Mode</h3>
+            <p>Visit friends’ spaces and connect progress with peer encouragement and optional rankings.</p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- COLUMN 2 -->
-      <div class="project-text compact">
-
-        <h3>Symbolic</h3>
-        <ul>
-          <li>Buildings represent effort</li>
-          <li>Badges encode success</li>
-        </ul>
-
-        <h3>Narrative</h3>
-        <ul>
-          <li>Elves = support systems</li>
-          <li>Guidance feels relational</li>
-        </ul>
-
+    <!-- CARD 3: INTENDED PLAYER BEHAVIOR -->
+    <section class="project-card dream-behavior" aria-labelledby="dream-behavior-title">
+      <h2 class="project-title" id="dream-behavior-title">Player Experience — Design Hypotheses</h2>
+      <p class="dream-section-intro">The design explores how feedback, pacing, and player choice might support meaningful engagement rather than short-lived rewards.</p>
+      <div class="dream-behavior-body">
+        <div class="dream-visual-pair">
+          <div class="dream-frame">
+            <img src="../assets/Dream_Manor_3_1.png" alt="Dream Manor visual development: player experience study one" loading="lazy">
+          </div>
+          <div class="dream-frame">
+            <img src="../assets/Dream_Manor_3_2.png" alt="Dream Manor visual development: player experience study two" loading="lazy">
+          </div>
+        </div>
+        <div class="dream-theory-pair">
+          <div class="dream-theory-panel">
+            <h3>Engagement &amp; Flow</h3>
+            <ul>
+              <li>Micro-tasks make daily action more approachable.</li>
+              <li>Feedback gives repeated effort a visible rhythm.</li>
+              <li>Adjustable challenge aims to sustain focus.</li>
+            </ul>
+          </div>
+          <div class="dream-theory-panel">
+            <h3>Self-Regulation &amp; Agency</h3>
+            <ul>
+              <li>Players recalibrate plans to fit changing needs.</li>
+              <li>Autonomy balances accountability.</li>
+              <li>Creative choices make progress personally meaningful.</li>
+            </ul>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </div>
+    <!-- CARD 4: AFFECTIVE AND NARRATIVE DESIGN -->
+    <section class="project-card dream-experience" aria-labelledby="dream-experience-title">
+      <h2 class="project-title" id="dream-experience-title">Affective &amp; Narrative Design</h2>
+      <p class="dream-meaning">Meaningful play = visible transformation + earned progress</p>
+      <div class="dream-experience-layout">
+        <a class="dream-demo-link" href="https://youtu.be/zk0TkcF-29g"
+           target="_blank" rel="noopener noreferrer" aria-label="Watch Dream Manor concept demonstration on YouTube">
+          <img src="../assets/Dream_Manor_4.png" alt="Dream Manor psychological experience and concept demonstration" loading="lazy">
+          <span class="project-video-cta"><span>▶ Watch Demo</span></span>
+        </a>
+        <div class="dream-concept-grid">
+          <div class="dream-concept">
+            <h3>Emotional</h3>
+            <p>A calm tone aims to make obligations feel less overwhelming.</p>
+          </div>
+          <div class="dream-concept">
+            <h3>Sensory</h3>
+            <p>Soft colors and music set the pace for an inviting experience.</p>
+          </div>
+          <div class="dream-concept">
+            <h3>Symbolic</h3>
+            <p>Buildings and collectibles give effort a visible form.</p>
+          </div>
+          <div class="dream-concept">
+            <h3>Narrative</h3>
+            <p>Elf guides frame feedback as care and companionship.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <!-- CARD 5: DESIGN RATIONALE AND FULL GDD -->
+    <section class="project-card dream-outcome" aria-labelledby="dream-outcome-title">
+      <h2 class="project-title" id="dream-outcome-title">Design Rationale &amp; Game Design Document</h2>
+      <div class="dream-outcome-body">
+        <div class="dream-outcome-main">
+          <div class="dream-frame">
+            <img src="../assets/Dream_Manor_5.png" alt="Dream Manor game concept outcome and spatial representations of achievement" loading="lazy">
+          </div>
+          <div class="dream-copy">
+            <h3>Psychological Intention</h3>
+            <p>Externalize goals to make effort easier to recognize and reflect upon.</p>
+            <h3>Behavioral Design</h3>
+            <p>Connect manageable tasks with feedback loops that encourage follow-through.</p>
+            <h3>MDA Alignment</h3>
+            <p>Link game mechanics to choices and emotions, rather than treating rewards as the sole source of motivation.</p>
+            <h3>Creative &amp; Social Meaning</h3>
+            <p>Turn achievements into spatial memories that players can personalize and optionally share.</p>
+          </div>
+        </div>
+        <div class="dream-document-footer">
+          <a class="dream-paper-link" href="../assets/Dream_Manor_GDD.pdf"
+             target="_blank" rel="noopener noreferrer">↗ View Game Design Document (PDF)</a>
+          <p class="dream-stage-note">Concept and game-design proposal · Intended experiences and effects are design aims, not measured user-study outcomes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-</section>
-    
-  <!-- =====================================================
-       Card 5
-  ====================================================== -->
- <section class="project-card">
-
-  <div class="project-title">
-    Outcomes
-  </div>
-
-  <div class="project-content">
-
-    <!-- LEFT: IMAGE -->
-    <div class="project-images">
-      <img src="../assets/Dream_Manor_5.png">
-    </div>
-
-    <!-- RIGHT: TEXT -->
-    <div class="project-text">
-
-      <p>
-  <a href="../assets/Dream_Manor_GDD.pdf"
-     style="
-       display:inline-block;
-       padding:10px 16px;
-       border-radius:20px;
-       background: rgba(0,0,0,0.85);
-       color: white;
-       text-decoration:none;
-       border:1px solid var(--purple-main);
-       font-size:14px;
-       letter-spacing:0.05em;
-     "
-     onmouseover="this.style.background='var(--purple-main)'"
-     onmouseout="this.style.background='rgba(0,0,0,0.85)'"
-  >
-    📄 View Game Design Document
-  </a>
-</p>
-
-      <h3>Psychological</h3>
-      <ul>
-        <li>Reduced overwhelm via externalization</li>
-        <li>Motivation sustained through visualization</li>
-      </ul>
-
-      <h3>Behavioral</h3>
-      <ul>
-        <li>Encourages achievable goal-setting</li>
-        <li>Reinforces completion loops</li>
-      </ul>
-
-      <h3>MDA Contribution</h3>
-      <ul>
-        <li>Aligns Mechanics with well-being</li>
-        <li>Aesthetics reinforce healthy Dynamics</li>
-      </ul>
-
-      <h3>Design Innovation</h3>
-      <ul>
-        <li>Productivity reframed as play</li>
-        <li>Achievement becomes spatial memory</li>
-      </ul>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- =====================================================
-     SCRIPTS
-===================================================== -->
-<script src="../js/main.js"></script>
-
-<script>
-function goBack() {
-  window.location.href = "../studio.html";
-}
-</script>
-
-<script src="../js/project-autofit.js"></script>
-
+  <!-- Existing site behavior + shared WHOLE-CARD scale (not project-autofit.js). -->
+  <script src="../js/main.js"></script>
+  <script src="../js/project-slide-scale.js"></script>
 </body>
 </html>
