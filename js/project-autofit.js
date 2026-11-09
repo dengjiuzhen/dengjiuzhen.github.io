@@ -1,104 +1,85 @@
-
 /* =====================================================
-   PROJECT CARD AUTO-FIT
-   17:11 Landscape Card System
-
-   Automatically scale card contents to fit.
+   PROJECT AUTO-FIT — 17:11 LANDSCAPE CARDS
+   Shared by Garden, Penguin, and future project pages.
+   Shrinks content only when needed; never clips intentionally.
 ===================================================== */
+(() => {
+  'use strict';
 
-(function () {
-  "use strict";
+  const CARD_SELECTOR = 'main.project-container > section.project-card';
+  const WRAPPER_CLASS = 'auto-fit-content';
+  const pending = new Set();
+  let scheduled = false;
 
-  const CARD_SELECTOR = ".project-container > .project-card";
-  const MIN_SCALE = 0.35;
+  function schedule(card) {
+    if (card) pending.add(card);
+    else document.querySelectorAll(CARD_SELECTOR).forEach(c => pending.add(c));
+
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      const cards = Array.from(pending);
+      pending.clear();
+      cards.forEach(fitCard);
+    });
+  }
 
   function fitCard(card) {
-    const content = card.querySelector(":scope > .auto-fit-content");
+    const content = card.querySelector(':scope > .' + WRAPPER_CLASS);
     if (!content) return;
 
-    // Reset before measuring.
-    content.style.transform = "none";
-    content.style.width = "100%";
+    // Transform does not affect layout metrics, but reset before measuring.
+    content.style.transform = 'none';
+    content.style.width = '100%';
+    const css = getComputedStyle(card);
+    const width = card.clientWidth - parseFloat(css.paddingLeft) - parseFloat(css.paddingRight);
+    const height = card.clientHeight - parseFloat(css.paddingTop) - parseFloat(css.paddingBottom);
+    if (width <= 0 || height <= 0) return;
 
-    const style = getComputedStyle(card);
+    const naturalWidth = Math.max(content.scrollWidth, content.getBoundingClientRect().width);
+    const naturalHeight = Math.max(content.scrollHeight, content.getBoundingClientRect().height);
+    if (!naturalWidth || !naturalHeight) return;
 
-    const availableWidth =
-      card.clientWidth -
-      parseFloat(style.paddingLeft) -
-      parseFloat(style.paddingRight);
-
-    const availableHeight =
-      card.clientHeight -
-      parseFloat(style.paddingTop) -
-      parseFloat(style.paddingBottom);
-
-    if (availableWidth <= 0 || availableHeight <= 0) return;
-
-    // Use natural content dimensions.
-    const contentWidth = content.scrollWidth;
-    const contentHeight = content.scrollHeight;
-
-    if (contentWidth <= 0 || contentHeight <= 0) return;
-
-    const scaleX = availableWidth / contentWidth;
-    const scaleY = availableHeight / contentHeight;
-
-    const scale = Math.min(1, scaleX, scaleY);
-
-    // Avoid scaling below the configured minimum.
-    const finalScale = Math.max(MIN_SCALE, scale);
-
-    content.style.transform = `scale(${finalScale})`;
+    // No minimum scale: a minimum would reintroduce clipping.
+    const scale = Math.min(1, width / naturalWidth, height / naturalHeight);
+    content.style.transform = scale >= 1 ? 'none' : `scale(${scale * 0.995})`;
   }
 
-  function prepareCard(card) {
-    if (card.classList.contains("auto-fit-card")) return;
+  function prepare(card) {
+    if (card.classList.contains('auto-fit-card')) return;
 
-    const content = document.createElement("div");
-    content.className = "auto-fit-content";
+    const wrapper = document.createElement('div');
+    wrapper.className = WRAPPER_CLASS;
+    while (card.firstChild) wrapper.appendChild(card.firstChild);
+    card.appendChild(wrapper);
+    card.classList.add('auto-fit-card');
 
-    while (card.firstChild) {
-      content.appendChild(card.firstChild);
-    }
-
-    card.appendChild(content);
-    card.classList.add("auto-fit-card");
-
-    // Recalculate when details open or close.
-    content.addEventListener("toggle", () => {
-      requestAnimationFrame(() => fitCard(card));
-    }, true);
-
-    fitCard(card);
-  }
-
-  function fitAllCards() {
-    document
-      .querySelectorAll(CARD_SELECTOR)
-      .forEach(prepareCard);
-
-    document
-      .querySelectorAll(CARD_SELECTOR)
-      .forEach(fitCard);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    fitAllCards();
-
-    window.addEventListener("resize", fitAllCards);
-
-    // Refit after fonts finish loading.
-    if (document.fonts) {
-      document.fonts.ready.then(fitAllCards);
-    }
-
-    // Refit after media finishes loading.
-    document.querySelectorAll(".project-card img").forEach(img => {
-      if (!img.complete) {
-        img.addEventListener("load", fitAllCards, {
-          once: true
-        });
-      }
+    // Recompute when the user opens a details element, or media loads.
+    wrapper.querySelectorAll('details').forEach(details => {
+      details.addEventListener('toggle', () => schedule(card));
     });
-  });
+    wrapper.querySelectorAll('img').forEach(img => {
+      if (!img.complete) img.addEventListener('load', () => schedule(card), {once: true});
+    });
+
+    if ('ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(() => schedule(card));
+      resizeObserver.observe(card);
+      resizeObserver.observe(wrapper);
+    }
+  }
+
+  function init() {
+    document.querySelectorAll(CARD_SELECTOR).forEach(prepare);
+    schedule();
+    window.addEventListener('resize', () => schedule(), {passive: true});
+    if (document.fonts) document.fonts.ready.then(() => schedule());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, {once: true});
+  } else {
+    init();
+  }
 })();
