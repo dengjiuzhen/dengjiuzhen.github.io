@@ -12,334 +12,423 @@
 
   <!-- Scoped to this project page; overrides alignment/width defaults from project.css. -->
   <style>
-    body.penguin-page { min-width: 0; overflow-x: hidden; }
 
-    .penguin-page .project-container,
-    .penguin-page .project-card,
-    .penguin-page .project-card * { box-sizing: border-box; }
+body.penguin-page { min-width: 0; overflow-x: hidden; }
+.penguin-page .project-container,
+.penguin-page .project-card,
+.penguin-page .project-card * { box-sizing: border-box; }
 
-    .penguin-page main.project-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      width: 100%;
-      max-width: none;
-      margin: 0 auto;
-      padding: 94px 20px 80px;
-      gap: clamp(26px, 5vw, 60px);
-      scroll-snap-type: none;
-    }
-
-    .penguin-page main.project-container > section.project-card {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      width: min(100%, 1100px);
-      max-width: 1100px;
-      height: auto;
-      min-height: 0;
-      max-height: none;
-      aspect-ratio: auto;
-      margin: 0 auto;
-      padding: clamp(24px, 4vw, 48px);
-      gap: 20px;
-      text-align: left;
-      overflow: visible;
-      scroll-snap-align: none;
-    }
-
-    /* The older project stylesheet centers some titles and caps content widths.
-       Reset those rules here so paragraphs always use the actual card width. */
-    .penguin-page main.project-container > .project-card > *,
-    .penguin-page .project-card .project-text > * {
-      min-width: 0;
-      max-width: 100%;
-      margin-left: 0;
-      margin-right: 0;
-      text-align: left;
-    }
-
-    .penguin-page .project-card h1.project-title,
-    .penguin-page .project-card h2.project-title {
-      display: block;
-      align-self: stretch;
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      font-size: clamp(27px, 3vw, 38px);
-      line-height: 1.25;
-      text-align: left;
-      white-space: normal;
-      word-break: normal;
-      overflow-wrap: break-word;
-    }
-
-    .penguin-page .project-card p,
-    .penguin-page .project-card figcaption,
-    .penguin-page .project-card h3,
-    .penguin-page .project-card summary {
-      text-align: left;
-      white-space: normal;
-      word-break: normal;
-      overflow-wrap: break-word;
-      hyphens: none;
-    }
-
-    .penguin-page .project-text,
-    .penguin-page .project-text.compact {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      margin: 0;
-      gap: 10px;
-      text-align: left;
-    }
-    .penguin-page .project-text h3 { margin: 10px 0 0; }
-    .penguin-page .project-text h3:first-child { margin-top: 0; }
-    .penguin-page .project-text p { margin: 0; }
-    .penguin-page .project-topbar { box-sizing: border-box; }
-    .penguin-page .project-center { margin-right: 0; }
-    .penguin-page .nav-inner { max-width: 900px; }
-
-    .penguin-page a:not(.button):not(.project-media) { color: var(--blue-accent, #9aa8ff); }
-    .penguin-page a:not(.button):not(.project-media):hover { color: #fff; }
-
-    .penguin-eyebrow {
-      margin: 0;
-      color: var(--blue-accent, #9aa8ff);
-      font-size: 12px;
-      letter-spacing: .17em;
-      line-height: 1.6;
-      text-transform: uppercase;
-    }
-    .penguin-page .project-card p.penguin-lead {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      font-size: clamp(16px, 1.55vw, 20px);
-      line-height: 1.7;
-      color: var(--text-dim, #aaa5bb);
-    }
-    .penguin-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
-    .penguin-meta span {
-      display: inline-block;
-      padding: 7px 12px;
-      border: 1px solid rgba(146,165,238,.32);
-      border-radius: 30px;
-      color: var(--text-dim, #aaa5bb);
-      font-size: 12px;
-      line-height: 1.45;
-    }
-    .penguin-hero-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-      align-items: start;
-      gap: clamp(22px, 3vw, 36px);
-      width: 100%;
-    }
-    .penguin-hero-layout > *,
-    .penguin-notes > *,
-    .penguin-visual-grid > *,
-    .penguin-models > *,
-    .penguin-debug-grid > * { min-width: 0; }
-    .penguin-video {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #05060a;
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 0 22px rgba(90,9,229,.22);
-    }
-    .penguin-video iframe { display: block; width: 100%; height: 100%; border: 0; }
-    .penguin-page .project-card p.penguin-small {
-      margin: 0;
-      color: var(--text-dim, #aaa5bb);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-    .penguin-page .project-card p.penguin-section-intro {
-      margin: 0;
-      width: 100%;
-      max-width: 100%;
-      color: var(--text-dim, #aaa5bb);
-      line-height: 1.65;
-    }
-    .penguin-act-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
-      width: 100%;
-    }
-    .penguin-act {
-      min-width: 0;
-      padding: 20px;
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-    }
-    .penguin-act .penguin-act-number {
-      margin: 0 0 9px;
-      color: var(--pink-accent, #e79beb);
-      font-size: 12px;
-      letter-spacing: .12em;
-    }
-    .penguin-act h3 { margin: 0 0 12px; font-size: 20px; color: var(--blue-accent, #9aa8ff); }
-    .penguin-act > p { margin: 0 0 16px; line-height: 1.65; }
-    .penguin-script { border-top: 1px solid rgba(255,255,255,.13); padding-top: 14px; }
-    .penguin-script summary { color: #fff; font-size: 13px; cursor: pointer; outline-offset: 5px; }
-    .penguin-script summary:hover { color: var(--blue-accent, #9aa8ff); }
-    .penguin-script p { margin: 14px 0 0; line-height: 1.7; font-size: 13px; color: var(--text-dim, #aaa5bb); }
-    .penguin-visual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; width: 100%; }
-    .penguin-figure { margin: 0; min-width: 0; }
-    .penguin-figure > a:has(img) {
-      display: block;
-      line-height: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(255,255,255,.09);
-    }
-    .penguin-figure img {
-      display: block;
-      width: 100%;
-      max-height: 390px;
-      object-fit: contain;
-      transition: transform .25s ease;
-    }
-    .penguin-figure > a:hover img { transform: scale(1.02); }
-    .penguin-figure figcaption {
-      margin-top: 9px;
-      color: var(--text-dim, #aaa5bb);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .penguin-label { display: block; color: #fff; font-weight: 600; margin-bottom: 3px; }
-    .penguin-subhead { margin: 6px 0 0; color: var(--blue-accent, #9aa8ff); font-size: clamp(18px, 1.8vw, 23px); }
-    .penguin-textures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; width: 100%; }
-    .penguin-textures .penguin-figure img { max-height: 190px; aspect-ratio: 1.4; }
-    .penguin-models { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; width: 100%; }
-    .penguin-models .penguin-figure img { height: 170px; object-fit: contain; }
-    .penguin-models figcaption { font-size: 12px; }
-    .penguin-gallery .penguin-figure img { aspect-ratio: 16 / 10; object-fit: contain; }
-    .penguin-notes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: start; width: 100%; }
-    .penguin-debug-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: 100%; }
-    .penguin-debug-video-wrap {
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      background: #05060a;
-    }
-    .penguin-debug-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #05060a; }
-    .penguin-video-message { display: none; margin: 0; padding: 10px 12px; font-size: 12px; line-height: 1.5; color: var(--text-dim, #aaa5bb); }
-    .penguin-video-message.is-visible { display: block; }
-    .penguin-credit {
-      border-top: 1px solid rgba(255,255,255,.12);
-      margin-top: 3px;
-      padding-top: 14px;
-      font-size: 12px;
-      color: var(--text-dim, #aaa5bb);
-      line-height: 1.7;
-    }
-    .penguin-credit p { margin: 0 0 5px; }
-
-    @media (max-width: 850px) {
-      .penguin-hero-layout, .penguin-notes { grid-template-columns: minmax(0, 1fr); }
-      .penguin-act-grid { grid-template-columns: minmax(0, 1fr); }
-      .penguin-models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 640px) {
-      .penguin-debug-grid { grid-template-columns: minmax(0, 1fr); }
-    }
-    @media (max-width: 560px) {
-      .penguin-page .nav-inner { overflow-x: auto; gap: 16px; white-space: nowrap; scrollbar-width: none; }
-      .penguin-page .nav-inner::-webkit-scrollbar { display: none; }
-      .penguin-page .project-topbar { padding: 8px 12px; grid-template-columns: 1fr auto; }
-      .penguin-page .project-back { justify-self: start; }
-      .penguin-page .project-center { justify-self: end; }
-      .penguin-page .project-topbar .button { font-size: 12px; padding: 8px 10px; }
-      .penguin-page .coin-ui { right: 10px; padding: 6px 10px; font-size: 12px; }
-      .penguin-page main.project-container { padding: 82px 12px 48px; }
-      .penguin-page main.project-container > section.project-card { width: 100%; padding: 22px 18px; }
-      .penguin-visual-grid, .penguin-textures { grid-template-columns: minmax(0, 1fr); }
-      .penguin-models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (prefers-reduced-motion: reduce) { .penguin-figure img { transition: none; } }
-
-    
-/* CARD 6: Reflection + Debugging layout */
-
-.penguin-page .penguin-notes {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: 36px;
-  align-items: start;
-}
-
-.penguin-page .penguin-debug-section {
-  min-width: 0;
+.penguin-page main.project-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  width: 100%; max-width: none;
+  margin: 0 auto;
+  padding: 94px 20px 80px;
+  gap: 60px;
+  scroll-snap-type: none;
 }
 
-.penguin-page .penguin-debug-section .penguin-subhead {
-  margin: 0;
+/* The external slide script fixes each card at 1100 × 711.76px.
+   These are layout/appearance rules, not responsive resizing rules. */
+.penguin-page main.project-container > section.project-card,
+.penguin-page .project-slide-stage > section.project-card {
+  justify-content: flex-start;
+  align-items: stretch;
+  text-align: left;
+  gap: 18px;
+}
+
+.penguin-page .project-card > *,
+.penguin-page .project-card .project-text > * {
+  min-width: 0;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   text-align: left;
 }
 
+.penguin-page .project-card h1.project-title,
+.penguin-page .project-card h2.project-title {
+  display: block;
+  align-self: stretch;
+  width: 100%; max-width: 100%;
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.25;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.penguin-page .project-card p,
+.penguin-page .project-card figcaption,
+.penguin-page .project-card h3 {
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+.penguin-page .project-text,
+.penguin-page .project-text.compact {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%; max-width: 100%; min-width: 0;
+  margin: 0;
+  gap: 9px;
+  text-align: left;
+}
+.penguin-page .project-text h3 { margin: 8px 0 0; font-size: 21px; }
+.penguin-page .project-text h3:first-child { margin-top: 0; }
+.penguin-page .project-text p { margin: 0; font-size: 16px; line-height: 1.6; }
+
+.penguin-page .project-topbar { box-sizing: border-box; }
+.penguin-page .project-center { margin-right: 0; }
+.penguin-page .nav-inner { max-width: 900px; }
+.penguin-page a:not(.button):not(.project-media) { color: var(--blue-accent, #9aa8ff); }
+.penguin-page a:not(.button):not(.project-media):hover { color: #fff; }
+
+/* CARD 1: INTRO / HERO */
+.penguin-eyebrow {
+  margin: 0; color: var(--blue-accent, #9aa8ff);
+  font-size: 12px; letter-spacing: .17em;
+  line-height: 1.6; text-transform: uppercase;
+}
+.penguin-page .project-card p.penguin-lead {
+  width: 100%; max-width: 100%; margin: 0;
+  font-size: 20px; line-height: 1.7;
+  color: var(--text-dim, #aaa5bb);
+}
+.penguin-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.penguin-meta span {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 1px solid rgba(146,165,238,.32);
+  border-radius: 30px;
+  color: var(--text-dim, #aaa5bb);
+  font-size: 12px; line-height: 1.45;
+}
+.penguin-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 30px; width: 100%;
+}
+.penguin-hero-layout > *,
+.penguin-visual-grid > *,
+.penguin-textures > *,
+.penguin-models > *,
+.penguin-notes > *,
+.penguin-debug-grid > * { min-width: 0; }
+.penguin-video {
+  width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 14px; overflow: hidden;
+  background: #05060a;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 0 22px rgba(90,9,229,.22);
+}
+.penguin-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+.penguin-page .project-card p.penguin-small {
+  margin: 0;
+  color: var(--text-dim, #aaa5bb);
+  font-size: 13px; line-height: 1.55;
+}
+.penguin-page .project-card p.penguin-section-intro {
+  width: 100%; max-width: 100%; margin: 0;
+  font-size: 16px; line-height: 1.6;
+  color: var(--text-dim, #aaa5bb);
+}
+
+/* Keep the longer prototype explanation readable and inside Card 1. */
+.penguin-page .project-card.project-intro .project-text { gap: 6px; }
+.penguin-page .project-card.project-intro .project-text h3 {
+  margin: 5px 0 0;
+  font-size: 20px;
+}
+.penguin-page .project-card.project-intro .project-text p {
+  font-size: 15px;
+  line-height: 1.52;
+}
+
+/* CARD 2: THREE ACTS — full scripts open in an accessible dialog. */
+.penguin-act-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px; align-items: stretch; width: 100%;
+}
+.penguin-act {
+  min-width: 0; padding: 18px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.penguin-act .penguin-act-number {
+  margin: 0 0 9px;
+  color: var(--pink-accent, #e79beb);
+  font-size: 12px; letter-spacing: .12em;
+}
+.penguin-act h3 {
+  margin: 0 0 12px; font-size: 20px;
+  color: var(--blue-accent, #9aa8ff);
+}
+.penguin-act > p:not(.penguin-act-number) { margin: 0 0 15px; line-height: 1.65; font-size: 16px; }
+.penguin-script-trigger {
+  margin-top: auto;
+  border: 0; border-top: 1px solid rgba(255,255,255,.14);
+  padding: 13px 0 0; background: transparent;
+  color: #fff; font: inherit; font-size: 13px;
+  cursor: pointer; text-align: left;
+}
+.penguin-script-trigger:hover, .penguin-script-trigger:focus-visible {
+  color: var(--blue-accent, #9aa8ff);
+}
+.penguin-script-trigger:focus-visible { outline: 2px solid #9aa8ff; outline-offset: 5px; }
+
+/* CARDS 3 AND 5: STORYBOARD + SCREENSHOTS */
+.penguin-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px; width: 100%;
+}
+.penguin-figure { margin: 0; min-width: 0; }
+.penguin-figure > a:has(img) {
+  display: block; line-height: 0;
+  border-radius: 12px; overflow: hidden;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.09);
+}
+.penguin-figure img {
+  display: block; width: 100%;
+  max-height: 375px; object-fit: contain;
+  transition: transform .25s ease;
+}
+.penguin-figure > a:hover img { transform: scale(1.02); }
+.penguin-figure figcaption {
+  margin-top: 8px;
+  color: var(--text-dim, #aaa5bb);
+  font-size: 13px; line-height: 1.45;
+}
+.penguin-label { display: block; color: #fff; font-weight: 600; margin-bottom: 3px; }
+.penguin-subhead {
+  margin: 0; color: var(--blue-accent, #9aa8ff);
+  font-size: 20px; line-height: 1.3;
+}
+.penguin-gallery .penguin-visual-grid { gap: 14px 20px; }
+.penguin-gallery .penguin-figure img {
+  width: 100%; height: 184px; max-height: 184px;
+  aspect-ratio: auto; object-fit: contain;
+}
+.penguin-gallery .penguin-figure figcaption { margin-top: 5px; }
+
+/* CARD 4: FIT TEXTURES, MODELS, AND CREDITS ON THE DESIGN ARTBOARD. */
+.penguin-assets-card { gap: 12px !important; }
+.penguin-assets-card .penguin-section-intro { font-size: 15px !important; line-height: 1.45 !important; }
+.penguin-textures {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px; width: 100%;
+}
+.penguin-textures .penguin-figure img {
+  display: block; width: 100%; height: 125px; max-height: 125px;
+  aspect-ratio: auto; object-fit: contain;
+}
+.penguin-models {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px; width: 100%;
+}
+.penguin-models .penguin-figure img {
+  display: block; width: 100%; height: 125px; max-height: 125px;
+  object-fit: contain;
+}
+.penguin-assets-card .penguin-figure figcaption { margin-top: 5px; font-size: 12px; line-height: 1.45; }
+.penguin-credit {
+  border-top: 1px solid rgba(255,255,255,.12);
+  margin-top: 0; padding-top: 9px;
+  font-size: 11px; line-height: 1.45;
+  color: var(--text-dim, #aaa5bb);
+}
+.penguin-credit p { margin: 0 0 4px; }
+
+/* CARD 6: REFLECTION + DEBUGGING */
+.penguin-page .penguin-notes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 32px; align-items: start; width: 100%;
+}
+.penguin-page .penguin-debug-section {
+  min-width: 0; display: flex; flex-direction: column; gap: 18px;
+}
+.penguin-page .penguin-debug-section .penguin-subhead { margin: 0; }
 .penguin-page .penguin-debug-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  align-items: start;
+  gap: 14px; align-items: start;
 }
-
-.penguin-page .penguin-debug-grid .penguin-figure {
-  margin: 0;
-  min-width: 0;
-}
-
 .penguin-page .penguin-debug-video-wrap {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border-radius: 12px;
+  width: 100%; aspect-ratio: 16 / 10;
+  overflow: hidden; border-radius: 12px;
   background: #05060a;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.penguin-page .penguin-debug-video {
+  display: block; width: 100%; height: 100%;
+  object-fit: contain; background: #05060a;
+}
+.penguin-video-message {
+  display: none; margin: 0; padding: 10px 12px;
+  font-size: 12px; line-height: 1.5;
+  color: var(--text-dim, #aaa5bb);
+}
+.penguin-video-message.is-visible { display: block; }
+.penguin-page .penguin-debug-grid figcaption { margin-top: 9px; line-height: 1.45; }
+
+/* SCRIPT DIALOG: outside the transformed 17:11 canvas.
+   Full scripts remain comfortable to read at any screen width. */
+.penguin-script-dialog {
+  box-sizing: border-box;
+  width: min(780px, calc(100vw - 32px));
+  max-height: min(85vh, 900px);
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid rgba(146,165,238,.45);
+  border-radius: 18px;
+  background: #151020;
+  color: #f2ecff;
+  box-shadow: 0 0 60px rgba(50,22,109,.55);
+  overflow-y: auto;
+}
+.penguin-script-dialog::backdrop { background: rgba(0,0,0,.78); backdrop-filter: blur(4px); }
+.penguin-dialog-bar { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; }
+.penguin-script-dialog h2 { font-size: clamp(23px, 3vw, 30px); margin: 0 0 20px; line-height: 1.3; }
+.penguin-script-dialog p { margin: 0; font-size: 16px; line-height: 1.85; color: #cbc4da; }
+.penguin-dialog-close {
+  flex: none; padding: 5px 11px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.24);
+  background: transparent; color: #fff; font-size: 22px;
+  cursor: pointer;
+}
+.penguin-dialog-close:hover, .penguin-dialog-close:focus-visible { border-color: #9aa8ff; }
+
+/* MOBILE: only the navigation and dialog reflow.
+   All cards remain a 1100px artboard uniformly scaled by JS. */
+@media (max-width: 560px) {
+  .penguin-page .nav-inner {
+    overflow-x: auto; gap: 16px;
+    white-space: nowrap; scrollbar-width: none;
+  }
+  .penguin-page .nav-inner::-webkit-scrollbar { display: none; }
+  .penguin-page .project-topbar {
+    padding: 8px 12px; grid-template-columns: 1fr auto;
+  }
+  .penguin-page .project-back { justify-self: start; }
+  .penguin-page .project-center { justify-self: end; }
+  .penguin-page .project-topbar .button { font-size: 12px; padding: 8px 10px; }
+  .penguin-page .coin-ui { right: 10px; padding: 6px 10px; font-size: 12px; }
+  .penguin-page main.project-container { padding: 82px 12px 48px; gap: 28px; }
 }
 
-.penguin-page .penguin-debug-video {
-  display: block;
+@media (prefers-reduced-motion: reduce) {
+  .penguin-figure img { transition: none; }
+}
+
+/* =====================================================
+   FINAL 17:11 ARTBOARD POLISH
+   Share Garden's visual principle: arrange content inside
+   the 1100px canvas; then scale the entire card as one unit.
+   Nothing below is a responsive reflow or text auto-fit.
+===================================================== */
+
+/* Three acts occupy the available canvas height rather than
+   clustering at the top. Full scripts still open outside the slide. */
+.penguin-page .project-slide-stage > .penguin-narrative-card .penguin-act-grid {
+  flex: 1 1 0;
+  min-height: 0;
+  align-items: center;
+  gap: 18px;
+}
+.penguin-page .project-slide-stage > .penguin-narrative-card .penguin-act {
+  height: 380px;
+  justify-content: flex-start;
+  padding: 22px;
+}
+.penguin-page .project-slide-stage > .penguin-narrative-card .penguin-act > p:not(.penguin-act-number) {
+  line-height: 1.7;
+}
+
+/* Storyboard imagery is centered in the space below the heading.
+   Preserve the images' entire contents (no cropping). */
+.penguin-page .project-slide-stage > .penguin-story-card .penguin-visual-grid {
+  flex: 1 1 0;
+  min-height: 0;
+  align-items: center;
+  gap: 24px;
+}
+.penguin-page .project-slide-stage > .penguin-story-card .penguin-figure img {
   width: 100%;
-  height: 100%;
+  height: 382px;
+  max-height: 382px;
   object-fit: contain;
 }
 
-.penguin-page .penguin-debug-grid figcaption {
-  margin-top: 10px;
-  line-height: 1.6;
+/* Reflection card: fill the height with two balanced columns.
+   Put video + caption next to each other on two rows rather
+   than squeezing both videos into the upper-right corner. */
+.penguin-page .project-slide-stage > .penguin-reflection-card .penguin-notes {
+  flex: 1 1 0;
+  min-height: 0;
+  align-items: center;
+  column-gap: 40px;
 }
-
-/* Responsive layout */
-@media (max-width: 900px) {
-  .penguin-page .penguin-notes {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+.penguin-page .project-slide-stage > .penguin-reflection-card .project-text.compact {
+  padding: 22px 8px 22px 0;
+  gap: 13px;
 }
-
-@media (max-width: 560px) {
-  .penguin-page .penguin-debug-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+.penguin-page .project-slide-stage > .penguin-reflection-card .project-text.compact h3:not(:first-child) {
+  margin-top: 13px;
+}
+.penguin-page .project-slide-stage > .penguin-reflection-card .project-text.compact p {
+  font-size: 17px;
+  line-height: 1.67;
+}
+.penguin-page .project-slide-stage > .penguin-reflection-card .project-text.compact p.penguin-small {
+  color: var(--text-dim, #aaa5bb);
+  font-size: 14px;
+  line-height: 1.65;
+  padding-top: 13px;
+  margin-top: 7px;
+  border-top: 1px solid rgba(255,255,255,.13);
+}
+.penguin-page .project-slide-stage > .penguin-reflection-card .penguin-debug-section {
+  width: 100%;
+  gap: 20px;
+}
+.penguin-page .penguin-debug-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.penguin-page .penguin-debug-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, .85fr);
+  gap: 15px;
+  align-items: center;
+  min-width: 0;
+}
+.penguin-page .penguin-debug-item .penguin-debug-video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-width: 0;
+}
+.penguin-page .penguin-debug-item figcaption {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.penguin-page .penguin-debug-item .penguin-label {
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 
   </style>
@@ -374,7 +463,7 @@
   <main class="project-container">
 
     <!-- CARD 1: OUTCOME FIRST -->
-    <section class="project-card" aria-labelledby="penguin-title">
+    <section class="project-card project-intro" aria-labelledby="penguin-title">
       <p class="penguin-eyebrow">Immersive Narrative / VR Prototype / 2026</p>
       <h1 class="project-title" id="penguin-title">A Penguin’s Return</h1>
       <div class="penguin-meta">
@@ -393,7 +482,7 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
           </div>
-          <p class="penguin-small" style="margin-top:10px;"> VR project Final Scene demonstration · <a href="https://www.youtube.com/watch?v=h9qJ9vRjXq0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+          <p class="penguin-small" style="margin-top:10px;"> Final VR scene demonstration · <a href="https://www.youtube.com/watch?v=h9qJ9vRjXq0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
         </div>
         <div class="project-text compact">
           <h3>Project Concept</h3>
@@ -407,42 +496,33 @@
     </section>
 
     <!-- CARD 2: NARRATIVE -->
-    <section class="project-card" aria-labelledby="narrative-title">
+    <section class="project-card penguin-narrative-card" aria-labelledby="narrative-title">
       <h2 class="project-title" id="narrative-title">Narrative Design — Three Acts</h2>
-      <p class="penguin-section-intro">The intended story moves between patient care, fast-paced danger, and a difficult return. Open any act to read the original script.</p>
+      <p class="penguin-section-intro">The intended story moves between patient care, fast-paced danger, and a difficult return. Select an act to read its original script in full.</p>
       <div class="penguin-act-grid">
         <article class="penguin-act">
           <p class="penguin-act-number">ACT I</p>
           <h3>Endurance</h3>
           <p>Pen shelters the egg through the Antarctic winter, waits for Guin to hatch, and transfers the chick to Penko when she returns.</p>
-          <details class="penguin-script">
-            <summary>Read full script</summary>
-            <p>Pen, an emperor penguin, stands on a vast sheet of Antarctic ice as winter begins to settle in. His partner, Penko, has just laid their egg. Carefully, she shifts it toward him. The transfer is fragile—one small mistake could mean losing it to the cold. The egg wobbles between them, and for a moment, everything feels suspended. Pen steadies it on his feet and draws it safely into his brood pouch. Penko lingers only briefly before turning toward the distant ocean. Pen remains behind with the other males. Through weeks of darkness and storm, he endures. The wind howls, and the snow erases the horizon. The penguins huddle tightly together, conserving warmth as their bodies weaken from hunger. Then one day, a faint crack breaks the silence. The egg begins to hatch. A small, silver-gray chick emerges. Pen lowers his head gently. He names him Guin. Not long after, the females return from the sea. Guided by familiar calls, Pen and Penko find each other again. With care, he transfers Guin to her. His long vigil is over. At last, it is his turn to leave.</p>
-          </details>
+          <button class="penguin-script-trigger" type="button" data-act="1">Read full script ↗</button>
         </article>
         <article class="penguin-act">
           <p class="penguin-act-number">ACT II · GAMEFUL SEQUENCE</p>
           <h3>Survival</h3>
           <p>Pen dives for fish and is pursued by a leopard seal. What begins as rhythmic movement becomes a struggle to reach the ice.</p>
-          <details class="penguin-script">
-            <summary>Read full script</summary>
-            <p>At the ocean’s edge, Pen dives beneath the surface. The world transforms into motion and light. Schools of fish flicker through the water, and he moves with instinctive precision—diving, chasing, catching. For a moment, there is rhythm again. Then the current shifts. A shadow cuts through the water—a leopard seal. The calm shatters. Pen surges forward, pushing himself toward the surface. He breaks through the water and leaps toward the ice, but his footing slips. Behind him, the seal lunges, closing the distance in an instant. For a split second, everything hangs in balance. Then Pen scrambles upward, claws scraping against the ice. With one final effort, he pulls himself free. The seal snaps just below him, missing by inches. He survives.</p>
-          </details>
+          <button class="penguin-script-trigger" type="button" data-act="2">Read full script ↗</button>
         </article>
         <article class="penguin-act">
           <p class="penguin-act-number">ACT III</p>
           <h3>Return</h3>
           <p>After surviving the ocean, Pen crosses a storm and follows familiar calls back to Penko, Guin, and the colony.</p>
-          <details class="penguin-script">
-            <summary>Read full script</summary>
-            <p>But survival does not end at the water’s edge. As Pen journeys back inland, a storm rises, swallowing the landscape in white. Alone, he presses forward through the wind and cold, guided only by instinct and memory. Gradually, shapes begin to emerge through the snow—familiar forms, distant calls. The colony. Penko. Guin. He finds them at last. This time, Pen takes his place beside them again, feeding Guin and sharing in the quiet, hard-won warmth of reunion. Around them, the colony endures as it always has—through loss, through distance, through return. And within that cycle, Pen continues—no longer alone.</p>
-          </details>
+          <button class="penguin-script-trigger" type="button" data-act="3">Read full script ↗</button>
         </article>
       </div>
     </section>
 
     <!-- CARD 3: VISUAL DEVELOPMENT -->
-    <section class="project-card" aria-labelledby="visual-title">
+    <section class="project-card penguin-story-card" aria-labelledby="visual-title">
       <h2 class="project-title" id="visual-title">Storyboarding &amp; Environment</h2>
       <p class="penguin-section-intro">The storyboard establishes the narrative sequence. The background study explores the Antarctic setting before the VR scene is assembled.</p>
       <div class="penguin-visual-grid">
@@ -462,7 +542,7 @@
     </section>
 
     <!-- CARD 4: MATERIALS AND ASSETS -->
-    <section class="project-card" aria-labelledby="assets-title">
+    <section class="project-card penguin-assets-card" aria-labelledby="assets-title">
       <h2 class="project-title" id="assets-title">Building the 3D World</h2>
       <p class="penguin-section-intro">Texture studies and third-party 3D models helped establish the visual vocabulary for ice, water, snow, penguins, fish, and the seal.</p>
 
@@ -533,7 +613,7 @@
 
 
 <!-- CARD 6: REFLECTION AND DEVELOPMENT VIDEOS -->
-<section class="project-card" aria-labelledby="reflection-title">
+<section class="project-card penguin-reflection-card" aria-labelledby="reflection-title">
   <h2 class="project-title" id="reflection-title">
     Iteration, Bugs &amp; Lessons
   </h2>
@@ -556,10 +636,9 @@
     <!-- RIGHT: Debugging videos -->
     <div class="penguin-debug-section">
       <h3 class="penguin-subhead">Debugging in Motion</h3>
+      <div class="penguin-debug-stack">
 
-      <div class="penguin-debug-grid">
-
-        <figure class="penguin-figure">
+        <figure class="penguin-figure penguin-debug-item">
           <div class="penguin-debug-video-wrap">
             <video class="penguin-debug-video"
                    autoplay muted loop playsinline
@@ -569,17 +648,12 @@
               <source src="../assets/Penguin_Reunion_Debug_1.mov" type="video/quicktime">
               Your browser does not support HTML5 video.
             </video>
-            <p class="penguin-video-message" role="status">
-              This video could not play in your browser.
-            </p>
+            <p class="penguin-video-message" role="status">This video could not play in your browser.</p>
           </div>
-          <figcaption>
-            <span class="penguin-label">Debug 01</span>
-            Super snowy land.
-          </figcaption>
+          <figcaption><span class="penguin-label">Debug 01</span>Super snowy land.</figcaption>
         </figure>
 
-        <figure class="penguin-figure">
+        <figure class="penguin-figure penguin-debug-item">
           <div class="penguin-debug-video-wrap">
             <video class="penguin-debug-video"
                    autoplay muted loop playsinline
@@ -589,24 +663,31 @@
               <source src="../assets/Penguin_Reunion_Debug_2.mov" type="video/quicktime">
               Your browser does not support HTML5 video.
             </video>
-            <p class="penguin-video-message" role="status">
-              This video could not play in your browser.
-            </p>
+            <p class="penguin-video-message" role="status">This video could not play in your browser.</p>
           </div>
-          <figcaption>
-            <span class="penguin-label">Debug 02</span>
-            Penguin freefall.
-          </figcaption>
+          <figcaption><span class="penguin-label">Debug 02</span>Penguin freefall.</figcaption>
         </figure>
 
       </div>
     </div>
-
   </div>
 </section>
 
 
   </main>
+
+  <!-- FULL NARRATIVE SCRIPTS — outside the scaled slides -->
+  <dialog class="penguin-script-dialog" id="penguin-script-dialog" aria-labelledby="penguin-dialog-title">
+    <div class="penguin-dialog-bar">
+      <h2 id="penguin-dialog-title">Narrative Script</h2>
+      <button type="button" class="penguin-dialog-close" aria-label="Close script">×</button>
+    </div>
+    <p id="penguin-dialog-text"></p>
+  </dialog>
+  <template id="penguin-script-act-1" data-title="ACT I — Endurance"><p>Pen, an emperor penguin, stands on a vast sheet of Antarctic ice as winter begins to settle in. His partner, Penko, has just laid their egg. Carefully, she shifts it toward him. The transfer is fragile—one small mistake could mean losing it to the cold. The egg wobbles between them, and for a moment, everything feels suspended. Pen steadies it on his feet and draws it safely into his brood pouch. Penko lingers only briefly before turning toward the distant ocean. Pen remains behind with the other males. Through weeks of darkness and storm, he endures. The wind howls, and the snow erases the horizon. The penguins huddle tightly together, conserving warmth as their bodies weaken from hunger. Then one day, a faint crack breaks the silence. The egg begins to hatch. A small, silver-gray chick emerges. Pen lowers his head gently. He names him Guin. Not long after, the females return from the sea. Guided by familiar calls, Pen and Penko find each other again. With care, he transfers Guin to her. His long vigil is over. At last, it is his turn to leave.</p></template>
+  <template id="penguin-script-act-2" data-title="ACT II — Survival"><p>At the ocean’s edge, Pen dives beneath the surface. The world transforms into motion and light. Schools of fish flicker through the water, and he moves with instinctive precision—diving, chasing, catching. For a moment, there is rhythm again. Then the current shifts. A shadow cuts through the water—a leopard seal. The calm shatters. Pen surges forward, pushing himself toward the surface. He breaks through the water and leaps toward the ice, but his footing slips. Behind him, the seal lunges, closing the distance in an instant. For a split second, everything hangs in balance. Then Pen scrambles upward, claws scraping against the ice. With one final effort, he pulls himself free. The seal snaps just below him, missing by inches. He survives.</p></template>
+  <template id="penguin-script-act-3" data-title="ACT III — Return"><p>But survival does not end at the water’s edge. As Pen journeys back inland, a storm rises, swallowing the landscape in white. Alone, he presses forward through the wind and cold, guided only by instinct and memory. Gradually, shapes begin to emerge through the snow—familiar forms, distant calls. The colony. Penko. Guin. He finds them at last. This time, Pen takes his place beside them again, feeding Guin and sharing in the quiet, hard-won warmth of reunion. Around them, the colony endures as it always has—through loss, through distance, through return. And within that cycle, Pen continues—no longer alone.</p></template>
+
   <script>
     (function () {
       const videos = Array.from(document.querySelectorAll('.penguin-debug-video'));
@@ -648,7 +729,40 @@
       });
     }());
   </script>
+
+  <script>
+    // Full narrative scripts use an unscaled dialog rather than
+    // expanding and clipping inside the fixed 17:11 slide.
+    (() => {
+      const dialog = document.getElementById('penguin-script-dialog');
+      const title = document.getElementById('penguin-dialog-title');
+      const text = document.getElementById('penguin-dialog-text');
+      const close = dialog.querySelector('.penguin-dialog-close');
+      let opener = null;
+
+      document.querySelectorAll('.penguin-script-trigger').forEach(button => {
+        button.addEventListener('click', () => {
+          const source = document.getElementById('penguin-script-act-' + button.dataset.act);
+          if (!source) return;
+          opener = button;
+          title.textContent = source.dataset.title;
+          text.textContent = source.content.querySelector('p').textContent;
+          dialog.showModal();
+          dialog.scrollTop = 0;
+          close.focus();
+        });
+      });
+
+      close.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('close', () => {
+        if (opener && opener.isConnected) opener.focus();
+      });
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+      });
+    })();
+  </script>
   <script src="../js/main.js"></script>
-  <script src="../js/project-autofit.js"></script>
+  <script src="../js/project-slide-scale.js"></script>
 </body>
 </html>
