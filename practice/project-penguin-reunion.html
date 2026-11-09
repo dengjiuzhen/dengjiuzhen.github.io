@@ -271,6 +271,77 @@
       .penguin-models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (prefers-reduced-motion: reduce) { .penguin-figure img { transition: none; } }
+
+    
+/* CARD 6: Reflection + Debugging layout */
+
+.penguin-page .penguin-notes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.penguin-page .penguin-debug-section {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.penguin-page .penguin-debug-section .penguin-subhead {
+  margin: 0;
+  text-align: left;
+}
+
+.penguin-page .penguin-debug-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.penguin-page .penguin-debug-grid .penguin-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.penguin-page .penguin-debug-video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #05060a;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.penguin-page .penguin-debug-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.penguin-page .penguin-debug-grid figcaption {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .penguin-page .penguin-notes {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .penguin-page .penguin-debug-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
   </style>
 </head>
 
@@ -460,47 +531,80 @@
       </div>
     </section>
 
-    <!-- CARD 6: REFLECTION AND TWO AUTOPLAYING DEVELOPMENT VIDEOS -->
-    <section class="project-card" aria-labelledby="reflection-title">
-      <h2 class="project-title" id="reflection-title">Iteration, Bugs &amp; Lessons</h2>
-      <div class="penguin-notes">
-        <div class="project-text compact">
-          <h3>What Worked</h3>
-          <p>I got a VR scene for ACT II working, and I'm happy with how the environment turned out.</p>
-          <h3>What the Prototype Shows</h3>
-          <p>Beyond the initial narrative plan, this project became an exercise in bringing a 3D world into VR and navigating the practical limits of physics, interaction, and performance.</p>
-          <p class="penguin-small">The demo at the beginning shows the outcome of this iteration; it should not be read as a fully implemented version of all three planned acts.</p>
-        </div>
-        
+
+<!-- CARD 6: REFLECTION AND DEVELOPMENT VIDEOS -->
+<section class="project-card" aria-labelledby="reflection-title">
+  <h2 class="project-title" id="reflection-title">
+    Iteration, Bugs &amp; Lessons
+  </h2>
+
+  <div class="penguin-notes">
+
+    <!-- LEFT: Reflection -->
+    <div class="project-text compact">
+      <h3>What Worked</h3>
+      <p>I got a VR scene for ACT II working, and I'm happy with how the environment turned out.</p>
+
+      <h3>What the Prototype Shows</h3>
+      <p>Beyond the initial narrative plan, this project became an exercise in bringing a 3D world into VR and navigating the practical limits of physics, interaction, and performance.</p>
+
+      <p class="penguin-small">
+        The demo at the beginning shows the outcome of this iteration; it should not be read as a fully implemented version of all three planned acts.
+      </p>
+    </div>
+
+    <!-- RIGHT: Debugging videos -->
+    <div class="penguin-debug-section">
+      <h3 class="penguin-subhead">Debugging in Motion</h3>
+
       <div class="penguin-debug-grid">
-        <h3 class="penguin-subhead">Debugging in Motion</h3>
-       <figure class="penguin-figure">
+
+        <figure class="penguin-figure">
           <div class="penguin-debug-video-wrap">
-            <video class="penguin-debug-video" autoplay muted loop playsinline webkit-playsinline controls preload="metadata"
+            <video class="penguin-debug-video"
+                   autoplay muted loop playsinline
+                   webkit-playsinline controls preload="metadata"
                    aria-label="Debug video 1: super snowy land">
               <source src="../assets/Penguin_Reunion_Debug_1.mp4" type="video/mp4">
               <source src="../assets/Penguin_Reunion_Debug_1.mov" type="video/quicktime">
-              Your browser does not support the HTML5 video element.
+              Your browser does not support HTML5 video.
             </video>
-            <p class="penguin-video-message" role="status">This video could not play in your browser. Please upload an H.264 MP4 version of Penguin_Reunion_Debug_1.</p>
+            <p class="penguin-video-message" role="status">
+              This video could not play in your browser.
+            </p>
           </div>
-          <figcaption><span class="penguin-label">Debug 01</span>Super snowy land.</figcaption>
+          <figcaption>
+            <span class="penguin-label">Debug 01</span>
+            Super snowy land.
+          </figcaption>
         </figure>
+
         <figure class="penguin-figure">
           <div class="penguin-debug-video-wrap">
-            <video class="penguin-debug-video" autoplay muted loop playsinline webkit-playsinline controls preload="metadata"
+            <video class="penguin-debug-video"
+                   autoplay muted loop playsinline
+                   webkit-playsinline controls preload="metadata"
                    aria-label="Debug video 2: penguin freefall">
               <source src="../assets/Penguin_Reunion_Debug_2.mp4" type="video/mp4">
               <source src="../assets/Penguin_Reunion_Debug_2.mov" type="video/quicktime">
-              Your browser does not support the HTML5 video element.
+              Your browser does not support HTML5 video.
             </video>
-            <p class="penguin-video-message" role="status">This video could not play in your browser. Please upload an H.264 MP4 version of Penguin_Reunion_Debug_2.</p>
+            <p class="penguin-video-message" role="status">
+              This video could not play in your browser.
+            </p>
           </div>
-          <figcaption><span class="penguin-label">Debug 02</span>Penguin freefall.</figcaption>
+          <figcaption>
+            <span class="penguin-label">Debug 02</span>
+            Penguin freefall.
+          </figcaption>
         </figure>
-      </div>  
+
       </div>
-    </section>
+    </div>
+
+  </div>
+</section>
+
 
   </main>
   <script>
