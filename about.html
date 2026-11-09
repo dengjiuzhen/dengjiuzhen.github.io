@@ -1,60 +1,268 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>About</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Jiuzhen (Sise) Deng: researcher and interaction designer working across participatory media, ACGN culture, and social connection.">
+  <title>About | Jiuzhen Deng</title>
+
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- About-page layout only -->
+  <style>
+    .about-page .about-container,
+    .about-page .about-container * {
+      box-sizing: border-box;
+    }
+
+    .about-page main.about-container {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 28px;
+      width: min(1100px, calc(100% - 40px));
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: calc(var(--nav-height, 72px) + 58px) 0 90px;
+    }
+
+    /* Page title */
+    .about-page .about-heading {
+      margin: 0;
+      text-align: left;
+    }
+
+    .about-page .about-eyebrow {
+      margin: 0 0 11px;
+      color: var(--blue-accent, #92a5ee);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.17em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    .about-page .about-heading h1 {
+      margin: 0;
+      color: var(--text-main, #f5f1ff);
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: left;
+    }
+
+    /* Portrait + biography */
+    .about-page .about-intro {
+      display: grid;
+      grid-template-columns: minmax(240px, 315px) minmax(0, 1fr);
+      gap: clamp(28px, 4vw, 52px);
+      align-items: center;
+      padding: clamp(24px, 3.5vw, 44px);
+      background: var(--bg-soft, #100d19);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 22px;
+    }
+
+    .about-page .about-images {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+    }
+
+    .about-page .about-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 25%;
+      border: 1px solid rgba(146,165,238,0.25);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+    }
+
+    .about-page .about-bio.about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .about-page .about-bio p {
+      margin: 0;
+      color: var(--text-dim, #c4bfcd);
+      font-size: clamp(15px, 1.25vw, 17px);
+      font-weight: 400;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .about-page .about-bio p:first-child {
+      color: var(--text-main, #eee9f8);
+      font-size: clamp(17px, 1.45vw, 19px);
+      line-height: 1.7;
+    }
+
+    /* CV panel */
+    .about-page .cv-section.about-text {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 26px clamp(24px, 3.5vw, 44px);
+      background: var(--bg-soft, #100d19);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      text-align: left;
+    }
+
+    .about-page .cv-section h2 {
+      margin: 0 0 6px;
+      color: var(--text-main, #f5f1ff);
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .about-page .cv-section p {
+      margin: 0;
+      color: var(--text-dim, #aaa5bb);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .about-page .cv-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      gap: 10px;
+      padding: 12px 22px;
+      border: 1px solid var(--purple-main, #5a09e5);
+      border-radius: 999px;
+      background: rgba(90,9,229,0.12);
+      color: var(--text-main, #f5f1ff);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .about-page .cv-link:hover,
+    .about-page .cv-link:focus-visible {
+      background: rgba(90,9,229,0.25);
+      border-color: var(--blue-accent, #92a5ee);
+      box-shadow: 0 0 18px rgba(90,9,229,0.25);
+      color: #fff;
+    }
+
+    @media (max-width: 850px) {
+      .about-page .about-intro {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+      }
+
+      .about-page .about-images {
+        width: min(100%, 330px);
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .about-page main.about-container {
+        width: calc(100% - 24px);
+        padding-top: calc(var(--nav-height, 72px) + 52px);
+        padding-bottom: 48px;
+        gap: 18px;
+      }
+
+      .about-page .about-intro {
+        gap: 24px;
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .about-page .about-bio.about-text { gap: 16px; }
+      .about-page .about-bio p { font-size: 15px; line-height: 1.75; }
+      .about-page .about-bio p:first-child { font-size: 16px; }
+
+      .about-page .cv-section.about-text {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 22px 18px;
+      }
+
+      .about-page .cv-link { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-page .cv-link { transition: none; }
+    }
+  </style>
 </head>
 
-<body>
+<body class="about-page">
+  <!-- Global navigation -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="lobby.html">Lobby</a>
+      <a href="studio.html">Studio</a>
+      <a href="library.html">Library</a>
+      <a href="collection.html">Collection</a>
+      <a href="cafe.html">Café</a>
+      <a href="about.html" aria-current="page">About</a>
+    </div>
+  </nav>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="lobby.html">Lobby</a>
-    <a href="studio.html">Studio</a>
-    <a href="library.html">Library</a>
-    <a href="collection.html">Collection</a>
-    <a href="cafe.html">Café</a>
-    <a href="about.html">About</a>
-  </div>
-</nav>
-
-<div class="coin-ui">
-  ⏱ <span id="time">0.00</span> ⬤
-</div>
-
-<div class="about-container">
-
-<h1>About Me</h1>
-
-<!-- IMAGE SECTION -->
-<div class="about-images">
-    <img src="assets/headshot.jpg" class="about-img">
-</div>
-
-<!-- TEXT -->
-<div class="about-text">
-  <p>Jiuzhen (Sise) Deng is a researcher and interaction designer working at the intersection of ACG (Anime, Comics, and Games) media ecology and embodied gameful interaction 👾.</p>
-
-  <p>Her work examines how gamification, multisensory design, and participatory media shape affective experience and collective perception. She develops interactive installations and experimental media that engage audiences through physical interaction and shared participation 🎮.</p>
-
-  <p>Her research interests include ACG media ecology, media convergence, embodied play, and experience design, with a focus on how cultural narratives circulate across platforms 💭.</p>
-
-  <p>She pursues continuous growth with determination ❤️‍🔥.</p>
-
-</div>
-
-<!-- CV SECTION -->
-<div class="about-text cv-section">
-    <h2>CV</h2>
-    <p>2026 Spring Update</p>
-
-    <a href="assets/Jiuzhen_Deng_CV.pdf" target="_blank" class="cv-link">
-      View / Download CV 📄
-    </a>
+  <!-- Existing timer / coin UI -->
+  <div class="coin-ui">
+    ⏱ <span id="time">0.00</span> ⬤
   </div>
 
-</div>
+  <main class="about-container">
+    <header class="about-heading">
+      <p class="about-eyebrow">Research / Interaction Design / Participatory Media</p>
+      <h1>About Me</h1>
+    </header>
 
-<script src="js/main.js"></script>
+    <section class="about-intro" aria-label="Biography">
+      <div class="about-images">
+        <img src="assets/headshot.jpg" alt="Portrait of Jiuzhen Deng" class="about-img">
+      </div>
+
+      <div class="about-text about-bio">
+        <p>Jiuzhen (Sise) Deng is a researcher and interaction designer working at the intersection of gameful and participatory media, ACGN (anime, comics, games, and novels) culture, and social connection 👾.</p>
+
+        <p>Her work examines how interactive narratives, embodied play, and multisensory design shape affective experiences and foster collective participation and a sense of belonging. Through research and creative practice, she develops interactive installations and experimental media that invite audiences to engage with narratives and environments through participation rather than observation alone 🎮.</p>
+
+        <p>Her research interests include gameful interaction, character engagement, participatory fandom cultures, and AI-mediated co-creation. She is particularly interested in how characters and cultural narratives circulate across media platforms and into everyday life, how shared interests foster community and informal learning, and how emerging technologies reshape the relationships between media, creators, and audiences 💭.</p>
+
+        <p>She continues to explore these questions through theoretical inquiry, creative experimentation, and research-through-design, always eager to learn and grow across disciplines ❤️‍🔥.</p>
+      </div>
+    </section>
+
+    <section class="about-text cv-section" aria-labelledby="cv-heading">
+      <div>
+        <h2 id="cv-heading">Curriculum Vitae</h2>
+        <p>Updated Fall 2026</p>
+      </div>
+      <a href="assets/Jiuzhen_Deng_CV.pdf" target="_blank" rel="noopener noreferrer" class="cv-link">
+        View / Download CV <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
