@@ -1,107 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title><!-- ⚠️ Change page title --> Paper Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- ⚠️ CHANGE: page title, description, year -->
+  <title>Paper Title | Jiuzhen Deng</title>
+  <meta name="description" content="Research paper by Jiuzhen Deng on [research subject].">
+
+  <!-- Shared site styles; paper.css contains the fixed 17:11 artboard. -->
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/paper.css">
 </head>
 
 <body>
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="../lobby.html">Lobby</a>
-    <a href="../studio.html">Studio</a>
-    <a href="../library.html">Library</a>
-    <a href="../collection.html">Collection</a>
-    <a href="../cafe.html">Café</a>
-    <a href="../about.html">About</a>
-  </div>
-</nav>
-
-<!-- TOP BAR -->
-<div class="paper-topbar">
-
-  <div class="paper-back">
-    <button class="button" onclick="goBack()">
-      ← Library
-    </button>
-  </div>
-
-  <div class="paper-center">
-    <button class="button button-badge" onclick="collectBadge('paper-id')">
-      <!-- ⚠️ change paper-id -->
-      Collect Badge ✦
-    </button>
-  </div>
-
-</div>
-
-<!-- COIN -->
-<div class="coin-ui">
-  ⏱ <span id="time">0.00</span> ⬤
-</div>
-
-<main class="paper-container">
-
-  <section class="paper-card">
-
-    <div class="paper-title">
-      <!-- ⚠️ Change visible title -->
-      Paper Title — Subtitle
+  <!-- GLOBAL NAVIGATION -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../lobby.html">Lobby</a>
+      <a href="../studio.html">Studio</a>
+      <a href="../library.html">Library</a>
+      <a href="../collection.html">Collection</a>
+      <a href="../cafe.html">Café</a>
+      <a href="../about.html">About</a>
     </div>
+  </nav>
 
-    <div class="paper-content">
+  <!-- TOP BAR -->
+  <div class="paper-topbar">
+    <div class="paper-back">
+      <a class="button" href="../library.html">← Library</a>
+    </div>
+    <div class="paper-center">
+      <!-- ⚠️ CHANGE: replace paper-id with ID in collection.js -->
+      <button class="button button-badge" type="button"
+              onclick="collectBadge('paper-id')">Collect Badge ✦</button>
+    </div>
+  </div>
 
-      <div class="paper-text">
+  <!-- TIME / COINS -->
+  <div class="coin-ui">⏱ <span id="time">0.00</span> ⬤</div>
 
-        <h3>Abstract</h3>
-        <p>
-          <!-- ⚠️ Replace abstract -->
-          Your abstract goes here.
-        </p>
+  <main class="paper-container">
+    <!-- =====================================================
+         PAPER CARD — ONE 17:11 LANDSCAPE ARTBOARD
 
-        <h3>Keywords</h3>
-        <ul>
-          <!-- ⚠️ Replace keywords -->
-          <li>keyword 1</li>
-          <li>keyword 2</li>
-          <li>keyword 3</li>
-        </ul>
+         The HTML order matters for the optional summary grid:
+           Abstract heading → paragraph
+           Keywords heading → list
+           Publication heading → direct paper-link anchor
 
-        <h3>Publication</h3>
+         Do not manually add .project-slide-stage: the script
+         will create and scale that wrapper automatically.
+    ===================================================== -->
+    <section class="paper-card" aria-labelledby="paper-title">
 
-        <a href="<!-- ⚠️ DOI or link -->" 
-           class="paper-link" 
-           target="_blank">
+      <!-- OPTIONAL: uncomment if there is enough space
+      <p class="paper-eyebrow">Research Publication / 2026</p>
+      -->
 
-          <!-- ⚠️ Full citation -->
-          Author. “Title.” Journal info.
+      <!-- ⚠️ CHANGE: official paper title -->
+      <h1 class="paper-title" id="paper-title">
+        Paper Title: Subtitle
+      </h1>
 
-        </a>
+      <div class="paper-content">
+        <div class="paper-text">
+          <h3>Abstract</h3>
+          <p>
+            <!-- ⚠️ REPLACE WITH YOUR ACTUAL ABSTRACT, WITHOUT CHANGING ITS MEANING.
+                 Long abstracts are automatically laid out in two columns
+                 when the Keywords and Publication sections below are present.
+                 If unusually long, use an additional Card rather than
+                 silently clipping text or shrinking it to illegibility. -->
+            Replace this paragraph with the complete abstract. Introduce the
+            research question, the relevant theoretical or media context,
+            and the methods used. Present the central argument and findings
+            only as supported by your paper. The layout is designed to keep
+            the paper's content readable on a fixed 17:11 landscape card.
+          </p>
 
+          <h3>Keywords</h3>
+          <ul>
+            <!-- ⚠️ CHANGE: use the paper's actual keywords -->
+            <li>Keyword one</li>
+            <li>Keyword two</li>
+            <li>Keyword three</li>
+            <li>Keyword four</li>
+            <li>Keyword five</li>
+          </ul>
+
+          <h3>Publication</h3>
+          <!-- ⚠️ CHANGE: official DOI / publisher URL / PDF and full citation.
+               Keep this anchor as a direct child of .paper-text so that
+               Keywords and Publication display side by side. -->
+          <a class="paper-link"
+             href="../assets/paper-name.pdf"
+             target="_blank"
+             rel="noopener noreferrer">
+            Author. Year. “Paper Title: Subtitle.” Publication or
+            Conference Name, volume / issue / pages, DOI if available.
+            <span class="paper-link-sub">Read the full paper (PDF)</span>
+          </a>
+        </div>
       </div>
+    </section>
+  </main>
 
-    </div>
-
-  </section>
-
-</main>
-
-<!-- GLOBAL SITE FUNCTIONALITY -->
-<script src="../js/main.js"></script>
-
-<!-- 17:11 WHOLE-CARD SCALING FOR RESEARCH PAGES -->
-<script src="../js/paper-slide-scale.js"></script>
-
-<script>
-function goBack() {
-  window.location.href = "../library.html";
-}
-</script>
-
+  <!-- Site functionality and WHOLE-card scaling. Do not use project-autofit.js. -->
+  <script src="../js/main.js"></script>
+  <script src="../js/paper-slide-scale.js"></script>
 </body>
 </html>
