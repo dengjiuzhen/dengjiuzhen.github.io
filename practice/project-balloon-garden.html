@@ -10,67 +10,26 @@
   <link rel="stylesheet" href="../css/project.css">
 
   <style>
-    /* =====================================================
-       GARDEN OF BALLOONS — PAGE-SPECIFIC STYLES
-       Card dimensions are shared with project.css.
-    ===================================================== */
-    body { min-width: 0; overflow-x: hidden; }
 
-    /* Keep all six cards as 17:11 landscape canvases. */
+    /* Garden-only appearance; slide geometry is handled globally. */
+    body { min-width: 0; overflow-x: hidden; }
     main.project-container {
       width: 100%; max-width: none;
       display: flex; flex-direction: column; align-items: center;
-      gap: clamp(26px, 5vw, 60px);
-      padding: 94px 20px 80px;
-      scroll-snap-type: none;
+      gap: 60px; padding: 94px 20px 80px;
     }
-
-    main.project-container > section.project-card {
-      box-sizing: border-box;
-      width: min(95vw, 1100px);
-      max-width: 1100px;
-      aspect-ratio: 17 / 11;
-      height: auto;
-      min-height: 0;
-      flex-shrink: 0;
-      padding: clamp(24px, 3vw, 40px);
-      display: flex; flex-direction: column;
-      justify-content: flex-start; align-items: stretch;
-      gap: 20px;
-      text-align: left;
-      overflow: hidden;
-      scroll-snap-align: none;
-    }
-
-    /* Auto-fit wraps each card's children. Restore the original flex gap
-       inside that wrapper, and let JS scale it as one unit. */
-    main.project-container .auto-fit-content {
-      width: 100%; min-width: 0;
-      flex: 0 0 auto;
-      display: flex; flex-direction: column; align-items: stretch;
-      gap: 20px;
-      transform-origin: top left;
-    }
-
-    main.project-container .auto-fit-content > * {
-      min-width: 0; max-width: 100%;
-      margin-left: 0; margin-right: 0;
-      text-align: left;
-    }
-
     .project-card h1.project-title,
     .project-card h2.project-title {
-      display: block;
-      width: 100%; max-width: 100%;
-      margin: 0;
-      font-size: clamp(27px, 3vw, 38px);
-      line-height: 1.25;
-      text-align: left;
-      white-space: normal;
-      overflow-wrap: break-word;
+      display: block; margin: 0;
+      font-size: 38px; line-height: 1.25; text-align: left;
     }
-
-    /* Card 1 — same visual hierarchy as A Penguin's Return. */
+    .project-card .project-content > *,
+    .project-card .project-content-video > * { min-width: 0; }
+    .project-card .project-content .project-text {
+      max-width: 100%; width: 100%; margin: 0;
+    }
+    .project-card .project-text > * { text-align: left; }
+    /* Card 1: artwork and textual hierarchy. */
     .balloon-eyebrow {
       margin: 0;
       color: var(--blue-accent, #9aa8ff);
@@ -104,16 +63,6 @@
       line-height: 1.7;
     }
 
-    .project-card .project-content,
-    .project-card .project-content-video {
-      width: 100%; min-width: 0;
-    }
-    .project-card .project-content > *,
-    .project-card .project-content-video > * { min-width: 0; }
-    .project-card .project-content .project-text {
-      width: 100%; max-width: 100%; margin: 0;
-    }
-    .project-card .project-text > * { text-align: left; }
 
     /* Publication card — compact enough for the landscape format. */
     .balloon-publication { width: 100%; max-width: 950px; min-width: 0; }
@@ -177,26 +126,14 @@
       transform: translateY(-2px);
     }
 
-    /* The card stays landscape on narrow screens, so content may
-       shrink noticeably. Keep two-column compositions where possible. */
+
     @media (max-width: 650px) {
       main.project-container { padding: 82px 12px 48px; gap: 28px; }
-      main.project-container > section.project-card {
-        width: 100%; padding: 14px; gap: 12px;
-      }
-      main.project-container .auto-fit-content { gap: 12px; }
-      .project-card h1.project-title,
-      .project-card h2.project-title { font-size: 26px; }
-      .balloon-eyebrow { font-size: 10px; }
-      .balloon-meta span { padding: 5px 9px; font-size: 10px; }
-      .project-card p.balloon-lead { font-size: 14px; line-height: 1.55; }
-      .balloon-publication h3 { font-size: 20px; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       .balloon-paper-link { transition: none; }
     }
-  </style>
+</style>
 </head>
 
 <body>
@@ -386,6 +323,6 @@
   </main>
 
   <script src="../js/main.js"></script>
-  <script src="../js/project-autofit.js"></script>
+  <script src="../js/project-slide-scale.js"></script>
 </body>
 </html>
